@@ -32,3 +32,36 @@ C:\Users\2406761\source\repos\BookMart\BookMart\obj\Debug\net8.0\refint\BookMart
 C:\Users\2406761\source\repos\BookMart\BookMart\obj\Debug\net8.0\BookMart.pdb
 C:\Users\2406761\source\repos\BookMart\BookMart\obj\Debug\net8.0\BookMart.genruntimeconfig.cache
 C:\Users\2406761\source\repos\BookMart\BookMart\obj\Debug\net8.0\ref\BookMart.dll
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\appsettings.json
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\BookMart.staticwebassets.endpoints.json
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\BookMart.staticwebassets.runtime.json
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\BookMart.exe
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\BookMart.deps.json
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\BookMart.runtimeconfig.json
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\BookMart.dll
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\BookMart.pdb
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\BookMart.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\BookMart.AssemblyInfoInputs.cache
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\BookMart.AssemblyInfo.cs
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\BookMart.csproj.CoreCompileInputs.cache
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\BookMart.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\BookMart.RazorAssemblyInfo.cache
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\BookMart.RazorAssemblyInfo.cs
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\BookMart.sourcelink.json
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\scopedcss\bundle\BookMart.styles.css
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\staticwebassets\msbuild.BookMart.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\staticwebassets\msbuild.BookMart.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\staticwebassets\msbuild.build.BookMart.props
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.BookMart.props
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.BookMart.props
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\BookMart.dll
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\refint\BookMart.dll
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\BookMart.pdb
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\BookMart.genruntimeconfig.cache
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\ref\BookMart.dll

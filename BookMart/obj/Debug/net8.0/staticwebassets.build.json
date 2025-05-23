@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HehlvkSFt6TFRllV8lUyax5tErNH3ZnIXbWf8gWy2bw=",
+  "Hash": "Uk/lXMRF7ADRHcsOs+pXB92yQuUf1fDsQ0HyS0PGPlI=",
   "Source": "BookMart",
   "BasePath": "_content/BookMart",
   "Mode": "Default",
@@ -10,59 +10,17 @@
     {
       "Name": "BookMart\\wwwroot",
       "Source": "BookMart",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BookMart.styles.css",
-      "SourceId": "BookMart",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
-      "BasePath": "_content/BookMart",
-      "RelativePath": "BookMart#[.{fingerprint}]?.styles.css",
-      "AssetKind": "All",
-      "AssetMode": "CurrentProject",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "pfc9nbj6qn",
-      "Integrity": "yyWNSB+Q26CFrgsu10mmZi1j2hOM2pD0d/CmZ5PZJQI=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BookMart.styles.css"
-    },
-    {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BookMart.bundle.scp.css",
-      "SourceId": "BookMart",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
-      "BasePath": "_content/BookMart",
-      "RelativePath": "BookMart#[.{fingerprint}]!.bundle.scp.css",
-      "AssetKind": "All",
-      "AssetMode": "Reference",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "pfc9nbj6qn",
-      "Integrity": "yyWNSB+Q26CFrgsu10mmZi1j2hOM2pD0d/CmZ5PZJQI=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BookMart.bundle.scp.css"
-    },
-    {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\css\\site.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\site.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "css/site#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -80,10 +38,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\css\\user.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\user.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "css/user#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -101,10 +59,10 @@
       "OriginalItemSpec": "wwwroot\\css\\user.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\favicon.ico",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\favicon.ico",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "favicon#[.{fingerprint}]?.ico",
       "AssetKind": "All",
@@ -122,10 +80,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\js\\site.js",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\js\\site.js",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "js/site#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -143,10 +101,10 @@
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -164,10 +122,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -185,10 +143,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -206,10 +164,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -227,10 +185,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -248,10 +206,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -269,10 +227,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -290,10 +248,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -311,10 +269,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -332,10 +290,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -353,10 +311,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -374,10 +332,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -395,10 +353,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -416,10 +374,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -437,10 +395,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -458,10 +416,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -479,10 +437,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -500,10 +458,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -521,10 +479,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -542,10 +500,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -563,10 +521,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -584,10 +542,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -605,10 +563,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -626,10 +584,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -647,10 +605,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -668,10 +626,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -689,10 +647,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -710,10 +668,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -731,10 +689,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -752,10 +710,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -773,10 +731,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -794,10 +752,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -815,10 +773,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -836,10 +794,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -857,10 +815,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -878,10 +836,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -899,10 +857,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -920,10 +878,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -941,10 +899,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -962,10 +920,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -983,10 +941,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1004,10 +962,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -1025,10 +983,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1046,10 +1004,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -1067,10 +1025,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\LICENSE",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/bootstrap/LICENSE#[.{fingerprint}]?",
       "AssetKind": "All",
@@ -1088,10 +1046,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/jquery/dist/jquery#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1109,10 +1067,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/jquery/dist/jquery.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1130,10 +1088,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/jquery/dist/jquery.min#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -1151,10 +1109,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/jquery/LICENSE#[.{fingerprint}]?.txt",
       "AssetKind": "All",
@@ -1172,10 +1130,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/jquery-validation/dist/additional-methods#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1193,10 +1151,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1214,10 +1172,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1235,10 +1193,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1256,10 +1214,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/jquery-validation/LICENSE#[.{fingerprint}]?.md",
       "AssetKind": "All",
@@ -1277,10 +1235,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1298,10 +1256,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1319,10 +1277,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
       "BasePath": "_content/BookMart",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE#[.{fingerprint}]?.txt",
       "AssetKind": "All",
@@ -1342,172 +1300,8 @@
   ],
   "Endpoints": [
     {
-      "Route": "BookMart.bundle.scp.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BookMart.bundle.scp.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1126"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"yyWNSB+Q26CFrgsu10mmZi1j2hOM2pD0d/CmZ5PZJQI=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 23 May 2025 06:47:53 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-yyWNSB+Q26CFrgsu10mmZi1j2hOM2pD0d/CmZ5PZJQI="
-        }
-      ]
-    },
-    {
-      "Route": "BookMart.pfc9nbj6qn.bundle.scp.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BookMart.bundle.scp.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1126"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"yyWNSB+Q26CFrgsu10mmZi1j2hOM2pD0d/CmZ5PZJQI=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 23 May 2025 06:47:53 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "pfc9nbj6qn"
-        },
-        {
-          "Name": "label",
-          "Value": "BookMart.bundle.scp.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-yyWNSB+Q26CFrgsu10mmZi1j2hOM2pD0d/CmZ5PZJQI="
-        }
-      ]
-    },
-    {
-      "Route": "BookMart.pfc9nbj6qn.styles.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BookMart.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1126"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"yyWNSB+Q26CFrgsu10mmZi1j2hOM2pD0d/CmZ5PZJQI=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 23 May 2025 06:47:53 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "pfc9nbj6qn"
-        },
-        {
-          "Name": "label",
-          "Value": "BookMart.styles.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-yyWNSB+Q26CFrgsu10mmZi1j2hOM2pD0d/CmZ5PZJQI="
-        }
-      ]
-    },
-    {
-      "Route": "BookMart.styles.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BookMart.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1126"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"yyWNSB+Q26CFrgsu10mmZi1j2hOM2pD0d/CmZ5PZJQI=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 23 May 2025 06:47:53 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-yyWNSB+Q26CFrgsu10mmZi1j2hOM2pD0d/CmZ5PZJQI="
-        }
-      ]
-    },
-    {
       "Route": "css/site.4leq9t7652.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\css\\site.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1552,7 +1346,7 @@
     },
     {
       "Route": "css/site.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\css\\site.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1589,7 +1383,7 @@
     },
     {
       "Route": "css/user.825ivvj97x.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\css\\user.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\user.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1634,7 +1428,7 @@
     },
     {
       "Route": "css/user.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\css\\user.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\user.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1671,7 +1465,7 @@
     },
     {
       "Route": "favicon.61n19gt1b8.ico",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\favicon.ico",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\favicon.ico",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1716,7 +1510,7 @@
     },
     {
       "Route": "favicon.ico",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\favicon.ico",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\favicon.ico",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1753,7 +1547,7 @@
     },
     {
       "Route": "js/site.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\js\\site.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\js\\site.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1790,7 +1584,7 @@
     },
     {
       "Route": "js/site.xtxxf3hu2r.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\js\\site.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\js\\site.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1835,7 +1629,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1872,7 +1666,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.css.73kdqttayv.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1917,7 +1711,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.css.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1954,7 +1748,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.min.bpk8xqwxhs.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1999,7 +1793,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.min.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2036,7 +1830,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.min.css.8inm30yfxf.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2081,7 +1875,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.min.css.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2118,7 +1912,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.mpyigms19s.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2163,7 +1957,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2200,7 +1994,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.css.4gxs3k148c.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2245,7 +2039,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2282,7 +2076,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.9b9oa1qrmt.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2327,7 +2121,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2364,7 +2158,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.fctod5rc9n.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2409,7 +2203,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2446,7 +2240,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.ve6x09088i.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2491,7 +2285,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.agp80tu62r.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2536,7 +2330,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2573,7 +2367,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.css.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2610,7 +2404,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.css.st1cbwfwo5.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2655,7 +2449,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.min.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2692,7 +2486,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.min.css.5vj65cig9w.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2737,7 +2531,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2774,7 +2568,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.min.unj9p35syc.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2819,7 +2613,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2856,7 +2650,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.2q4vfeazbq.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2901,7 +2695,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2938,7 +2732,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2975,7 +2769,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3012,7 +2806,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.o371a8zbv2.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3057,7 +2851,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.n1oizzvkh6.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3102,7 +2896,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.q2ku51ktnl.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3147,7 +2941,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.7na4sro3qu.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3192,7 +2986,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3229,7 +3023,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.css.jeal3x0ldm.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3274,7 +3068,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.css.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3311,7 +3105,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.min.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3348,7 +3142,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3385,7 +3179,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.okkk44j0xs.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3430,7 +3224,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.min.f8imaxxbri.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3475,7 +3269,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.0wve5yxp74.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3520,7 +3314,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3557,7 +3351,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.cwzlr5n8x4.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3602,7 +3396,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3639,7 +3433,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3676,7 +3470,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3713,7 +3507,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.wmug9u23qg.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3758,7 +3552,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.npxfuf8dg6.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3803,7 +3597,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3840,7 +3634,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.css.j75batdsum.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3885,7 +3679,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.css.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3922,7 +3716,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.min.16095smhkz.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3967,7 +3761,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.min.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4004,7 +3798,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4041,7 +3835,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.vy0bq9ydhf.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4086,7 +3880,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.b4skse8du6.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4131,7 +3925,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4168,7 +3962,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.ab1c3rmv7g.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4213,7 +4007,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4250,7 +4044,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4287,7 +4081,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.56d2bn4wt9.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4332,7 +4126,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4369,7 +4163,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.u3xrusw2ol.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4414,7 +4208,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.tey0rigmnh.css",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4459,7 +4253,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4496,7 +4290,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.js.kbynt5jhd9.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4541,7 +4335,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.js.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4578,7 +4372,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.l2av4jpuoj.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4623,7 +4417,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.min.25iw1kog22.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4668,7 +4462,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.min.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4705,7 +4499,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.c2nslu3uf3.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4750,7 +4544,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4787,7 +4581,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4824,7 +4618,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.js.2lgwfvgpvi.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4869,7 +4663,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.js.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4906,7 +4700,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.m39kt2b5c9.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4951,7 +4745,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.min.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4988,7 +4782,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5025,7 +4819,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.min.js.wsezl0heh6.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5070,7 +4864,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.min.um2aeqy4ik.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5115,7 +4909,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5152,7 +4946,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.js.6ukhryfubh.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5197,7 +4991,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.js.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5234,7 +5028,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.min.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5271,7 +5065,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.min.js.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5308,7 +5102,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.min.js.u33ctipx7g.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5353,7 +5147,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.min.zwph15dxgs.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5398,7 +5192,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.o4kw7cc6tf.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5443,7 +5237,7 @@
     },
     {
       "Route": "lib/bootstrap/LICENSE",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\LICENSE",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5480,7 +5274,7 @@
     },
     {
       "Route": "lib/bootstrap/LICENSE.81b7ukuj9c",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\bootstrap\\LICENSE",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5525,7 +5319,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.fwhahm2icz.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5570,7 +5364,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5607,7 +5401,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.min.5pze98is44.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5652,7 +5446,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.min.dd6z7egasc.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5697,7 +5491,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.min.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5734,7 +5528,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.min.map",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5771,7 +5565,7 @@
     },
     {
       "Route": "lib/jquery/LICENSE.mlv21k5csn.txt",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5816,7 +5610,7 @@
     },
     {
       "Route": "lib/jquery/LICENSE.txt",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5853,7 +5647,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/additional-methods.ay5nd8zt9x.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5898,7 +5692,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/additional-methods.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5935,7 +5729,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/additional-methods.min.9oaff4kq20.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5980,7 +5774,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/additional-methods.min.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6017,7 +5811,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/jquery.validate.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6054,7 +5848,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/jquery.validate.min.b7iojwaux1.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6099,7 +5893,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/jquery.validate.min.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6136,7 +5930,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/jquery.validate.pzqfkb6aqo.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6181,7 +5975,7 @@
     },
     {
       "Route": "lib/jquery-validation/LICENSE.md",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6218,7 +6012,7 @@
     },
     {
       "Route": "lib/jquery-validation/LICENSE.x0q3zqp4vz.md",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6263,7 +6057,7 @@
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.47otxtyo56.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6308,7 +6102,7 @@
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6345,7 +6139,7 @@
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.4v8eqarkd7.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6390,7 +6184,7 @@
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6427,7 +6221,7 @@
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/LICENSE.356vix0kms.txt",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6472,7 +6266,7 @@
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/LICENSE.txt",
-      "AssetFile": "C:\\Users\\2406761\\source\\repos\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {
