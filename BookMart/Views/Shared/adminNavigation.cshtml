@@ -3,3 +3,72 @@
 *@
 @{
 }
+<!-- Sidebar -->
+@* Sidebar *@
+<nav class="sidebar" id="sidebar">
+    <div class="d-flex flex-column h-100">
+        <div class="nav-links flex-grow-1">
+            <a href="@Url.Action("dashboard", "Admin")" class="nav-link active">
+                @* Example: AdminHome action in Admin controller *@
+                <i class="fas fa-home"></i>
+                <span class="ms-2">Dashboard</span>
+            </a>
+            <a href="@Url.Action("allorder", "Admin")" class="nav-link">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="ms-2">Orders</span>
+            </a>
+            <a href="@Url.Action("adminstock", "Admin")" class="nav-link">
+                <i class="fas fa-boxes"></i>
+                <span class="ms-2">Stock</span>
+            </a>
+            <a href="@Url.Action("Genre", "Admin")" class="nav-link">
+                <i class="fas fa-tags"></i>
+                <span class="ms-2">Genres</span>
+            </a>
+            <a href="@Url.Action("AddBook", "Admin")" class="nav-link">
+                <i class="fas fa-book"></i>
+                <span class="ms-2">Books</span>
+            </a>
+            <a href="@Url.Action("TopSelling", "Admin")" class="nav-link">
+                <i class="fas fa-chart-line"></i>
+                <span class="ms-2">Top Selling</span>
+            </a>
+        </div>
+
+        <div class="mt-auto px-3">
+            <hr>
+            <div class="nav-link">
+                <i class="fas fa-user-circle"></i>
+                <span class="ms-2">Admin</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+@* Navbar *@
+<nav class="admin-navbar navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <button class="sidebar-toggle btn btn-link" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="navbar-brand d-flex align-items-center">
+            <span>Dashboard</span>
+        </div>
+
+        <div class="ms-auto d-flex align-items-center">
+            <div class="dropdown">
+                <button class="btn btn-link text-dark dropdown-toggle" type="button" id="adminDropdown" data-bs-toggle="dropdown">
+                    <i class="fas fa-user-circle me-1"></i>
+                    <span>Admin</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="@Url.Action("login", "Account")"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li> @* Example: Index action in Home controller *@
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+@* The original JavaScript for sidebar toggle should be moved to a separate file, e.g., wwwroot/js/admin.js *@

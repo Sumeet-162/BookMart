@@ -1,0 +1,157 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+    ViewData["Title"] = "Stock Management"; // Sets the page title
+    Layout = "adminLayout"; // Specifies the layout file to use
+}
+
+<link href="~/css/site.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <div class="row g-4 mb-4">
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="stat-card">
+                <div class="d-flex align-items-center">
+                    <div class="stat-icon bg-primary bg-opacity-10 text-primary me-3">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <div>
+                        <div class="small text-muted mb-1">Total Books</div>
+                        <h4 class="mb-0">856</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="stat-card">
+                <div class="d-flex align-items-center">
+                    <div class="stat-icon bg-warning bg-opacity-10 text-warning me-3">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div>
+                        <div class="small text-muted mb-1">Low Stock</div>
+                        <h4 class="mb-0">12</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="stat-card">
+                <div class="d-flex align-items-center">
+                    <div class="stat-icon bg-danger bg-opacity-10 text-danger me-3">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div>
+                        <div class="small text-muted mb-1">Out of Stock</div>
+                        <h4 class="mb-0">5</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="stat-card">
+                <div class="d-flex align-items-center">
+                    <div class="stat-icon bg-success bg-opacity-10 text-success me-3">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <div class="small text-muted mb-1">Stock Value</div>
+                        <h4 class="mb-0">₹4.2L</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="card-title mb-0">Stock Inventory</h5>
+                <div class="d-flex gap-2">
+                    <div class="input-group" style="width: 300px;">
+                        <input type="text" class="form-control" placeholder="Search books...">
+                        <button class="btn btn-outline-secondary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <button class="btn btn-outline-primary">
+                        <i class="fas fa-filter me-2"></i>Filter
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Book</th>
+                            <th>Genre</th>
+                            <th>Stock Level</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="~/images/1984.jpg" alt="Book" style="width: 40px; height: 60px; object-fit: cover;" class="me-3">
+                                    <div>
+                                        <div>1984</div>
+                                        <small class="text-muted">George Orwell</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Fiction</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="stock-level me-2" style="width: 100px;">
+                                        <div class="stock-level-bar bg-warning" style="width: 25%"></div>
+                                    </div>
+                                    <span>12</span>
+                                </div>
+                            </td>
+                            <td>₹399</td>
+                            <td><span class="status-badge bg-warning bg-opacity-10 text-warning">Low Stock</span></td>
+                            <td>
+                                <a href="@Url.Action("adminupdatestock", "Admin")" class="btn btn-sm btn-outline-primary me-2">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i class="fas fa-history"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <nav class="d-flex justify-content-between align-items-center mt-4">
+                <div class="text-muted">
+                    Showing 1-10 of 856 books
+                </div>
+                <ul class="pagination mb-0">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+    <script>
+        // Any page-specific JavaScript for stock management can go here.
+        // For example, AJAX calls for search/filter, or dynamic table loading.
+    </script>

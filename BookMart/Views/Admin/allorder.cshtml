@@ -1,0 +1,148 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    ViewData["Title"] = "All Orders";
+    Layout = "adminLayout"; // Specifies the layout file to use
+}
+
+<link href="~/css/site.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <div class="row g-4 mb-4">
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="stat-card">
+                <div class="d-flex align-items-center">
+                    <div class="stat-icon bg-primary bg-opacity-10 text-primary me-3">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div>
+                        <div class="small text-muted mb-1">New Orders</div>
+                        <h4 class="mb-0">24</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="stat-card">
+                <div class="d-flex align-items-center">
+                    <div class="stat-icon bg-success bg-opacity-10 text-success me-3">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <div>
+                        <div class="small text-muted mb-1">Processing</div>
+                        <h4 class="mb-0">18</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="stat-card">
+                <div class="d-flex align-items-center">
+                    <div class="stat-icon bg-info bg-opacity-10 text-info me-3">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div>
+                        <div class="small text-muted mb-1">Shipped</div>
+                        <h4 class="mb-0">42</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="stat-card">
+                <div class="d-flex align-items-center">
+                    <div class="stat-icon bg-success bg-opacity-10 text-success me-3">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div>
+                        <div class="small text-muted mb-1">Delivered</div>
+                        <h4 class="mb-0">156</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="card-title mb-0">All Orders</h5>
+                <div class="d-flex gap-2">
+                    <div class="input-group" style="width: 300px;">
+                        <input type="text" class="form-control" placeholder="Search orders...">
+                        <button class="btn btn-outline-secondary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <button class="btn btn-outline-primary">
+                        <i class="fas fa-filter me-2"></i>Filter
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Books</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#ORD-001</td>
+                            <td>
+                                <div>John Doe</div>
+                                <small class="text-muted">john@example.com</small>
+                            </td>
+                            <td>
+                                <div>The Alchemist</div>
+                                <small class="text-muted">2 more items</small>
+                            </td>
+                            <td>₹999</td>
+                            <td>
+                                <div>May 21, 2025</div>
+                                <small class="text-muted">10:30 AM</small>
+                            </td>
+                            <td><span class="status-badge bg-info bg-opacity-10 text-info">Shipped</span></td>
+                            <td>
+                                <a href="@Url.Action("adminoperation", "Admin")" class="btn btn-sm btn-outline-primary me-2">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        @* Add more order rows as needed *@
+                    </tbody>
+                </table>
+            </div>
+
+            <nav class="d-flex justify-content-between align-items-center mt-4">
+                <div class="text-muted">
+                    Showing 1-10 of 240 orders
+                </div>
+                <ul class="pagination mb-0">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

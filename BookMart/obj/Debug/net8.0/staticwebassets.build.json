@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Uk/lXMRF7ADRHcsOs+pXB92yQuUf1fDsQ0HyS0PGPlI=",
+  "Hash": "9Om+skshauISsvffBhZhR7F+UtI+CliiI/xaWYv0NFM=",
   "Source": "BookMart",
   "BasePath": "_content/BookMart",
   "Mode": "Default",
@@ -78,6 +78,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\js\\admin.js",
+      "SourceId": "BookMart",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
+      "BasePath": "_content/BookMart",
+      "RelativePath": "js/admin#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "qu9mfp0kuk",
+      "Integrity": "Yk517jXU4lNq0MCKwCKs3i7+qQcHNZYQb2cJXvZdT8E=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\admin.js"
     },
     {
       "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\js\\site.js",
@@ -1542,6 +1563,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM="
+        }
+      ]
+    },
+    {
+      "Route": "js/admin.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\js\\admin.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1717"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Yk517jXU4lNq0MCKwCKs3i7+qQcHNZYQb2cJXvZdT8E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 10:35:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Yk517jXU4lNq0MCKwCKs3i7+qQcHNZYQb2cJXvZdT8E="
+        }
+      ]
+    },
+    {
+      "Route": "js/admin.qu9mfp0kuk.js",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\js\\admin.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1717"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Yk517jXU4lNq0MCKwCKs3i7+qQcHNZYQb2cJXvZdT8E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 10:35:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "qu9mfp0kuk"
+        },
+        {
+          "Name": "label",
+          "Value": "js/admin.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Yk517jXU4lNq0MCKwCKs3i7+qQcHNZYQb2cJXvZdT8E="
         }
       ]
     },
