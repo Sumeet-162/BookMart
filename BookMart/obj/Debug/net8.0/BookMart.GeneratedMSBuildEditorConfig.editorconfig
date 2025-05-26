@@ -24,6 +24,18 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxsb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/adminaddbook.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cYWRtaW5hZGRib29rLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/adminaddgenre.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cYWRtaW5hZGRnZW5yZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/adminbook.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cYWRtaW5ib29rLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/admingenre.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cYWRtaW5nZW5yZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -34,6 +46,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/adminstock.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cYWRtaW5zdG9jay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/adminupdatebook.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cYWRtaW51cGRhdGVib29rLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/adminupdategenre.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cYWRtaW51cGRhdGVnZW5yZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/adminupdatestock.cshtml]

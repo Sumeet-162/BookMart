@@ -1,0 +1,226 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    ViewData["Title"] = "Add Genre - BookMart Admin";
+    Layout = "adminLayout";
+}
+
+<link href="~/css/site.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 2rem;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .meta-info {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+        .book-table {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+            .table th {
+                background-color: #f8f9fa;
+                color: #495057;
+                font-weight: 600;
+                text-align: center;
+                padding: 1rem;
+                border-bottom: 2px solid #dee2e6;
+            }
+
+            .table td {
+                text-align: center;
+                vertical-align: middle;
+                padding: 1rem;
+                background-color: #ffffff;
+            }
+
+            .table img {
+                border-radius: 4px;
+                transition: transform 0.2s ease;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+                .table img:hover {
+                    transform: scale(1.05);
+                }
+
+            .table tbody tr {
+                transition: background-color 0.2s ease;
+            }
+
+                .table tbody tr:hover {
+                    background-color: #f8f9fa;
+                }
+
+        .btn-action {
+            padding: 0.375rem 0.75rem;
+            font-size: 0.875rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+            .btn-action:hover {
+                transform: translateY(-1px);
+            }
+
+        .add-book-btn {
+            margin-top: 1.5rem;
+            padding: 0.75rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+            .add-book-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+
+        .search-box {
+            max-width: 300px;
+        }
+    </style>
+
+
+<div class="container-fluid px-4">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div>
+            <h4 class="mb-1">Books Management</h4>
+            <div class="meta-info">
+                <span title="Current UTC Time">🕒 @currentDate</span>
+                <span class="ms-3" title="Current User">👤 @currentUser</span>
+            </div>
+        </div>
+        <div class="d-flex gap-3 align-items-center">
+            <div class="search-box">
+                <input type="text" class="form-control" placeholder="Search books..." id="searchInput">
+            </div>
+            <a asp-action="Add" class="btn btn-primary btn-action">
+                <i class="fas fa-plus me-2"></i>Add Book
+            </a>
+        </div>
+    </div>
+
+    <!-- Books Table -->
+    <div class="book-table">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th style="width: 120px">Cover</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Genre</th>
+                        <th>Price</th>
+                        <th style="width: 150px">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var book in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@book.ImageUrl" style="width:80px;height:100px" alt="@book.Title">
+                                </td>
+                                <td class="text-start">@book.Title</td>
+                                <td>@book.Author</td>
+                                <td>@book.Genre</td>
+                                <td>₹@book.Price.ToString("N2")</td>
+                                <td>
+                                    <div class="d-flex gap-2 justify-content-center">
+                                        <a asp-action="Edit" asp-route-id="@book.Id"
+                                           class="btn btn-outline-primary btn-action">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button type="button"
+                                                class="btn btn-outline-danger btn-action"
+                                                onclick="confirmDelete(@book.Id, '@book.Title')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center py-4">
+                                <div class="text-muted">No books found</div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add Book Button -->
+    <a asp-action="Add" class="btn btn-primary w-100 add-book-btn">
+        <i class="fas fa-plus me-2"></i>Add New Book
+    </a>
+</div>
+
+
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('keyup', debounce(function(e) {
+            const searchTerm = this.value.toLowerCase();
+            const tableRows = document.querySelectorAll('tbody tr');
+
+            tableRows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        }, 300));
+
+        // Debounce function
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Delete confirmation
+        function confirmDelete(id, title) {
+            if (confirm(`Are you sure you want to delete "${title}"?`)) {
+                window.location.href = `/Book/Delete/${id}`;
+            }
+        }
+    </script>

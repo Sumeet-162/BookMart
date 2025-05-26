@@ -1,0 +1,252 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model BookViewModel
+@{
+    ViewData["Title"] = "Add Book - BookMart Admin";
+    var currentDateTime = "2025-05-26 06:56:39";
+    var currentUser = "sumeet2406761";
+}
+
+@section Styles {
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 2rem;
+        }
+
+        .page-header {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .meta-info {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-radius: 8px;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .form-control:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #344767;
+            margin-bottom: 1rem;
+        }
+
+        .image-preview {
+            max-width: 100%;
+            height: 300px;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .btn-action {
+            padding: 0.625rem 1.25rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+}
+
+<div class="container-fluid px-4">
+    <!-- Page Header -->
+    <div class="page-header d-flex justify-content-between align-items-center">
+        <div>
+            <h4 class="mb-1">Add New Book</h4>
+            <div class="meta-info">
+                <span title="Current UTC Time">🕒 @currentDateTime</span>
+                <span class="ms-3" title="Current User">👤 @currentUser</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Form -->
+    <div class="card">
+        <div class="card-body">
+            <form asp-action="AddBook" asp-controller="Admin" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-8">
+                        <!-- Basic Info -->
+                        <div class="mb-4">
+                            <h5 class="section-title">Basic Information</h5>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label asp-for="Title" class="form-label">Book Title</label>
+                                    <input asp-for="Title" class="form-control" placeholder="Enter book title">
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="Author" class="form-label">Author</label>
+                                    <input asp-for="Author" class="form-control" placeholder="Enter author name">
+                                    <span asp-validation-for="Author" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="Genre" class="form-label">Genre</label>
+                                    <select asp-for="Genre" class="form-select">
+                                        <option value="">Select Genre</option>
+                                        <option value="Fiction">Fiction</option>
+                                        <option value="Non-Fiction">Non-Fiction</option>
+                                        <option value="Mystery">Mystery</option>
+                                        <option value="Romance">Romance</option>
+                                    </select>
+                                    <span asp-validation-for="Genre" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Price & Stock -->
+                        <div class="mb-4">
+                            <h5 class="section-title">Price & Stock</h5>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label asp-for="Price" class="form-label">Price (₹)</label>
+                                    <input asp-for="Price" class="form-control" type="number" min="0" step="0.01">
+                                    <span asp-validation-for="Price" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label asp-for="Stock" class="form-label">Initial Stock</label>
+                                    <input asp-for="Stock" class="form-control" type="number" min="0">
+                                    <span asp-validation-for="Stock" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-4">
+                            <h5 class="section-title">Description</h5>
+                            <textarea asp-for="Description" class="form-control" rows="4" 
+                                      placeholder="Enter book description"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <!-- Image Upload -->
+                        <div class="mb-4">
+                            <h5 class="section-title">Book Cover</h5>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div id="imagePreview" class="image-preview mb-3">
+                                        <i class="fas fa-image fa-2x text-muted"></i>
+                                    </div>
+                                    <input asp-for="ImageUrl" class="form-control" 
+                                           placeholder="Enter image URL">
+                                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                                    <small class="text-muted d-block mt-2">Recommended size: 400x600px</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Details -->
+                        <div class="mb-4">
+                            <h5 class="section-title">Additional Details</h5>
+                            <div class="mb-3">
+                                <label asp-for="ISBN" class="form-label">ISBN</label>
+                                <input asp-for="ISBN" class="form-control">
+                                <span asp-validation-for="ISBN" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Publisher" class="form-label">Publisher</label>
+                                <input asp-for="Publisher" class="form-control">
+                                <span asp-validation-for="Publisher" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="PublicationYear" class="form-label">Publication Year</label>
+                                <input asp-for="PublicationYear" class="form-control" type="number" min="1800" max="2025">
+                                <span asp-validation-for="PublicationYear" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <!-- Form Actions -->
+                <div class="d-flex justify-content-between">
+                    <a asp-action="adminbook" asp-controller="Admin" class="btn btn-outline-secondary btn-action">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Books
+                    </a>
+                    <button type="submit" class="btn btn-primary btn-action">
+                        <i class="fas fa-plus me-2"></i>Add Book
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        // Image URL preview
+        document.getElementById('ImageUrl').addEventListener('input', function() {
+            const preview = document.getElementById('imagePreview');
+            const url = this.value.trim();
+            
+            if (url) {
+                preview.innerHTML = `<img src="${url}" alt="Book Cover Preview">`;
+                const img = preview.querySelector('img');
+                img.onerror = () => {
+                    preview.innerHTML = '<i class="fas fa-image fa-2x text-muted"></i>';
+                };
+            } else {
+                preview.innerHTML = '<i class="fas fa-image fa-2x text-muted"></i>';
+            }
+        });
+
+        // Form validation
+        $(document).ready(function() {
+            $("#addBookForm").validate({
+                rules: {
+                    Title: "required",
+                    Author: "required",
+                    Genre: "required",
+                    Price: {
+                        required: true,
+                        min: 0
+                    },
+                    Stock: {
+                        required: true,
+                        min: 0
+                    }
+                }
+            });
+        });
+    </script>
+}
