@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9Om+skshauISsvffBhZhR7F+UtI+CliiI/xaWYv0NFM=",
+  "Hash": "y6GUhO4cW8XJIoRVFAVwWkqrb75djT+gd626VQJTHNI=",
   "Source": "BookMart",
   "BasePath": "_content/BookMart",
   "Mode": "Default",
@@ -31,8 +31,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "4leq9t7652",
-      "Integrity": "WPkpPDRBOXlpxvgb38jJp6oYHKGFtLrRgeNS7L9kZT4=",
+      "Fingerprint": "0scdrnu3im",
+      "Integrity": "8NiqNTDGyctvYPV4NhBkqmA0BOiBVVLE3SZo7tOvlRU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -1321,7 +1321,7 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/site.4leq9t7652.css",
+      "Route": "css/site.0scdrnu3im.css",
       "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1331,7 +1331,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5194"
+          "Value": "7285"
         },
         {
           "Name": "Content-Type",
@@ -1339,11 +1339,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"WPkpPDRBOXlpxvgb38jJp6oYHKGFtLrRgeNS7L9kZT4=\""
+          "Value": "\"8NiqNTDGyctvYPV4NhBkqmA0BOiBVVLE3SZo7tOvlRU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 23 May 2025 07:04:07 GMT"
+          "Value": "Mon, 26 May 2025 17:20:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1353,7 +1353,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "4leq9t7652"
+          "Value": "0scdrnu3im"
         },
         {
           "Name": "label",
@@ -1361,7 +1361,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-WPkpPDRBOXlpxvgb38jJp6oYHKGFtLrRgeNS7L9kZT4="
+          "Value": "sha256-8NiqNTDGyctvYPV4NhBkqmA0BOiBVVLE3SZo7tOvlRU="
         }
       ]
     },
@@ -1376,7 +1376,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5194"
+          "Value": "7285"
         },
         {
           "Name": "Content-Type",
@@ -1384,11 +1384,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"WPkpPDRBOXlpxvgb38jJp6oYHKGFtLrRgeNS7L9kZT4=\""
+          "Value": "\"8NiqNTDGyctvYPV4NhBkqmA0BOiBVVLE3SZo7tOvlRU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 23 May 2025 07:04:07 GMT"
+          "Value": "Mon, 26 May 2025 17:20:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1398,7 +1398,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-WPkpPDRBOXlpxvgb38jJp6oYHKGFtLrRgeNS7L9kZT4="
+          "Value": "sha256-8NiqNTDGyctvYPV4NhBkqmA0BOiBVVLE3SZo7tOvlRU="
         }
       ]
     },
@@ -1425,7 +1425,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 23 May 2025 07:23:06 GMT"
+          "Value": "Mon, 26 May 2025 17:20:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1470,7 +1470,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 23 May 2025 07:23:06 GMT"
+          "Value": "Mon, 26 May 2025 17:20:24 GMT"
         },
         {
           "Name": "Cache-Control",

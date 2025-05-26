@@ -1,111 +1,113 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model BookMart.Models.LoginViewModel
 @{
-    ViewData["Title"] = "Login";
-    Layout = "loginLayout"; // Assuming you have a _loginLayout.cshtml
+    // We are explicitly NOT using a layout file here to keep the HTML self-contained as per your original design.
+    Layout = null; // Important: Setting Layout to null means this view generates a full HTML page.
+    ViewData["Title"] = "Sign Up / Login - BookMart"; // Set title for the page
 }
 
-<style>
-    /* All your existing CSS */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        scrollbar-width: none; /* For Firefox */
-    }
 
-    html, body {
-        height: 100%;
-    }
-
-    body {
-        font-family: sans-serif;
-        position: relative;
-        overflow-x: hidden;
-    }
-
-    .background1 {
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-        background: radial-gradient(125% 125% at 50% 10%, #fff 40%, rgb(0, 0, 0) 100%);
-    }
-
-    .signup-container {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .flip-card {
-        width: 400px;
-        height: 500px;
-        perspective: 1000px;
-    }
-
-    .flip-card-inner {
-        width: 100%;
-        height: 100%;
-        transition: transform 0.8s;
-        transform-style: preserve-3d;
-        position: relative;
-    }
-
-    .flip-card.flipped .flip-card-inner {
-        transform: rotateY(180deg);
-    }
-
-    .flip-card-front,
-    .flip-card-back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        backface-visibility: hidden;
-        border-radius: 1rem;
-    }
-
-    .flip-card-back {
-        transform: rotateY(180deg);
-        background: #ffffff;
-        padding: 2rem;
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    }
-
-    .signup-card {
-        background: #ffffff;
-        border-radius: 1rem;
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-        padding: 2rem;
-        max-width: 400px;
-        width: 100%;
-    }
-
-    .form-control:focus {
-        box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
-        border-color: #3b82f6;
-    }
-
-    .btn-primary {
-        background-color: #3b82f6;
-        border-color: #3b82f6;
-    }
-
-        .btn-primary:hover {
-            background-color: #2563eb;
-            border-color: #2563eb;
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* All your existing CSS from the original CSHTML goes here */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scrollbar-width: none; /* For Firefox */
         }
 
-    .form-footer a {
-        text-decoration: none;
-        color: #3b82f6;
-    }
-
-        .form-footer a:hover {
-            color: #2563eb;
+        html, body {
+            height: 100%;
         }
-</style>
+
+        body {
+            font-family: sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .background1 {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: radial-gradient(125% 125% at 50% 10%, #fff 40%, rgb(0, 0, 0) 100%);
+        }
+
+        .signup-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flip-card {
+            width: 400px;
+            height: 500px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 1rem;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+            background: #ffffff;
+            padding: 2rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+
+        .signup-card {
+            background: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
+            border-color: #3b82f6;
+        }
+
+        .btn-primary {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+        }
+
+            .btn-primary:hover {
+                background-color: #2563eb;
+                border-color: #2563eb;
+            }
+
+        .form-footer a {
+            text-decoration: none;
+            color: #3b82f6;
+        }
+
+            .form-footer a:hover {
+                color: #2563eb;
+            }
+    </style>
+
 
 <div class="background1"></div>
 
@@ -114,18 +116,46 @@
         <div class="flip-card-inner">
             <div class="flip-card-front signup-card">
                 <h2 class="text-center mb-4">Sign Up</h2>
-                <form id="signupForm">
+                <form asp-controller="Account" asp-action="Register" method="post">
+                    @Html.AntiForgeryToken()
+                    @* This div will display non-field-specific errors from the Register action (e.g., "Username is already taken") *@
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                     <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter username" required>
+                        <label for="registerUsername" class="form-label">Username</label>
+                        
+                        <input type="text" id="registerUsername" name="Username" value="@(TempData["RegisterUsername"])" class="form-control" placeholder="Enter username" />
+                        <span class="text-danger">@Html.ValidationMessage("Username")</span> 
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter email" required>
+                        <label for="registerEmail" class="form-label">Email address</label>
+                        <input type="email" id="registerEmail" name="Email" value="@(TempData["RegisterEmail"])" class="form-control" placeholder="Enter email" />
+                        <span class="text-danger">@Html.ValidationMessage("Email")</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerFirstName" class="form-label">First Name</label>
+                        <input type="text" id="registerFirstName" name="FirstName" value="@(TempData["RegisterFirstName"])" class="form-control" placeholder="Enter first name" />
+                        <span class="text-danger">@Html.ValidationMessage("FirstName")</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerLastName" class="form-label">Last Name</label>
+                        <input type="text" id="registerLastName" name="LastName" value="@(TempData["RegisterLastName"])" class="form-control" placeholder="Enter last name" />
+                        <span class="text-danger">@Html.ValidationMessage("LastName")</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPhone" class="form-label">Phone Number</label>
+                        <input type="tel" id="registerPhone" name="Phone" value="@(TempData["RegisterPhone"])" class="form-control" placeholder="Enter phone number" />
+                        <span class="text-danger">@Html.ValidationMessage("Phone")</span>
                     </div>
                     <div class="mb-3 position-relative">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+                        <label for="registerPassword" class="form-label">Password</label>
+                        <input type="password" id="registerPassword" name="Password" class="form-control" placeholder="Enter password" />
+                        <span class="text-danger">@Html.ValidationMessage("Password")</span>
+                    </div>
+                    <div class="mb-3 position-relative">
+                        <label for="registerConfirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" id="registerConfirmPassword" name="ConfirmPassword" class="form-control" placeholder="Confirm password" />
+                        <span class="text-danger">@Html.ValidationMessage("ConfirmPassword")</span>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Create Account</button>
                 </form>
@@ -136,14 +166,26 @@
 
             <div class="flip-card-back">
                 <h2 class="text-center mb-4">Login</h2>
-                <form id="loginForm">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+                <form asp-controller="Account" asp-action="Login" method="post">
+                    @Html.AntiForgeryToken()
+                    
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                     <div class="mb-3">
-                        <label for="loginUsername" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="loginUsername" placeholder="Enter username" required>
+                        <label asp-for="Username" class="form-label"></label> 
+                        <input asp-for="Username" class="form-control" placeholder="Enter username" /> 
+                        <span asp-validation-for="Username" class="text-danger"></span> 
                     </div>
                     <div class="mb-3">
-                        <label for="loginPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="loginPassword" placeholder="Enter password" required>
+                        <label asp-for="Password" class="form-label"></label> 
+                        <input asp-for="Password" class="form-control" placeholder="Enter password" /> 
+                        <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Login</button>
                 </form>
@@ -156,8 +198,16 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
+@* Important: Ensure your project has the _ValidationScriptsPartial.cshtml in Views/Shared.
+    If not, you'll need to manually add the following scripts:
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+*@
+<partial name="_ValidationScriptsPartial" />
+
 <script>
+    // Your existing JavaScript for flipping the card
     function flipToLogin() {
         document.getElementById('signupFlipCard').classList.add('flipped');
     }
@@ -166,30 +216,28 @@
         document.getElementById('signupFlipCard').classList.remove('flipped');
     }
 
-    document.getElementById('signupForm').addEventListener('submit', function (event) {
-        event.preventDefault();
-        alert('Account created successfully!');
-        // Redirect to a specific home page for new users or a general landing
-        window.location.href = '@Url.Action("Index", "Home")'; // Example: redirect to Index action of Home controller
-    });
+    // JavaScript to handle flipping the card based on server-side validation errors or success messages
+    document.addEventListener('DOMContentLoaded', function () {
+        // Check for validation errors on the registration form
+        var registerErrors = document.querySelectorAll('#signupFlipCard .flip-card-front .text-danger:not([data-valmsg-summary="true"])');
+        var registerSummaryError = document.querySelector('#signupFlipCard .flip-card-front [data-valmsg-summary="true"]');
 
-    document.getElementById('loginForm').addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent default form submission
-
-        const username = document.getElementById('loginUsername').value;
-        const password = document.getElementById('loginPassword').value; // In a real app, this would be hashed!
-
-        if (username && password) {
-            if (username.toLowerCase() === 'admin') {
-                // For admin, redirect to the AdminDashboard action
-                // Replace "Admin" with your actual Admin controller name if different
-                window.location.href = '@Url.Action("dashboard", "Admin")';
-            } else {
-                // For other users, redirect to a general home page
-                window.location.href = '@Url.Action("Index", "Home")'; // Example: redirect to Index action of Home controller
-            }
+        // If there are any validation errors related to the registration form fields or general summary, flip to signup side
+        if ((registerErrors.length > 0 && Array.from(registerErrors).some(el => el.textContent.trim() !== '')) ||
+            (registerSummaryError && registerSummaryError.textContent.trim() !== '')) {
+            flipToSignUp();
         } else {
-            alert('Please enter both username and password.');
+             // If there's a success message (likely from a successful registration), flip to login side
+            var successMessage = document.querySelector('.alert-success');
+            if (successMessage) {
+                flipToLogin();
+            }
         }
     });
+
+    // Removed: Your original client-side form submission listeners.
+    // These are now handled by the ASP.NET Core MVC forms and server-side logic.
+    // document.getElementById('signupForm').addEventListener('submit', function (event) { ... });
+    // document.getElementById('loginForm').addEventListener('submit', function (event) { ... });
 </script>
+
