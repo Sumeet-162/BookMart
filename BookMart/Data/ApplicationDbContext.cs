@@ -16,6 +16,8 @@ namespace BookMart.Data
         public DbSet<Book> Books { get; set; } // Added DbSet for Book
         public DbSet<Genre> Genres { get; set; } // Added DbSet for Genre
 
+        public DbSet<StockTransaction> StockTransactions { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

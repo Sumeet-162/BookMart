@@ -2,6 +2,7 @@
 using BookMart.Models; // For Book, Genre, User, AND your new ViewModels
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering; // For SelectList
+using BookMart.Models.ViewModels;
 using Microsoft.EntityFrameworkCore; // For .Include(), .ToListAsync(), etc.
 using System.Linq; // For LINQ methods like .OrderBy, .Where
 using System.Threading.Tasks; // For async/await operations
@@ -47,8 +48,199 @@ namespace BookMart.Controllers
             return View();
         }
 
-        
-        
+
+
+        // GET: Admin/Stock
+        public async Task<IActionResult> Stock()
+        {
+            var booksWithStock = await _context.Books
+                .Include(b => b.Genre) // Include Genre to display GenreName
+                .OrderBy(b => b.Title)
+                .Select(b => new BookStockViewModel
+                {
+                    BookId = b.BookID,
+                    Title = b.Title,
+                    Author = b.Author,
+                    GenreName = b.Genre != null ? b.Genre.Name : "N/A",
+                    StockQuantity = b.StockQuantity,
+                    MinStockLevel = b.MinStockLevel,
+                    Price = b.Price,
+                    CoverImageURL = b.CoverImageURL ?? "/images/placeholder.png" // Provide a default image
+                })
+                .ToListAsync();
+
+            foreach (var book in booksWithStock)
+            {
+                if (book.StockQuantity <= 0)
+                {
+                    book.StockStatus = "Out of Stock";
+                    book.StatusBadgeClass = "bg-danger text-danger";
+                }
+                else if (book.StockQuantity < book.MinStockLevel)
+                {
+                    book.StockStatus = "Low Stock";
+                    book.StatusBadgeClass = "bg-warning text-warning";
+                }
+                else
+                {
+                    book.StockStatus = "In Stock";
+                    book.StatusBadgeClass = "bg-success text-success";
+                }
+            }
+
+            ViewData["Title"] = "Stock Management";
+            return View(booksWithStock);
+        }
+
+        // GET: Admin/UpdateStock/5
+        public async Task<IActionResult> UpdateStock(int? bookId)
+        {
+            if (bookId == null)
+            {
+                return NotFound();
+            }
+
+            var book = await _context.Books
+                .Include(b => b.Genre)
+                .FirstOrDefaultAsync(b => b.BookID == bookId);
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new UpdateStockViewModel
+            {
+                BookId = book.BookID,
+                Title = book.Title,
+                Author = book.Author,
+                CoverImageURL = book.CoverImageURL ?? "/images/placeholder.png",
+                GenreName = book.Genre?.Name,
+                CurrentStockQuantity = book.StockQuantity,
+                MinStockLevel = book.MinStockLevel,
+                // OnOrderQuantity = await CalculateOnOrderQuantity(book.BookID) // Implement if needed
+            };
+
+            ViewData["Title"] = "Update Stock";
+            return View(viewModel);
+        }
+
+        // POST: Admin/UpdateStock
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateStock(UpdateStockViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                // Repopulate necessary fields if returning to view with errors
+                var bookForDisplay = await _context.Books.Include(b => b.Genre).AsNoTracking().FirstOrDefaultAsync(b => b.BookID == model.BookId);
+                if (bookForDisplay != null)
+                {
+                    model.Title = bookForDisplay.Title;
+                    model.Author = bookForDisplay.Author;
+                    model.CoverImageURL = bookForDisplay.CoverImageURL ?? "/images/placeholder.png";
+                    model.GenreName = bookForDisplay.Genre?.Name;
+                    model.MinStockLevel = bookForDisplay.MinStockLevel;
+                    // model.OnOrderQuantity = await CalculateOnOrderQuantity(model.BookId);
+                }
+                ViewData["Title"] = "Update Stock";
+                return View(model);
+            }
+
+            var book = await _context.Books.FindAsync(model.BookId);
+            if (book == null)
+            {
+                TempData["ErrorMessage"] = "Book not found.";
+                return RedirectToAction(nameof(Stock));
+            }
+
+            int previousQuantity = book.StockQuantity;
+            int newQuantity = book.StockQuantity;
+
+            switch (model.Operation.ToLower())
+            {
+                case "add":
+                    newQuantity += model.Quantity;
+                    break;
+                case "remove":
+                    newQuantity -= model.Quantity;
+                    if (newQuantity < 0)
+                    {
+                        ModelState.AddModelError("Quantity", "Quantity to remove exceeds current stock. Stock cannot be negative.");
+                        var bookForDisplay = await _context.Books.Include(b => b.Genre).AsNoTracking().FirstOrDefaultAsync(b => b.BookID == model.BookId);
+                        if (bookForDisplay != null)
+                        {
+                            model.Title = bookForDisplay.Title;
+                            model.Author = bookForDisplay.Author;
+                            model.CoverImageURL = bookForDisplay.CoverImageURL ?? "/images/placeholder.png";
+                            model.GenreName = bookForDisplay.Genre?.Name;
+                            model.CurrentStockQuantity = bookForDisplay.StockQuantity; // Use actual current stock
+                            model.MinStockLevel = bookForDisplay.MinStockLevel;
+                        }
+                        ViewData["Title"] = "Update Stock";
+                        return View(model);
+                    }
+                    break;
+                case "adjust":
+                    newQuantity = model.Quantity;
+                    if (newQuantity < 0) // Should not happen with client-side min="1" but good to have server validation
+                    {
+                        ModelState.AddModelError("Quantity", "Adjusted stock quantity cannot be negative.");
+                        var bookForDisplay = await _context.Books.Include(b => b.Genre).AsNoTracking().FirstOrDefaultAsync(b => b.BookID == model.BookId);
+                        if (bookForDisplay != null)
+                        {
+                            model.Title = bookForDisplay.Title;
+                            model.Author = bookForDisplay.Author;
+                            model.CoverImageURL = bookForDisplay.CoverImageURL ?? "/images/placeholder.png";
+                            model.GenreName = bookForDisplay.Genre?.Name;
+                            model.CurrentStockQuantity = bookForDisplay.StockQuantity;
+                            model.MinStockLevel = bookForDisplay.MinStockLevel;
+                        }
+                        ViewData["Title"] = "Update Stock";
+                        return View(model);
+                    }
+                    break;
+                default:
+                    TempData["ErrorMessage"] = "Invalid stock operation.";
+                    return RedirectToAction(nameof(Stock));
+            }
+
+            book.StockQuantity = newQuantity;
+            book.UpdatedAt = DateTime.UtcNow;
+
+            var stockTransaction = new StockTransaction
+            {
+                BookID = book.BookID,
+                TransactionType = model.Operation,
+                Quantity = model.Quantity, // This is the quantity from the form
+                PreviousQuantity = previousQuantity,
+                NewQuantity = newQuantity,
+                Reason = model.Reason,
+                Notes = model.Notes,
+                TransactionDate = DateTime.UtcNow,
+                UserID = null // Or get logged-in admin UserID: User.FindFirstValue(ClaimTypes.NameIdentifier)
+            };
+
+            _context.Books.Update(book);
+            _context.StockTransactions.Add(stockTransaction);
+
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = $"Stock for '{book.Title}' updated successfully.";
+            return RedirectToAction(nameof(Stock));
+        }
+
+        // Optional: Helper method to calculate on-order quantity if needed
+        // private async Task<int> CalculateOnOrderQuantity(int bookId)
+        // {
+        //     return await _context.OrderItems
+        //         .Where(oi => oi.BookID == bookId && oi.Order != null && 
+        //                      (oi.Order.OrderStatus == "Pending" || oi.Order.OrderStatus == "Processing"))
+        //         .SumAsync(oi => oi.Quantity);
+        // }
+
+
+
 
         //--- Book Management Actions ---
 
