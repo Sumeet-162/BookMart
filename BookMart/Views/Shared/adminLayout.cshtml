@@ -12,16 +12,16 @@
     <title>Admin Dashboard - BookMart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="~/css/site.css"> @* Assuming site.css is in a wwwroot/css folder *@
+    <link rel="stylesheet" href="~/css/site.css"> 
 </head>
 <body>
-    @await Html.PartialAsync("AdminNavigation") @* Renders the sidebar and navbar *@
+    @await Html.PartialAsync("AdminNavigation") 
 
     <main class="main-content">
-        @RenderBody() @* This is where the content of AdminDashboard.cshtml will be rendered *@
+        @RenderBody() 
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/admin.js"></script> @* Your custom JS for sidebar toggle *@
+    <script src="~/js/admin.js"></script> 
 </body>
 </html>

@@ -131,10 +131,16 @@
     transition: margin-left 0.3s ease;
     background-color: var(--bg-light);
 }
+.main-content-addbook {
+    margin-left: 100px;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+    background-color: var(--bg-light);
+}
 
-    .main-content.expanded {
-        margin-left: 70px;
-    }
+.main-content.expanded {
+    margin-left: 70px;
+}
 
 /* Cards and Containers */
 .stat-card {

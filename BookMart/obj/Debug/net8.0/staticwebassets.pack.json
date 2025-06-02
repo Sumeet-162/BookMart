@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\AddBook.css",
+      "PackagePath": "staticwebassets\\css\\AddBook.css"
+    },
+    {
       "Id": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

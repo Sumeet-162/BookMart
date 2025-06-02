@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "y6GUhO4cW8XJIoRVFAVwWkqrb75djT+gd626VQJTHNI=",
+  "Hash": "Z5UpASoDYzFcB9nX/cEPu0euEq5zFsTWHhK/5jOXSrI=",
   "Source": "BookMart",
   "BasePath": "_content/BookMart",
   "Mode": "Default",
@@ -17,6 +17,27 @@
   ],
   "Assets": [
     {
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\AddBook.css",
+      "SourceId": "BookMart",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
+      "BasePath": "_content/BookMart",
+      "RelativePath": "css/AddBook#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "o7nda0ww7v",
+      "Integrity": "xAB3KYpJ8u5jVAtZITl/QVs7Zp9zWdk8nsTsvq2h3Ac=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\AddBook.css"
+    },
+    {
       "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\site.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
@@ -31,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "0scdrnu3im",
-      "Integrity": "8NiqNTDGyctvYPV4NhBkqmA0BOiBVVLE3SZo7tOvlRU=",
+      "Fingerprint": "bofk8zvntk",
+      "Integrity": "W7CX5/PDQLIgDFeZi/kXi/pTMnhZh2Bl4GQqaRalrmU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -1321,8 +1342,8 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/site.0scdrnu3im.css",
-      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\site.css",
+      "Route": "css/AddBook.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\AddBook.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1331,7 +1352,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "7285"
+          "Value": "711"
         },
         {
           "Name": "Content-Type",
@@ -1339,11 +1360,48 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"8NiqNTDGyctvYPV4NhBkqmA0BOiBVVLE3SZo7tOvlRU=\""
+          "Value": "\"xAB3KYpJ8u5jVAtZITl/QVs7Zp9zWdk8nsTsvq2h3Ac=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 26 May 2025 17:20:24 GMT"
+          "Value": "Wed, 28 May 2025 04:19:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-xAB3KYpJ8u5jVAtZITl/QVs7Zp9zWdk8nsTsvq2h3Ac="
+        }
+      ]
+    },
+    {
+      "Route": "css/AddBook.o7nda0ww7v.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\AddBook.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "711"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xAB3KYpJ8u5jVAtZITl/QVs7Zp9zWdk8nsTsvq2h3Ac=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 28 May 2025 04:19:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1353,7 +1411,52 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "0scdrnu3im"
+          "Value": "o7nda0ww7v"
+        },
+        {
+          "Name": "label",
+          "Value": "css/AddBook.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-xAB3KYpJ8u5jVAtZITl/QVs7Zp9zWdk8nsTsvq2h3Ac="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.bofk8zvntk.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7430"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"W7CX5/PDQLIgDFeZi/kXi/pTMnhZh2Bl4GQqaRalrmU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 28 May 2025 04:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bofk8zvntk"
         },
         {
           "Name": "label",
@@ -1361,7 +1464,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-8NiqNTDGyctvYPV4NhBkqmA0BOiBVVLE3SZo7tOvlRU="
+          "Value": "sha256-W7CX5/PDQLIgDFeZi/kXi/pTMnhZh2Bl4GQqaRalrmU="
         }
       ]
     },
@@ -1376,7 +1479,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "7285"
+          "Value": "7430"
         },
         {
           "Name": "Content-Type",
@@ -1384,11 +1487,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"8NiqNTDGyctvYPV4NhBkqmA0BOiBVVLE3SZo7tOvlRU=\""
+          "Value": "\"W7CX5/PDQLIgDFeZi/kXi/pTMnhZh2Bl4GQqaRalrmU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 26 May 2025 17:20:24 GMT"
+          "Value": "Wed, 28 May 2025 04:09:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1398,7 +1501,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-8NiqNTDGyctvYPV4NhBkqmA0BOiBVVLE3SZo7tOvlRU="
+          "Value": "sha256-W7CX5/PDQLIgDFeZi/kXi/pTMnhZh2Bl4GQqaRalrmU="
         }
       ]
     },
@@ -1425,7 +1528,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 26 May 2025 17:20:24 GMT"
+          "Value": "Tue, 27 May 2025 17:24:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1470,7 +1573,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 26 May 2025 17:20:24 GMT"
+          "Value": "Tue, 27 May 2025 17:24:24 GMT"
         },
         {
           "Name": "Cache-Control",

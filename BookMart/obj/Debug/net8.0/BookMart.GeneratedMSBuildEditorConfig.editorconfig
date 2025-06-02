@@ -32,20 +32,16 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxsb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/adminaddgenre.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cYWRtaW5hZGRnZW5yZS5jc2h0bWw=
+[C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/AddBook.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkQm9vay5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/admingenre.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cYWRtaW5nZW5yZS5jc2h0bWw=
+[C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/AddGenre.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkR2VucmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/adminoperation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cYWRtaW5vcGVyYXRpb24uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/adminstock.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cYWRtaW5zdG9jay5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/adminupdatestock.cshtml]
@@ -56,8 +52,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cYWxsb3JkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/Books.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQm9va3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cZGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/EditBook.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdEJvb2suY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/EditGenre.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdEdlbnJlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Admin/Genres.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cR2VucmVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/2406761/OneDrive - Cognizant/Desktop/BookMart/BookMart/Views/Shared/adminLayout.cshtml]
