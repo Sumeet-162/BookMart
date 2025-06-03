@@ -5,122 +5,93 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BCrypt.Net;
 
-namespace BookMart.Controllers
+namespace BookMart.Controllers;
+
+public class AccountController(ApplicationDbContext context) : Controller
 {
-    public class AccountController : Controller
+    private readonly ApplicationDbContext _context = context;
+
+    // GET: /Account/Login
+    public IActionResult Login() => View(new LoginViewModel());
+
+    // POST: /Account/Login
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Login(LoginViewModel model)
     {
-        private readonly ApplicationDbContext _context;
-
-        public AccountController(ApplicationDbContext context)
+        if (ModelState.IsValid)
         {
-            _context = context;
-        }
+            var user = await _context.Users.FirstOrDefaultAsync(u => 
+                u.Username.ToLower() == model.Username.ToLower());
 
-        // GET: /Account/Login
-        public IActionResult Login()
-        {
-            return View();
-        }
-
-        // POST: /Account/Login
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model)
-        {
-            if (ModelState.IsValid)
+            if (user != null && BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash))
             {
-                var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == model.Username);
-
-                if (user != null && BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash))
+                if (user.IsAdmin)
                 {
-                    if (user.IsAdmin)
-                    {
-                        return RedirectToAction("Dashboard", "Admin");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    return RedirectToAction("Dashboard", "Admin");
                 }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid username or password.");
-                    return View(model);
-                }
+                return RedirectToAction("Index", "Home");
             }
-            return View(model);
+            ModelState.AddModelError(string.Empty, "Invalid username or password.");
         }
+        return View(model);
+    }
 
-        // GET: /Account/Register (for the signup form)
-        public IActionResult Register()
-        {
-            // When the Register GET action is called, we pass an empty RegisterViewModel
-            // to ensure the form fields can be rendered correctly with initial values.
-            return View("Login", new RegisterViewModel());
-        }
+    // GET: /Account/Register
+    public IActionResult Register()
+    {
+        var model = new RegisterViewModel();
+        if (TempData.ContainsKey("RegisterUsername")) model.Username = TempData["RegisterUsername"]?.ToString() ?? string.Empty;
+        if (TempData.ContainsKey("RegisterEmail")) model.Email = TempData["RegisterEmail"]?.ToString() ?? string.Empty;
+        if (TempData.ContainsKey("RegisterFirstName")) model.FirstName = TempData["RegisterFirstName"]?.ToString() ?? string.Empty;
+        if (TempData.ContainsKey("RegisterLastName")) model.LastName = TempData["RegisterLastName"]?.ToString() ?? string.Empty;
+        if (TempData.ContainsKey("RegisterPhone")) model.Phone = TempData["RegisterPhone"]?.ToString() ?? string.Empty;
+        
+        return View(model);
+    }
 
-        // POST: /Account/Register
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+    // POST: /Account/Register
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Register(RegisterViewModel model)
+    {
+        if (ModelState.IsValid)
         {
-            if (ModelState.IsValid)
+            // Check if username already exists (case-insensitive)
+            if (await _context.Users.AnyAsync(u => 
+                u.Username.ToLower() == model.Username.ToLower()))
             {
-                // Check if username already exists
-                if (await _context.Users.AnyAsync(u => u.Username == model.Username))
-                {
-                    ModelState.AddModelError("Username", "Username is already taken.");
-                    // Store data in TempData to repopulate the register form
-                    TempData["RegisterUsername"] = model.Username;
-                    TempData["RegisterEmail"] = model.Email;
-                    TempData["RegisterFirstName"] = model.FirstName;
-                    TempData["RegisterLastName"] = model.LastName;
-                    TempData["RegisterPhone"] = model.Phone;
-                    return View("Login", new LoginViewModel()); // Return Login view with empty LoginViewModel
-                }
-
-                // Check if email already exists
-                if (await _context.Users.AnyAsync(u => u.Email == model.Email))
-                {
-                    ModelState.AddModelError("Email", "Email address is already registered.");
-                    // Store data in TempData to repopulate the register form
-                    TempData["RegisterUsername"] = model.Username;
-                    TempData["RegisterEmail"] = model.Email;
-                    TempData["RegisterFirstName"] = model.FirstName;
-                    TempData["RegisterLastName"] = model.LastName;
-                    TempData["RegisterPhone"] = model.Phone;
-                    return View("Login", new LoginViewModel()); // Return Login view with empty LoginViewModel
-                }
-
-                string passwordHash = BCrypt.Net.BCrypt.HashPassword(model.Password);
-
-                var newUser = new User
-                {
-                    Username = model.Username,
-                    Email = model.Email,
-                    PasswordHash = passwordHash,
-                    FirstName = model.FirstName, // Map the new mandatory fields
-                    LastName = model.LastName,   // Map the new mandatory fields
-                    Phone = model.Phone,         // Map the new mandatory fields
-                    CreatedAt = DateTime.Now,
-                    IsAdmin = false
-                };
-
-                _context.Users.Add(newUser);
-                await _context.SaveChangesAsync();
-
-                TempData["SuccessMessage"] = "Account created successfully! Please log in.";
-                return RedirectToAction("Login");
+                ModelState.AddModelError("Username", "Username is already taken.");
+                return View(model);
             }
 
-            // If ModelState is NOT valid (e.g., due to [Required] validation on new fields)
-            // Store data in TempData to repopulate the register form
-            TempData["RegisterUsername"] = model.Username;
-            TempData["RegisterEmail"] = model.Email;
-            TempData["RegisterFirstName"] = model.FirstName;
-            TempData["RegisterLastName"] = model.LastName;
-            TempData["RegisterPhone"] = model.Phone;
-            return View("Login", new LoginViewModel()); // Return Login view with empty LoginViewModel
+            // Check if email already exists (case-insensitive)
+            if (await _context.Users.AnyAsync(u => 
+                u.Email.ToLower() == model.Email.ToLower()))
+            {
+                ModelState.AddModelError("Email", "Email address is already registered.");
+                return View(model);
+            }
+
+            var newUser = new User
+            {
+                Username = model.Username,
+                Email = model.Email,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password),
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Phone = model.Phone,
+                CreatedAt = DateTime.Now,
+                IsAdmin = false
+            };
+
+            _context.Users.Add(newUser);
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Account created successfully! Please log in.";
+            return RedirectToAction(nameof(Login));
         }
+
+        return View(model);
     }
 }

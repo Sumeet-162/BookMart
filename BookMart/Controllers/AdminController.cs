@@ -1,14 +1,13 @@
-﻿using BookMart.Data; // For ApplicationDbContext
-using BookMart.Models; // For Book, Genre, User, AND your new ViewModels
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering; // For SelectList
+﻿using BookMart.Data;
+using BookMart.Models;
 using BookMart.Models.ViewModels;
-using Microsoft.EntityFrameworkCore; // For .Include(), .ToListAsync(), etc.
-using System.Linq; // For LINQ methods like .OrderBy, .Where
-using System.Threading.Tasks; // For async/await operations
-using System; // For Exception handling, DateTime
-using Microsoft.Extensions.Logging; // For ILogger
-using System.Collections.Generic; // Added for List<Book>
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BookMart.Controllers
 {
@@ -252,20 +251,20 @@ namespace BookMart.Controllers
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
-                string lowerSearchQuery = searchQuery.ToLower();
-                books = books.Where(b => b.Title.ToLower().Contains(lowerSearchQuery) ||
-                                         b.Author.ToLower().Contains(lowerSearchQuery) ||
-                                         (b.ISBN != null && b.ISBN.ToLower().Contains(lowerSearchQuery)) ||
-                                         (b.Genre != null && b.Genre.Name.ToLower().Contains(lowerSearchQuery)));
+                books = books.Where(b => 
+                    b.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    b.Author.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                    (b.ISBN != null && b.ISBN.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)) ||
+                    (b.Genre != null && b.Genre.Name.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)));
             }
 
-            var viewModel = new BookViewModel // <--- CREATE INSTANCE OF BookViewModel
+            var viewModel = new BookViewModel
             {
                 Books = await books.OrderBy(b => b.Title).ToListAsync(),
-                SearchQuery = searchQuery // <--- SET THE SEARCH QUERY PROPERTY
+                SearchQuery = searchQuery
             };
 
-            return View(viewModel); // <--- PASS THE BookViewModel TO THE VIEW
+            return View(viewModel);
         }
 
         // GET: /Admin/AddBook

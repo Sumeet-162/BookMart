@@ -4,14 +4,14 @@
 @{
 }
 <!-- Sidebar -->
-@* Sidebar *@
-
-@* <link rel="stylesheet" href="~/css/site.css"> *@
 <nav class="sidebar" id="sidebar">
     <div class="d-flex flex-column h-100">
-        <div class="nav-links flex-grow-1">
-            <a href="@Url.Action("dashboard", "Admin")" class="nav-link active">
-                @* Example: AdminHome action in Admin controller *@
+        <div class="sidebar-header p-3 mb-3 text-center">
+            <h3 class="fw-bold text-primary mb-0 logo-text">BookMart</h3>
+        </div>
+        
+        <div class="nav-links flex-grow-1 px-2">
+            <a href="@Url.Action("dashboard", "Admin")" class="nav-link">
                 <i class="fas fa-home"></i>
                 <span class="ms-2">Dashboard</span>
             </a>
@@ -21,11 +21,11 @@
             </a>
             <a href="@Url.Action("Stock", "Admin")" class="nav-link">
                 <i class="fas fa-boxes"></i>
-                <span class="ms-2">Stock</span>
+                <span class="ms-2">Inventory</span>
             </a>
             <a href="@Url.Action("Genres", "Admin")" class="nav-link">
                 <i class="fas fa-tags"></i>
-                <span class="ms-2">Genres</span>
+                <span class="ms-2">Categories</span>
             </a>
             <a href="@Url.Action("Books", "Admin")" class="nav-link">
                 <i class="fas fa-book"></i>
@@ -33,38 +33,34 @@
             </a>
         </div>
 
-        <div class="mt-auto px-3">
-            <hr>
-            <div class="nav-link">
-                <i class="fas fa-user-circle"></i>
-                <span class="ms-2">Admin</span>
+        <div class="sidebar-footer p-3 mt-auto border-top">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-user-circle fs-4"></i>
+                <div class="ms-2">
+                    <div class="fw-bold">Admin</div>
+                    <small class="text-muted">Administrator</small>
+                </div>
             </div>
         </div>
     </div>
 </nav>
 
-@* Navbar *@
+<!-- Navbar -->
 <nav class="admin-navbar navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <button class="sidebar-toggle btn btn-link" id="sidebarToggle">
+    <div class="container-fluid px-4">
+        <button class="sidebar-toggle btn btn-icon" id="sidebarToggle">
             <i class="fas fa-bars"></i>
         </button>
-        <div class="navbar-brand d-flex align-items-center">
-            <span>Dashboard</span>
+
+        <div class="navbar-brand d-flex align-items-center ms-3">
+            <h5 class="mb-0">@ViewData["Title"]</h5>
         </div>
 
-        <div class="ms-auto d-flex align-items-center">
-            <div class="dropdown">
-                <button class="btn btn-link text-dark dropdown-toggle" type="button" id="adminDropdown" data-bs-toggle="dropdown">
-                    <i class="fas fa-user-circle me-1"></i>
-                    <span>Admin</span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="@Url.Action("login", "Account")"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li> @* Example: Index action in Home controller *@
-                </ul>
-            </div>
+        <div class="ms-auto">
+            <a href="@Url.Action("login", "Account")" class="btn btn-outline-danger btn-sm d-flex align-items-center">
+                <i class="fas fa-sign-out-alt me-2"></i>
+                <span>Logout</span>
+            </a>
         </div>
     </div>
 </nav>

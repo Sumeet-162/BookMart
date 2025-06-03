@@ -1,49 +1,38 @@
-﻿// Get DOM elements
-const sidebar = document.getElementById('sidebar');
-const mainContent = document.querySelector('.main-content');
+﻿// Sidebar toggle functionality
+const sidebar = document.querySelector('.sidebar');
 const navbar = document.querySelector('.admin-navbar');
-const sidebarToggle = document.getElementById('sidebarToggle');
+const mainContent = document.querySelector('.main-content');
+const sidebarToggle = document.querySelector('#sidebarToggle');
 
-// Check localStorage for saved state
-const isSidebarCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
-
-// Apply initial state
-if (isSidebarCollapsed) {
-    sidebar.classList.add('collapsed');
-    mainContent.classList.add('expanded');
-    navbar.classList.add('expanded');
+if (sidebarToggle) {
+    sidebarToggle.addEventListener('click', function () {
+        sidebar.classList.toggle('collapsed');
+        navbar.classList.toggle('full-width');
+        mainContent.classList.toggle('full-width');
+    });
 }
 
-// Toggle sidebar
-sidebarToggle.addEventListener('click', function () {
-    sidebar.classList.toggle('collapsed');
-    mainContent.classList.toggle('expanded');
-    navbar.classList.toggle('expanded');
-
-    // Save state to localStorage
-    localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
-});
-
-// Handle responsive behavior
-function handleResize() {
-    if (window.innerWidth <= 991.98) {
-        sidebar.classList.remove('collapsed');
-        mainContent.classList.add('expanded');
-        navbar.classList.add('expanded');
+// Handle mobile view
+function handleMobileView() {
+    if (window.innerWidth <= 768) {
+        sidebar.classList.add('collapsed');
+        navbar.classList.add('full-width');
+        mainContent.classList.add('full-width');
     } else {
-        // Restore saved state on desktop
-        const savedState = localStorage.getItem('sidebarCollapsed') === 'true';
-        if (savedState) {
-            sidebar.classList.add('collapsed');
-            mainContent.classList.add('expanded');
-            navbar.classList.add('expanded');
-        } else {
-            sidebar.classList.remove('collapsed');
-            mainContent.classList.remove('expanded');
-            navbar.classList.remove('expanded');
-        }
+        sidebar.classList.remove('collapsed');
+        navbar.classList.remove('full-width');
+        mainContent.classList.remove('full-width');
     }
 }
 
-window.addEventListener('resize', handleResize);
-handleResize();
+// Initial check and event listener for window resize
+handleMobileView();
+window.addEventListener('resize', handleMobileView);
+
+// Update active nav link based on current page
+const currentPath = window.location.pathname;
+document.querySelectorAll('.sidebar .nav-link').forEach(link => {
+    if (link.getAttribute('href') === currentPath) {
+        link.classList.add('active');
+    }
+});

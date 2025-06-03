@@ -142,6 +142,35 @@
     margin-left: 70px;
 }
 
+/* Logo Styles */
+.logo-text {
+    font-size: 1.75rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--primary-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.sidebar-header {
+    position: relative;
+}
+
+.sidebar-header::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: var(--color-primary);
+    border-radius: 2px;
+}
+
 /* Cards and Containers */
 .stat-card {
     background: var(--bg-white);
@@ -215,6 +244,18 @@
     .btn-primary:hover {
         background-color: #0b5ed7;
     }
+
+.btn-outline-danger {
+    border-width: 2px;
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-danger:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(220, 53, 69, 0.2);
+}
 
 /* Book and Genre Cards */
 .book-card, .genre-card {
@@ -303,6 +344,26 @@
         border-color: var(--color-primary);
         color: white;
     }
+
+/* Global Styles */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px; /* Footer height */
+}
+
+/* Footer */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: var(--bg-white);
+}
 
 /* Responsive Adjustments */
 @media (max-width: 991.98px) {
