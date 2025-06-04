@@ -544,3 +544,5 @@ C:\Users\2406756\OneDrive - Cognizant\Desktop\BookMart- Done Sumeet\BookMart\obj
 C:\Users\2406756\OneDrive - Cognizant\Desktop\BookMart- Done Sumeet\BookMart\obj\Debug\net8.0\BookMart.pdb
 C:\Users\2406756\OneDrive - Cognizant\Desktop\BookMart- Done Sumeet\BookMart\obj\Debug\net8.0\BookMart.genruntimeconfig.cache
 C:\Users\2406756\OneDrive - Cognizant\Desktop\BookMart- Done Sumeet\BookMart\obj\Debug\net8.0\ref\BookMart.dll
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\scopedcss\projectbundle\BookMart.bundle.scp.css

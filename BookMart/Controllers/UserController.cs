@@ -132,13 +132,17 @@ namespace BookMart.Controllers
             var book = await _context.Books.FindAsync(bookId);
             if (book == null)
             {
+                if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                {
+                    return Json(new { success = false, message = "Book not found!" });
+                }
                 TempData["ErrorMessage"] = "Book not found!";
                 return RedirectToAction("UserHome");
             }
 
             var cart = await _context.Carts
-                                     .Include(c => c.CartItems)
-                                     .FirstOrDefaultAsync(c => c.UserID == userId);
+                            .Include(c => c.CartItems)
+                            .FirstOrDefaultAsync(c => c.UserID == userId);
 
             if (cart == null)
             {
@@ -153,7 +157,7 @@ namespace BookMart.Controllers
             }
 
             var existingCartItem = cart.CartItems?
-                                       .FirstOrDefault(ci => ci.BookID == bookId);
+                              .FirstOrDefault(ci => ci.BookID == bookId);
 
             if (existingCartItem != null)
             {
@@ -178,8 +182,12 @@ namespace BookMart.Controllers
 
             await _context.SaveChangesAsync();
 
-            TempData["SuccessMessage"] = $"{book.Title} added to cart successfully!";
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                return Json(new { success = true, message = $"{book.Title} added to cart successfully!" });
+            }
 
+            TempData["SuccessMessage"] = $"{book.Title} added to cart successfully!";
             return RedirectToAction("UserHome");
         }
 

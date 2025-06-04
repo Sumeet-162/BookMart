@@ -178,7 +178,7 @@ namespace BookMart.Migrations
                         column: x => x.BookID,
                         principalTable: "Books",
                         principalColumn: "BookID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_CartItems_Carts_CartID",
                         column: x => x.CartID,
@@ -203,7 +203,8 @@ namespace BookMart.Migrations
                     TotalAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     PaymentMethod = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     PaymentStatus = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    OrderStatus = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
+                    OrderStatus = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    UserID1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -223,7 +224,12 @@ namespace BookMart.Migrations
                         column: x => x.UserID,
                         principalTable: "Users",
                         principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Orders_Users_UserID1",
+                        column: x => x.UserID1,
+                        principalTable: "Users",
+                        principalColumn: "UserID");
                 });
 
             migrationBuilder.CreateTable(
@@ -245,7 +251,7 @@ namespace BookMart.Migrations
                         column: x => x.BookID,
                         principalTable: "Books",
                         principalColumn: "BookID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_OrderItems_Orders_OrderID",
                         column: x => x.OrderID,
@@ -259,16 +265,16 @@ namespace BookMart.Migrations
                 columns: new[] { "GenreID", "ColorTheme", "CreatedAt", "Description", "IconClass", "Name" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9748), null, null, "Fiction" },
-                    { 2, null, new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9896), null, null, "Science Fiction" },
-                    { 3, null, new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9897), null, null, "Fantasy" },
-                    { 4, null, new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9898), null, null, "Mystery" },
-                    { 5, null, new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9899), null, null, "Thriller" },
-                    { 6, null, new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9900), null, null, "Romance" },
-                    { 7, null, new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9900), null, null, "Biography" },
-                    { 8, null, new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9901), null, null, "History" },
-                    { 9, null, new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9902), null, null, "Self-Help" },
-                    { 10, null, new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9903), null, null, "Cookbook" }
+                    { 1, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Fiction" },
+                    { 2, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Science Fiction" },
+                    { 3, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Fantasy" },
+                    { 4, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Mystery" },
+                    { 5, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Thriller" },
+                    { 6, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Romance" },
+                    { 7, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Biography" },
+                    { 8, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "History" },
+                    { 9, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Self-Help" },
+                    { 10, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Cookbook" }
                 });
 
             migrationBuilder.InsertData(
@@ -333,6 +339,11 @@ namespace BookMart.Migrations
                 name: "IX_Orders_UserID",
                 table: "Orders",
                 column: "UserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_UserID1",
+                table: "Orders",
+                column: "UserID1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StockTransactions_BookID",

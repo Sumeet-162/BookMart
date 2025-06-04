@@ -7,23 +7,20 @@
 
 <link href="~/css/user.css" rel="stylesheet" />
 
-@* Display TempData messages *@
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["SuccessMessage"]
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<!-- Toast Container -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="bookAddedToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="fas fa-check-circle me-2"></i>
+                <span id="toastMessage"></span>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
     </div>
-}
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        @TempData["ErrorMessage"]
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-}
+</div>
 
-
+<!-- Hero Banner -->
 <section class="hero-banner py-5">
     <div class="container py-5">
         <div class="row align-items-center">
@@ -96,13 +93,9 @@
                                         <a href="@Url.Action("UserViewBookDetails", "User", new { id = book.BookID })" class="btn btn-outline-primary btn-sm flex-grow-1">
                                             View Details
                                         </a>
-                                        @* Add to Cart button - now a form for POST request *@
-                                        <form asp-action="AddToCart" asp-controller="User" method="post">
-                                            <input type="hidden" name="bookId" value="@book.BookID" />
-                                            <button type="submit" class="btn btn-primary btn-sm">
-                                                <i class="fas fa-shopping-cart"></i>
-                                            </button>
-                                        </form>
+                                        <button onclick="addToCart(@book.BookID, '@book.Title')" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -148,88 +141,11 @@
                                         <a href="@Url.Action("UserViewBookDetails", "User", new { id = book.BookID })" class="btn btn-outline-primary btn-sm flex-grow-1">
                                             View Details
                                         </a>
-                                        @* Add to Cart button - now a form for POST request *@
-                                        <form asp-action="AddToCart" asp-controller="User" method="post">
-                                            <input type="hidden" name="bookId" value="@book.BookID" />
-                                            <button type="submit" class="btn btn-primary btn-sm">
-                                                <i class="fas fa-shopping-cart"></i>
-                                            </button>
-                                        </form>
+                                        <button onclick="addToCart(@book.BookID, '@book.Title')" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
-        </div>
-    </div>
-</section>
-
-<section class="py-5">
-    <div class="container">
-        <h2 class="mb-4">Popular Authors</h2>
-        <div class="row g-4">
-            @* Use Model.PopularAuthors instead of ViewBag.PopularAuthors *@
-            @if (Model.PopularAuthors != null)
-            {
-                @foreach (var author in Model.PopularAuthors)
-                {
-                    <div class="col-6 col-md-3">
-                        <div class="card text-center h-100">
-                            <div class="card-body">
-                                <img src="@(author.AuthorName == "Steve Jobs" ? "/images/steve.webp" : "https://via.placeholder.com/100")" class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;" alt="@author.AuthorName">
-                                <h5 class="card-title">@author.AuthorName</h5>
-                                <p class="card-text text-muted">@author.Genre</p>
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
-            @* Placeholder for additional author cards if less than 4 from DB - keep this logic if needed *@
-            @if (Model.PopularAuthors?.Count < 4)
-            {
-                var existingAuthors = new HashSet<string>();
-                if (Model.PopularAuthors != null)
-                {
-                    foreach (var author in Model.PopularAuthors)
-                    {
-                        existingAuthors.Add(author.AuthorName);
-                    }
-                }
-
-                @if (!existingAuthors.Contains("George Orwell"))
-                {
-                    <div class="col-6 col-md-3">
-                        <div class="card text-center h-100">
-                            <div class="card-body">
-                                <img src="https://via.placeholder.com/100" class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;" alt="George Orwell">
-                                <h5 class="card-title">George Orwell</h5>
-                                <p class="card-text text-muted">Fiction</p>
-                            </div>
-                        </div>
-                    </div>
-                }
-                @if (!existingAuthors.Contains("Paulo Coelho"))
-                {
-                    <div class="col-6 col-md-3">
-                        <div class="card text-center h-100">
-                            <div class="card-body">
-                                <img src="https://via.placeholder.com/100" class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;" alt="Paulo Coelho">
-                                <h5 class="card-title">Paulo Coelho</h5>
-                                <p class="card-text text-muted">Fiction</p>
-                            </div>
-                        </div>
-                    </div>
-                }
-                @if (!existingAuthors.Contains("Michelle Obama"))
-                {
-                    <div class="col-6 col-md-3">
-                        <div class="card text-center h-100">
-                            <div class="card-body">
-                                <img src="https://via.placeholder.com/100" class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;" alt="Michelle Obama">
-                                <h5 class="card-title">Michelle Obama</h5>
-                                <p class="card-text text-muted">Biography</p>
                             </div>
                         </div>
                     </div>
@@ -255,3 +171,46 @@
         </div>
     </div>
 </section>
+
+@section Scripts {
+    <script>
+        function addToCart(bookId, bookTitle) {
+            // Get the anti-forgery token
+            var token = $('input[name="__RequestVerificationToken"]').val();
+
+            $.ajax({
+                url: '@Url.Action("AddToCart", "User")',
+                type: 'POST',
+                data: { bookId: bookId, quantity: 1, __RequestVerificationToken: token },
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                success: function(response) {
+                    if (response.success) {
+                        // Show success toast
+                        const toast = new bootstrap.Toast(document.getElementById('bookAddedToast'));
+                        document.getElementById('toastMessage').textContent = response.message;
+                        toast.show();
+                    } else {
+                        // Show error message
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    alert('An error occurred while adding the item to cart.');
+                }
+            });
+        }
+
+        // Initialize toasts
+        document.addEventListener('DOMContentLoaded', function () {
+            const successMessage = '@TempData["SuccessMessage"]';
+            if (successMessage && successMessage !== '') {
+                const toast = new bootstrap.Toast(document.getElementById('bookAddedToast'));
+                document.getElementById('toastMessage').textContent = successMessage;
+                toast.show();
+            }
+        });
+    </script>
+    @Html.AntiForgeryToken()
+}

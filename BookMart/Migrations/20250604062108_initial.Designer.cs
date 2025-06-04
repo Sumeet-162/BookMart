@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookMart.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250603170900_initial")]
+    [Migration("20250604062108_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -183,30 +183,6 @@ namespace BookMart.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BookMart.Models.Cart", b =>
-                {
-                    b.Property<int>("CartID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartID"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
-                    b.HasKey("CartID");
-
-                    b.HasIndex("UserID");
-
-                    b.ToTable("Carts");
-                });
-
             modelBuilder.Entity("BookMart.Models.CartItem", b =>
                 {
                     b.Property<int>("CartItemID")
@@ -234,6 +210,30 @@ namespace BookMart.Migrations
                     b.HasIndex("CartID");
 
                     b.ToTable("CartItems");
+                });
+
+            modelBuilder.Entity("BookMart.Models.Carts", b =>
+                {
+                    b.Property<int>("CartID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartID"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Carts");
                 });
 
             modelBuilder.Entity("BookMart.Models.Genre", b =>
@@ -271,61 +271,61 @@ namespace BookMart.Migrations
                         new
                         {
                             GenreID = 1,
-                            CreatedAt = new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9748),
+                            CreatedAt = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Fiction"
                         },
                         new
                         {
                             GenreID = 2,
-                            CreatedAt = new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9896),
+                            CreatedAt = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Science Fiction"
                         },
                         new
                         {
                             GenreID = 3,
-                            CreatedAt = new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9897),
+                            CreatedAt = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Fantasy"
                         },
                         new
                         {
                             GenreID = 4,
-                            CreatedAt = new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9898),
+                            CreatedAt = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Mystery"
                         },
                         new
                         {
                             GenreID = 5,
-                            CreatedAt = new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9899),
+                            CreatedAt = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Thriller"
                         },
                         new
                         {
                             GenreID = 6,
-                            CreatedAt = new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9900),
+                            CreatedAt = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Romance"
                         },
                         new
                         {
                             GenreID = 7,
-                            CreatedAt = new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9900),
+                            CreatedAt = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Biography"
                         },
                         new
                         {
                             GenreID = 8,
-                            CreatedAt = new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9901),
+                            CreatedAt = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "History"
                         },
                         new
                         {
                             GenreID = 9,
-                            CreatedAt = new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9902),
+                            CreatedAt = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Self-Help"
                         },
                         new
                         {
                             GenreID = 10,
-                            CreatedAt = new DateTime(2025, 6, 3, 17, 8, 59, 678, DateTimeKind.Utc).AddTicks(9903),
+                            CreatedAt = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Cookbook"
                         });
                 });
@@ -374,6 +374,9 @@ namespace BookMart.Migrations
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserID1")
+                        .HasColumnType("int");
+
                     b.HasKey("OrderID");
 
                     b.HasIndex("BillingAddressID");
@@ -381,6 +384,8 @@ namespace BookMart.Migrations
                     b.HasIndex("ShippingAddressID");
 
                     b.HasIndex("UserID");
+
+                    b.HasIndex("UserID1");
 
                     b.ToTable("Orders");
                 });
@@ -571,26 +576,15 @@ namespace BookMart.Migrations
                     b.Navigation("Genre");
                 });
 
-            modelBuilder.Entity("BookMart.Models.Cart", b =>
-                {
-                    b.HasOne("BookMart.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("BookMart.Models.CartItem", b =>
                 {
                     b.HasOne("BookMart.Models.Book", "Book")
                         .WithMany()
                         .HasForeignKey("BookID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("BookMart.Models.Cart", "Cart")
+                    b.HasOne("BookMart.Models.Carts", "Cart")
                         .WithMany("CartItems")
                         .HasForeignKey("CartID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -599,6 +593,17 @@ namespace BookMart.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Cart");
+                });
+
+            modelBuilder.Entity("BookMart.Models.Carts", b =>
+                {
+                    b.HasOne("BookMart.Models.User", "User")
+                        .WithMany("Carts")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BookMart.Models.Order", b =>
@@ -614,8 +619,12 @@ namespace BookMart.Migrations
                     b.HasOne("BookMart.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("BookMart.Models.User", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("UserID1");
 
                     b.Navigation("BillingAddress");
 
@@ -629,7 +638,7 @@ namespace BookMart.Migrations
                     b.HasOne("BookMart.Models.Book", "Book")
                         .WithMany()
                         .HasForeignKey("BookID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("BookMart.Models.Order", "Order")
@@ -657,7 +666,7 @@ namespace BookMart.Migrations
             modelBuilder.Entity("BookMart.Models.UserAddress", b =>
                 {
                     b.HasOne("BookMart.Models.User", "User")
-                        .WithMany()
+                        .WithMany("UserAddresses")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -665,7 +674,7 @@ namespace BookMart.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("BookMart.Models.Cart", b =>
+            modelBuilder.Entity("BookMart.Models.Carts", b =>
                 {
                     b.Navigation("CartItems");
                 });
@@ -678,6 +687,15 @@ namespace BookMart.Migrations
             modelBuilder.Entity("BookMart.Models.Order", b =>
                 {
                     b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("BookMart.Models.User", b =>
+                {
+                    b.Navigation("Carts");
+
+                    b.Navigation("Orders");
+
+                    b.Navigation("UserAddresses");
                 });
 #pragma warning restore 612, 618
         }

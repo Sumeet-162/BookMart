@@ -371,6 +371,9 @@ namespace BookMart.Migrations
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserID1")
+                        .HasColumnType("int");
+
                     b.HasKey("OrderID");
 
                     b.HasIndex("BillingAddressID");
@@ -378,6 +381,8 @@ namespace BookMart.Migrations
                     b.HasIndex("ShippingAddressID");
 
                     b.HasIndex("UserID");
+
+                    b.HasIndex("UserID1");
 
                     b.ToTable("Orders");
                 });
@@ -614,6 +619,10 @@ namespace BookMart.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("BookMart.Models.User", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("UserID1");
+
                     b.Navigation("BillingAddress");
 
                     b.Navigation("ShippingAddress");
@@ -654,7 +663,7 @@ namespace BookMart.Migrations
             modelBuilder.Entity("BookMart.Models.UserAddress", b =>
                 {
                     b.HasOne("BookMart.Models.User", "User")
-                        .WithMany()
+                        .WithMany("UserAddresses")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -680,6 +689,10 @@ namespace BookMart.Migrations
             modelBuilder.Entity("BookMart.Models.User", b =>
                 {
                     b.Navigation("Carts");
+
+                    b.Navigation("Orders");
+
+                    b.Navigation("UserAddresses");
                 });
 #pragma warning restore 612, 618
         }

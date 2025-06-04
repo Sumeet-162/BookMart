@@ -12,7 +12,27 @@
 <link href="~/css/user.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
-<div class="container mt-5 pt-5">
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center pb-4">
+                <i class="fas fa-exclamation-circle text-warning display-4 mb-4"></i>
+                <h4 class="modal-title mb-3" id="deleteConfirmModalLabel">Remove Book from Cart?</h4>
+                <p class="text-muted">Are you sure you want to remove <span id="bookTitleSpan"></span> from your cart?</p>
+            </div>
+            <div class="modal-footer border-0 justify-content-center">
+                <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger px-4" id="confirmDelete">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5 pt-5 cart-page">
     <div class="row">
         <!-- Cart Items -->
         <div class="col-lg-8">
@@ -55,7 +75,7 @@
                                         <span class="h5">₹@item.Price.ToString("F0")</span>
                                     </div>
                                     <div class="col-md-2 text-end">
-                                        <button class="btn btn-link text-danger" onclick="removeItem(@item.BookID)">
+                                        <button class="btn btn-link text-danger" onclick="removeItem(@item.BookID, '@item.Book.Title')">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </div>
@@ -114,10 +134,10 @@
 
                     <!-- Coupon Code -->
                     <div class="mb-4">
-                        <label class="form-label">Have a coupon?</label>
+                        <p class="mb-2 text-dark">Have a coupon?</p>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Enter code">
-                            <button class="btn btn-outline-secondary" type="button">Apply</button>
+                            <input type="text" class="form-control" placeholder="Enter code" style="border-top-left-radius: 8px; border-bottom-left-radius: 8px;">
+                            <button class="btn btn-secondary" type="button" style="border-top-right-radius: 8px; border-bottom-right-radius: 8px; padding: 10px 24px;">Apply</button>
                         </div>
                     </div>
 
@@ -179,21 +199,31 @@
             });
         }
 
-        function removeItem(bookId) {
-            var antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+        let bookIdToDelete = null;
+        const deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
 
-            if (confirm('Are you sure you want to remove this item from your cart?')) {
+        function removeItem(bookId, bookTitle = 'this book') {
+            bookIdToDelete = bookId;
+            document.getElementById('bookTitleSpan').textContent = bookTitle;
+            deleteModal.show();
+        }
+
+        document.getElementById('confirmDelete').addEventListener('click', function() {
+            if (bookIdToDelete) {
+                var antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+
                 fetch('/User/RemoveCartItem', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'RequestVerificationToken': antiForgeryToken
                     },
-                    body: JSON.stringify({ bookId: bookId })
+                    body: JSON.stringify({ bookId: bookIdToDelete })
                 })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
+                        deleteModal.hide();
                         location.reload();
                     } else {
                         alert(data.message);
@@ -204,7 +234,7 @@
                     alert('An error occurred while removing the item.');
                 });
             }
-        }
+        });
     </script>
     @* Add this hidden anti-forgery token input. It's crucial for security on POST requests. *@
     @Html.AntiForgeryToken()

@@ -5,222 +5,243 @@
     Layout = "userCommonLayout";
 }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"> @* Ensure Font Awesome is linked if not in layout *@
 <link href="~/css/user.css" rel="stylesheet" />
 
-<div class="profile-header" style="margin-top: 56px;">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col">
-                <h1 class="h3 mb-2">@Model.FirstName @Model.LastName</h1> @* Display dynamic Full Name *@
-                <p class="text-muted mb-0">Member since @Model.CreatedAt.ToString("MMMM yyyy")</p> @* Display dynamic CreatedAt *@
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Main Content -->
-<div class="container py-4">
+<div class="container mt-5 pt-5">
     <div class="row g-4">
         <!-- Sidebar -->
         <div class="col-lg-3">
-            <nav class="nav nav-pills flex-column">
-                <a class="nav-link active" data-bs-toggle="pill" href="#profile">
-                    <i class="fas fa-user"></i> Profile
-                </a>
-                <a class="nav-link" data-bs-toggle="pill" href="#addresses">
-                    <i class="fas fa-map-marker-alt"></i> Addresses
-                </a>
-                <a class="nav-link" data-bs-toggle="pill" href="#orders">
-                    <i class="fas fa-box"></i> Orders
-                </a>
-                <a class="nav-link" data-bs-toggle="pill" href="#wishlist">
-                    <i class="fas fa-heart"></i> Wishlist
-                </a>
-                <a class="nav-link" data-bs-toggle="pill" href="#settings">
-                    <i class="fas fa-cog"></i> Settings
-                </a>
-            </nav>
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <div class="avatar-circle mb-3">
+                            <span class="avatar-initials">@(Model.FirstName[0])@(Model.LastName[0])</span>
+                        </div>
+                        <h5 class="text-dark mb-1">@Model.FirstName @Model.LastName</h5>
+                        <p class="text-secondary small mb-0">Member since @Model.CreatedAt.ToString("MMMM yyyy")</p>
+                    </div>
+                    <nav class="nav flex-column nav-pills">
+                        <a class="nav-link active d-flex align-items-center" data-bs-toggle="pill" href="#profile">
+                            <i class="fas fa-user me-3"></i>
+                            <span>Profile</span>
+                        </a>
+                        <a class="nav-link d-flex align-items-center" data-bs-toggle="pill" href="#addresses">
+                            <i class="fas fa-map-marker-alt me-3"></i>
+                            <span>Addresses</span>
+                        </a>
+                        <a class="nav-link d-flex align-items-center" data-bs-toggle="pill" href="#orders">
+                            <i class="fas fa-box me-3"></i>
+                            <span>Orders</span>
+                        </a>
+                        <a class="nav-link d-flex align-items-center" data-bs-toggle="pill" href="#wishlist">
+                            <i class="fas fa-heart me-3"></i>
+                            <span>Wishlist</span>
+                        </a>
+                        <a class="nav-link d-flex align-items-center" data-bs-toggle="pill" href="#settings">
+                            <i class="fas fa-cog me-3"></i>
+                            <span>Settings</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
         </div>
 
-        <!-- Content -->
+        <!-- Main Content -->
         <div class="col-lg-9">
             <div class="tab-content">
                 <!-- Profile Section -->
                 <div class="tab-pane fade show active" id="profile">
-                    <div class="profile-content">
-                        <div class="profile-section">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-4">
                             <div class="d-flex justify-content-between align-items-center mb-4">
-                                <h3 class="profile-section-title">Personal Information</h3>
-                                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">
-                                    <i class="fas fa-edit"></i> Edit
+                                <h3 class="text-dark card-title mb-0">Personal Information</h3>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                                    <i class="fas fa-edit me-2"></i>Edit Profile
                                 </button>
                             </div>
-                            <div class="profile-info">
-                                <div class="profile-info-item">
-                                    <span class="profile-info-label">Username</span>
-                                    <span>@Model.Username</span> @* Display dynamic Username *@
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="info-card p-3 rounded-3">
+                                        <label class="text-secondary small mb-1">Username</label>
+                                        <p class="mb-0 text-dark fw-medium">@Model.Username</p>
+                                    </div>
                                 </div>
-                                <div class="profile-info-item">
-                                    <span class="profile-info-label">Full Name</span>
-                                    <span>@Model.FirstName @Model.LastName</span> @* Display dynamic Full Name *@
+                                <div class="col-md-6">
+                                    <div class="info-card p-3 rounded-3">
+                                        <label class="text-secondary small mb-1">Full Name</label>
+                                        <p class="mb-0 text-dark fw-medium">@Model.FirstName @Model.LastName</p>
+                                    </div>
                                 </div>
-                                <div class="profile-info-item">
-                                    <span class="profile-info-label">Email</span>
-                                    <span>@Model.Email</span> @* Display dynamic Email *@
+                                <div class="col-md-6">
+                                    <div class="info-card p-3 rounded-3">
+                                        <label class="text-secondary small mb-1">Email</label>
+                                        <p class="mb-0 text-dark fw-medium">@Model.Email</p>
+                                    </div>
                                 </div>
-                                <div class="profile-info-item">
-                                    <span class="profile-info-label">Phone</span>
-                                    <span>@Model.Phone</span> @* Display dynamic Phone *@
+                                <div class="col-md-6">
+                                    <div class="info-card p-3 rounded-3">
+                                        <label class="text-secondary small mb-1">Phone</label>
+                                        <p class="mb-0 text-dark fw-medium">@Model.Phone</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Addresses Section (Static placeholders for now, would require separate models/logic) -->
+                <!-- Addresses Section -->
                 <div class="tab-pane fade" id="addresses">
-                    <div class="profile-content">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h3 class="profile-section-title">My Addresses</h3>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAddressModal">
-                                <i class="fas fa-plus"></i> Add New Address
-                            </button>
-                        </div>
-                        <div class="row g-4">
-                            <!-- Default Address -->
-                            <div class="col-md-6">
-                                <div class="card address-card default h-100">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between">
-                                            <h5 class="card-title">Home</h5>
-                                            <span class="badge bg-primary">Default</span>
-                                        </div>
-                                        <p class="card-text">
-                                            123 Main Street<br>
-                                            Apartment 4B<br>
-                                            New York, NY 10001<br>
-                                            United States
-                                        </p>
-                                        <div class="btn-group">
-                                            <button class="btn btn-outline-primary btn-sm">Edit</button>
-                                            <button class="btn btn-outline-danger btn-sm">Delete</button>
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h3 class="card-title mb-0">My Addresses</h3>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAddressModal">
+                                    <i class="fas fa-plus me-2"></i>Add New Address
+                                </button>
+                            </div>
+                            <div class="row g-4">
+                                <!-- Default Address -->
+                                <div class="col-md-6">
+                                    <div class="card h-100">
+                                        <div class="card-body p-4">
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <h5 class="card-title mb-0">Home</h5>
+                                                <span class="badge bg-primary">Default</span>
+                                            </div>
+                                            <p class="text-dark mb-4">
+                                                123 Main Street<br>
+                                                Apartment 4B<br>
+                                                New York, NY 10001<br>
+                                                United States
+                                            </p>
+                                            <div class="btn-group">
+                                                <button class="btn btn-outline-primary btn-sm">Edit</button>
+                                                <button class="btn btn-outline-danger btn-sm">Delete</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Add dynamic address rendering here using @Model.UserAddresses if you fetch them -->
                             </div>
-                            <!-- Add dynamic address rendering here using @Model.UserAddresses if you fetch them -->
                         </div>
                     </div>
                 </div>
 
-                <!-- Orders Section (Static placeholders for now, would require separate models/logic) -->
+                <!-- Orders Section -->
                 <div class="tab-pane fade" id="orders">
-                    <div class="profile-content">
-                        <h3 class="profile-section-title mb-4">Order History</h3>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Order ID</th>
-                                        <th>Date</th>
-                                        <th>Total</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>#ORD001</td>
-                                        <td>2025-05-20</td>
-                                        <td>₹899</td>
-                                        <td><span class="badge bg-success">Delivered</span></td>
-                                        <td><a href="#" class="btn btn-outline-primary btn-sm">View</a></td>
-                                    </tr>
-                                    @* Add dynamic order rendering here using @Model.Orders if you fetch them *@
-                                </tbody>
-                            </table>
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <h3 class="card-title">Order History</h3>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-dark">Order ID</th>
+                                            <th class="text-dark">Date</th>
+                                            <th class="text-dark">Total</th>
+                                            <th class="text-dark">Status</th>
+                                            <th class="text-dark">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-dark">#ORD001</td>
+                                            <td class="text-dark">2025-05-20</td>
+                                            <td class="text-dark">₹899</td>
+                                            <td><span class="badge bg-primary">Delivered</span></td>
+                                            <td><button class="btn btn-outline-primary btn-sm">View</button></td>
+                                        </tr>
+                                        @* Add dynamic order rendering here using @Model.Orders if you fetch them *@
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Wishlist Section (Static placeholders for now, would require separate models/logic) -->
+                <!-- Wishlist Section -->
                 <div class="tab-pane fade" id="wishlist">
-                    <div class="profile-content">
-                        <h3 class="profile-section-title mb-4">My Wishlist</h3>
-                        <div class="row g-4">
-                            <!-- Wishlist Item -->
-                            <div class="col-md-4">
-                                <div class="card book-card h-100">
-                                    <img src="~/images/1984.jpg" class="card-img-top" alt="1984"> @* Use ~/ for root-relative paths *@
-                                    <div class="card-body">
-                                        <h5 class="card-title">1984</h5>
-                                        <p class="card-text text-muted">George Orwell</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="price">₹299</span>
-                                            <button class="btn btn-primary btn-sm">Add to Cart</button>
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <h3 class="card-title">My Wishlist</h3>
+                            <div class="row g-4">
+                                <!-- Wishlist Item -->
+                                <div class="col-md-4">
+                                    <div class="card book-card h-100">
+                                        <img src="~/images/1984.jpg" class="card-img-top" alt="1984">
+                                        <div class="card-body p-4">
+                                            <h5 class="text-dark card-title mb-2">1984</h5>
+                                            <p class="text-secondary mb-3">George Orwell</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="text-dark fw-bold">₹299</span>
+                                                <button class="btn btn-primary btn-sm">Add to Cart</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                @* Add dynamic wishlist rendering here *@
                             </div>
-                            @* Add dynamic wishlist rendering here *@
                         </div>
                     </div>
                 </div>
 
                 <!-- Settings Section -->
                 <div class="tab-pane fade" id="settings">
-                    <div class="profile-content">
-                        <div class="profile-section">
-                            <h3 class="profile-section-title mb-4">Account Settings</h3>
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <h3 class="card-title">Account Settings</h3>
                             <form>
                                 <!-- Email Notifications -->
                                 <div class="card mb-4">
-                                    <div class="card-body">
+                                    <div class="card-body p-4">
                                         <h5 class="card-title">Email Notifications</h5>
-                                        <div class="form-check mb-3">
-                                            <input class="form-check-input" type="checkbox" id="orderUpdates" checked>
-                                            <label class="form-check-label" for="orderUpdates">
-                                                Order updates and tracking information
-                                            </label>
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <input class="form-check-input" type="checkbox" id="promotions" checked>
-                                            <label class="form-check-label" for="promotions">
-                                                Promotions and special offers
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="newsletter">
-                                            <label class="form-check-label" for="newsletter">
-                                                Weekly newsletter
-                                            </label>
+                                        <div class="form-group">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="orderUpdates" checked>
+                                                <label class="form-check-label" for="orderUpdates">
+                                                    Order updates and tracking information
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="promotions" checked>
+                                                <label class="form-check-label" for="promotions">
+                                                    Promotions and special offers
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="newsletter">
+                                                <label class="form-check-label" for="newsletter">
+                                                    Weekly newsletter
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Privacy Settings -->
                                 <div class="card mb-4">
-                                    <div class="card-body">
+                                    <div class="card-body p-4">
                                         <h5 class="card-title">Privacy Settings</h5>
-                                        <div class="form-check mb-3">
-                                            <input class="form-check-input" type="checkbox" id="profileVisibility" checked>
-                                            <label class="form-check-label" for="profileVisibility">
-                                                Make my profile visible to other users
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="activityTracking" checked>
-                                            <label class="form-check-label" for="activityTracking">
-                                                Allow activity tracking for personalized recommendations
-                                            </label>
+                                        <div class="form-group">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="profileVisibility" checked>
+                                                <label class="form-check-label" for="profileVisibility">
+                                                    Make my profile visible to other users
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="activityTracking" checked>
+                                                <label class="form-check-label" for="activityTracking">
+                                                    Allow activity tracking for personalized recommendations
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Password Change -->
                                 <div class="card mb-4">
-                                    <div class="card-body">
+                                    <div class="card-body p-4">
                                         <h5 class="card-title">Change Password</h5>
                                         <div class="mb-3">
                                             <label class="form-label">Current Password</label>
@@ -240,7 +261,7 @@
 
                                 <!-- Account Actions -->
                                 <div class="card">
-                                    <div class="card-body">
+                                    <div class="card-body p-4">
                                         <h5 class="card-title">Account Actions</h5>
                                         <p class="text-muted mb-3">Here you can logout or delete your account</p>
                                         <div class="d-flex gap-2">
@@ -365,3 +386,32 @@
         </div>
     </div>
 </div>
+
+<style>
+.avatar-circle {
+    width: 80px;
+    height: 80px;
+    background-color: var(--color-black);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.avatar-initials {
+    color: var(--color-white);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.text-dark {
+    color: var(--color-black) !important;
+}
+
+.text-secondary {
+    color: var(--color-gray-600) !important;
+}
+</style>
+
+@* ...rest of existing code... *@
