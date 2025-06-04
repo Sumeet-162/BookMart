@@ -1,0 +1,207 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookMart - Your Online Bookstore</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="user.css">
+    <style>
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .payment-method {
+            flex: 1;
+            text-align: center;
+            padding: 1.5rem;
+            border: 2px solid var(--bg-alt);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .payment-method:hover {
+                border-color: var(--color-cta);
+                transform: translateY(-2px);
+            }
+
+            .payment-method.active {
+                border-color: var(--color-cta);
+                background-color: var(--bg-alt);
+            }
+
+            .payment-method img {
+                width: 48px;
+                height: 48px;
+                margin-bottom: 1rem;
+            }
+
+        .qr-code {
+            max-width: 300px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+            .qr-code img {
+                width: 100%;
+                height: auto;
+            }
+
+        .timer {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-danger);
+            margin: 1rem 0;
+        }
+
+        .upi-input {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .method-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--color-cta);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="home.html">
+                <img src="spell-book (1).png" alt="BookMart Logo" style="width: 35px; margin-right: 10px;">
+                <span>BookMart</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="@Url.Action("usercart", "User")" class="nav-link cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("userorder", "User")" class="nav-link">
+                            Orders
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a href="@Url.Action("userprofile", "User")" class="dropdown-item">
+                                    <i class="fas fa-user-circle me-2"></i>Profile
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a href="@Url.Action("login", "Account")" class="dropdown-item">
+                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5 class="text-white">About BookMart</h5>
+                    <p class="text-white-50">Your one-stop destination for all literary needs.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-white">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">About Us</a></li>
+                        <li><a href="#" class="text-white-50">Contact</a></li>
+                        <li><a href="#" class="text-white-50">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-white">Connect With Us</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="text-center text-white-50">
+                <p class="mb-0">&copy; 2025 BookMart. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize timer
+        let timeLeft = 300; // 5 minutes in seconds
+        const timerElement = document.getElementById('timer');
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+            if (timeLeft > 0) {
+                timeLeft--;
+                setTimeout(updateTimer, 1000);
+            } else {
+                // Refresh QR code or show expired message
+                timerElement.textContent = "Expired";
+            }
+        }
+
+        updateTimer();
+
+        // Handle payment method selection
+        function selectMethod(method) {
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+
+        // Handle UPI ID submission
+        function handleUPISubmit(event) {
+            event.preventDefault();
+            // Here you would typically integrate with a UPI payment gateway
+            // For demo purposes, we'll redirect to the success page
+            window.location.href = '@Url.Action("userpaymentsuccesfull", "User")';
+        }
+    </script>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

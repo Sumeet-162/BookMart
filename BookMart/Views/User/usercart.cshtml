@@ -1,0 +1,211 @@
+﻿@model List<BookMart.Models.CartItem>
+
+@{
+    ViewData["Title"] = "My Cart";
+    Layout = "userCommonLayout"; // Using user's preferred layout
+
+    // Moved grandTotal and taxRate declaration here to be accessible throughout the view
+    decimal grandTotal = 0;
+    decimal taxRate = 0.05M; // 5% tax rate, adjust as needed
+}
+
+<link href="~/css/user.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <!-- Cart Items -->
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white py-3">
+                    <h4 class="mb-0">
+                        <i class="fas fa-shopping-cart me-2"></i>Shopping Cart (@(Model?.Count() ?? 0) items)
+                    </h4>
+                </div>
+                <div class="card-body">
+                    @if (Model != null && Model.Any())
+                    {
+                        @* The grandTotal and taxRate are now declared above, so no need to declare here again *@
+                        @foreach (var item in Model)
+                        {
+                            // Ensure Book navigation property is loaded
+                            if (item.Book != null)
+                            {
+                                decimal itemTotal = item.Quantity * item.Price;
+                                grandTotal += itemTotal; // Accumulate grandTotal
+
+                                <!-- Dynamic Cart Item -->
+                                <div class="cart-item row align-items-center mb-4 pb-3 border-bottom">
+                                    <div class="col-md-2">
+                                        <img src="@item.Book.CoverImageURL" class="img-fluid rounded" alt="@item.Book.Title">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5 class="mb-1">@item.Book.Title</h5>
+                                        <p class="mb-0 text-muted">by @item.Book.Author</p>
+                                        <small class="text-muted">@item.Book.Genre?.Name</small> @* Display genre if available *@
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input-group input-group-sm">
+                                            <button class="btn btn-outline-secondary" type="button" onclick="updateQuantity(@item.BookID, -1)">-</button>
+                                            <input type="number" class="form-control text-center" value="@item.Quantity" readonly> @* Made readonly as quantity is updated via buttons *@
+                                            <button class="btn btn-outline-secondary" type="button" onclick="updateQuantity(@item.BookID, 1)">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 text-end">
+                                        <span class="h5">₹@item.Price.ToString("F0")</span>
+                                    </div>
+                                    <div class="col-md-2 text-end">
+                                        <button class="btn btn-link text-danger" onclick="removeItem(@item.BookID)">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <p class="lead">Your shopping cart is empty.</p>
+                            <p>Looks like you haven't added anything to your cart yet. Start shopping to fill it up!</p>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Continue Shopping -->
+            <div class="mt-4">
+                <a href="@Url.Action("UserHome", "User")" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left me-2"></i>Continue Shopping
+                </a>
+            </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white py-3">
+                    <h4 class="mb-0">Order Summary</h4>
+                </div>
+                <div class="card-body">
+                    @{
+                        decimal subtotal = grandTotal; // grandTotal is now accessible
+                        decimal shipping = 0M; // Assuming free shipping for now
+                        decimal tax = subtotal * taxRate; // taxRate is now accessible
+                        decimal total = subtotal + shipping + tax;
+                    }
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Subtotal</span>
+                        <span>₹@subtotal.ToString("F0")</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Shipping</span>
+                        <span class="text-success">Free</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Tax (@(taxRate * 100)%)</span>
+                        <span>₹@tax.ToString("F2")</span> @* Display tax with two decimal places *@
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-4">
+                        <strong>Total</strong>
+                        <strong class="h4">₹@total.ToString("F2")</strong> @* Display total with two decimal places *@
+                    </div>
+
+                    <!-- Coupon Code -->
+                    <div class="mb-4">
+                        <label class="form-label">Have a coupon?</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter code">
+                            <button class="btn btn-outline-secondary" type="button">Apply</button>
+                        </div>
+                    </div>
+
+                    <!-- Checkout Button -->
+                    <a href="@Url.Action("UserCheckout", "User")" class="btn btn-primary w-100 btn-lg">
+                        Proceed to Checkout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Display TempData messages (if any)
+        // This script block should be placed after the HTML elements that display the alerts.
+        document.addEventListener('DOMContentLoaded', function () {
+            const successMessage = '@TempData["SuccessMessage"]';
+            const errorMessage = '@TempData["ErrorMessage"]';
+            const infoMessage = '@TempData["InfoMessage"]';
+
+            if (successMessage && successMessage !== '') {
+                // You might want to use a more sophisticated toast/alert system here
+                // For now, these are handled by the Bootstrap alert divs directly in HTML
+                console.log("Success: " + successMessage);
+            }
+            if (errorMessage && errorMessage !== '') {
+                console.log("Error: " + errorMessage);
+            }
+            if (infoMessage && infoMessage !== '') {
+                console.log("Info: " + infoMessage);
+            }
+        });
+
+        // JavaScript functions for quantity update and item removal
+        function updateQuantity(bookId, change) {
+            var antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+
+            fetch('/User/UpdateCartItemQuantity', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': antiForgeryToken
+                },
+                body: JSON.stringify({ bookId: bookId, quantityChange: change })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error updating quantity:', error);
+                alert('An error occurred while updating quantity.');
+            });
+        }
+
+        function removeItem(bookId) {
+            var antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+
+            if (confirm('Are you sure you want to remove this item from your cart?')) {
+                fetch('/User/RemoveCartItem', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': antiForgeryToken
+                    },
+                    body: JSON.stringify({ bookId: bookId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error removing item:', error);
+                    alert('An error occurred while removing the item.');
+                });
+            }
+        }
+    </script>
+    @* Add this hidden anti-forgery token input. It's crucial for security on POST requests. *@
+    @Html.AntiForgeryToken()
+}

@@ -1,0 +1,63 @@
+﻿@model BookMart.Models.LoginViewModel
+@{
+    Layout = "~/Views/Shared/_loginLayout.cshtml";
+    ViewData["Title"] = "Login - BookMart";
+}
+
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="row g-0">
+            <div class="col-md-5 brand-section d-none d-md-flex">
+                <div class="brand-content">
+                    <h1 class="brand-title">BookMart</h1>
+                    <p class="brand-text">Your gateway to endless stories and knowledge.</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-section">
+                <div class="form-content">
+                    <h2 class="auth-title">Welcome Back</h2>
+                    <p class="auth-subtitle mb-4">Sign in to your account</p>
+
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            @TempData["SuccessMessage"]
+                        </div>
+                    }
+
+                    <form asp-controller="Account" asp-action="Login" method="post" class="compact-form">
+                        @Html.AntiForgeryToken()
+                        <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
+
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label asp-for="Username" class="form-label">Username</label>
+                                <input asp-for="Username" class="form-control" placeholder="Enter your username" />
+                                <span asp-validation-for="Username" class="field-validation-error"></span>
+                            </div>
+
+                            <div class="col-12">
+                                <label asp-for="Password" class="form-label">Password</label>
+                                <input asp-for="Password" class="form-control" placeholder="Enter your password" />
+                                <span asp-validation-for="Password" class="field-validation-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary w-100">Sign In</button>
+                        </div>
+
+                        <div class="form-footer mt-3">
+                            <p class="text-center mb-0">Don't have an account? <a asp-controller="Account" asp-action="Register">Create Account</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

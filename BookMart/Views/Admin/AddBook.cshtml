@@ -1,0 +1,184 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model BookMart.Models.Book
+@using BookMart.Models
+@{
+    ViewData["Title"] = "Add New Book";
+    Layout = "adminLayout"; // Ensure it uses your admin layout
+}
+
+<link href="~/css/site.css" rel="stylesheet" />
+<link href="~/css/AddBook.css" rel="stylesheet" />
+
+<main class="main-content-addbook">
+    <div class="container-fluid no-side-padding">
+        <div class="card">
+            <div class="card-header bg-white py-3">
+                <h4 class="mb-0">Add New Book</h4>
+            </div>
+            <div class="card-body">
+                @* Success/Error Messages *@
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        @TempData["SuccessMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        @TempData["ErrorMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                @* Display validation errors for the entire model *@
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <form asp-controller="Admin" asp-action="AddBook" method="post" id="addBookForm">
+                    @Html.AntiForgeryToken()
+
+                    <div class="row g-2">
+                        <div class="col-md-8">
+                            <div class="mb-4">
+                                <h5 class="mb-3">Basic Information</h5>
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <label asp-for="Title" class="form-label">Book Title</label>
+                                        <input type="text" asp-for="Title" class="form-control" required>
+                                        <span asp-validation-for="Title" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="Author" class="form-label">Author</label>
+                                        <input type="text" asp-for="Author" class="form-control" required>
+                                        <span asp-validation-for="Author" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="GenreID" class="form-label">Genre</label>
+                                        <select asp-for="GenreID" class="form-control" required>
+                                            <option value="">Select Genre</option>
+                                            @if (ViewBag.Genres != null)
+                                            {
+                                                @foreach (var item in (IEnumerable<SelectListItem>)ViewBag.Genres)
+                                                {
+                                                    <option value="@item.Value">@item.Text</option>
+                                                }
+                                            }
+                                        </select>
+                                        <span asp-validation-for="GenreID" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <h5 class="mb-3">Price & Stock</h5>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label asp-for="Price" class="form-label">Price (₹)</label>
+                                        <input type="number" asp-for="Price" class="form-control" min="0" step="0.01" required>
+                                        <span asp-validation-for="Price" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="StockQuantity" class="form-label">Initial Stock</label>
+                                        <input type="number" asp-for="StockQuantity" class="form-control" min="0" required>
+                                        <span asp-validation-for="StockQuantity" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <h5 class="mb-3">Description</h5>
+                                <textarea asp-for="Description" class="form-control" rows="4" required></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="mb-4">
+                                <h5 class="mb-3">Book Cover</h5>
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <div class="mb-3">
+                                            <div id="imagePreview" class="mb-3" style="display: none;">
+                                                <img src="" alt="Book Cover Preview" style="max-width: 100%; height: auto;">
+                                            </div>
+                                            <label asp-for="CoverImageURL" class="form-label sr-only">Image URL</label>
+                                            <input type="url" asp-for="CoverImageURL" class="form-control" id="imageUrl"
+                                                   placeholder="Enter GitHub hosted image URL">
+                                            <span asp-validation-for="CoverImageURL" class="text-danger"></span>
+                                        </div>
+                                        <small class="text-muted">Recommended size: 400x600px</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <h5 class="mb-3">Additional Details</h5>
+                                <div class="mb-3">
+                                    <label asp-for="ISBN" class="form-label">ISBN</label>
+                                    <input type="text" asp-for="ISBN" class="form-control">
+                                    <span asp-validation-for="ISBN" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="Publisher" class="form-label">Publisher</label>
+                                    <input type="text" asp-for="Publisher" class="form-control">
+                                    <span asp-validation-for="Publisher" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="PublishedDate" class="form-label">Publication Year</label>
+                                    <input type="number" asp-for="PublishedDate" class="form-control" min="1800" max="@DateTime.Now.Year + 5">
+                                    <span asp-validation-for="PublishedDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-end gap-2">
+                        <a asp-controller="Admin" asp-action="Books" class="btn btn-outline-secondary">
+                            Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i>Add Book
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+<script>
+    // Image URL preview
+    document.getElementById('imageUrl').addEventListener('input', function() {
+        const preview = document.getElementById('imagePreview');
+        const img = preview.querySelector('img');
+        const url = this.value.trim();
+
+        if (url && (url.startsWith('http://') || url.startsWith('https://'))) {
+            img.src = url;
+            preview.style.display = 'block';
+            img.onerror = () => {
+                preview.style.display = 'none';
+            };
+        } else {
+            preview.style.display = 'none';
+            img.src = '';
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const imageUrlInput = document.getElementById('imageUrl');
+        if (imageUrlInput && imageUrlInput.value) {
+            imageUrlInput.dispatchEvent(new Event('input'));
+        }
+    });
+</script>

@@ -1,0 +1,68 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Sidebar -->
+<nav class="sidebar" id="sidebar">
+    <div class="d-flex flex-column h-100">
+        <div class="sidebar-header p-3 mb-3 text-center">
+            <h3 class="fw-bold text-primary mb-0 logo-text">BookMart</h3>
+        </div>
+        
+        <div class="nav-links flex-grow-1 px-2">
+            <a href="@Url.Action("dashboard", "Admin")" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span class="ms-2">Dashboard</span>
+            </a>
+            <a href="@Url.Action("allorder", "Admin")" class="nav-link">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="ms-2">Orders</span>
+            </a>
+            <a href="@Url.Action("Stock", "Admin")" class="nav-link">
+                <i class="fas fa-boxes"></i>
+                <span class="ms-2">Inventory</span>
+            </a>
+            <a href="@Url.Action("Genres", "Admin")" class="nav-link">
+                <i class="fas fa-tags"></i>
+                <span class="ms-2">Categories</span>
+            </a>
+            <a href="@Url.Action("Books", "Admin")" class="nav-link">
+                <i class="fas fa-book"></i>
+                <span class="ms-2">Books</span>
+            </a>
+        </div>
+
+        <div class="sidebar-footer p-3 mt-auto border-top">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-user-circle fs-4"></i>
+                <div class="ms-2">
+                    <div class="fw-bold">Admin</div>
+                    <small class="text-muted">Administrator</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Navbar -->
+<nav class="admin-navbar navbar navbar-expand-lg">
+    <div class="container-fluid px-4">
+        <button class="sidebar-toggle btn btn-icon" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="navbar-brand d-flex align-items-center ms-3">
+            <h5 class="mb-0">@ViewData["Title"]</h5>
+        </div>
+
+        <div class="ms-auto">
+            <a href="@Url.Action("login", "Account")" class="btn btn-outline-danger btn-sm d-flex align-items-center">
+                <i class="fas fa-sign-out-alt me-2"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+@* The original JavaScript for sidebar toggle should be moved to a separate file, e.g., wwwroot/js/admin.js *@

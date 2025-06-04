@@ -1,0 +1,244 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    ViewData["Title"] = "Update Order Status"; // Sets the page title
+    Layout = "adminLayout"; // Specifies the layout file to use
+}
+<link href="~/css/site.css" rel="stylesheet" />
+
+
+<style>
+    /* Specific CSS for the timeline and status preview if not already in site.css */
+    .order-update-container {
+        padding: 20px;
+    }
+
+    .timeline {
+        position: relative;
+    }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #e9ecef;
+        }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .timeline-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #6c757d;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin-left: -7px;
+        z-index: 1;
+    }
+
+        .timeline-icon.active {
+            background-color: #0d6efd; /* Bootstrap primary blue */
+        }
+
+    .timeline-item > div.ms-2 {
+        margin-left: 30px;
+        padding-left: 20px;
+    }
+
+    .status-preview .alert {
+        background-color: #e9f7fe;
+        border-color: #b3e3fa;
+        color: #055160;
+    }
+</style>
+
+<div class="order-update-container">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4>Update Order Status</h4>
+                    <span class="badge bg-primary">Order #ORD-001</span>
+                </div>
+
+                <div class="timeline mb-4">
+                    <div class="timeline-item">
+                        <div class="timeline-icon active">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="ms-2">
+                            <h6 class="mb-1">Order Placed</h6>
+                            <small class="text-muted">May 21, 2025 10:30 AM</small>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon active">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="ms-2">
+                            <h6 class="mb-1">Payment Confirmed</h6>
+                            <small class="text-muted">May 21, 2025 10:35 AM</small>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon active">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="ms-2">
+                            <h6 class="mb-1">Processing</h6>
+                            <small class="text-muted">Current Status</small>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <div class="ms-2">
+                            <h6 class="mb-1">Shipped</h6>
+                            <small class="text-muted">Pending</small>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="ms-2">
+                            <h6 class="mb-1">Delivered</h6>
+                            <small class="text-muted">Pending</small>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="statusUpdateForm">
+                    <div class="mb-4">
+                        <label class="form-label">Update Status</label>
+                        <select class="form-select" id="orderStatus" required>
+                            <option value="">Select new status</option>
+                            <option value="processing">Processing</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Status Notes (Optional)</label>
+                        <textarea class="form-control" rows="3" placeholder="Add any additional notes about this status update"></textarea>
+                    </div>
+
+                    <div class="notification-settings">
+                        <h6 class="mb-3">Notification Settings</h6>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="emailNotification" checked>
+                            <label class="form-check-label" for="emailNotification">
+                                Send email notification to customer
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="smsNotification" checked>
+                            <label class="form-check-label" for="smsNotification">
+                                Send SMS notification to customer
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">Update Status</button>
+                        <a href="@Url.Action("allorder", "Admin")" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h6 class="card-title">Order Summary</h6>
+                    <div class="mb-3">
+                        <small class="text-muted d-block">Customer</small>
+                        <div>John Doe</div>
+                        <div class="small text-muted">john@example.com</div>
+                    </div>
+                    <div class="mb-3">
+                        <small class="text-muted d-block">Order Date</small>
+                        <div>May 21, 2025 10:30 AM</div>
+                    </div>
+                    <div class="mb-3">
+                        <small class="text-muted d-block">Total Amount</small>
+                        <div class="h5 mb-0">₹999</div>
+                    </div>
+                    <div>
+                        <small class="text-muted d-block">Payment Status</small>
+                        <span class="badge bg-success">Paid</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-preview">
+                <h6 class="mb-3">Status Update Preview</h6>
+                <div class="preview-content">
+                    <p class="text-muted small mb-2">This is how the status will appear to the customer:</p>
+                    <div class="alert alert-info mb-0">
+                        Your order #ORD-001 is now being processed. We'll notify you when it ships.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        // Place any JavaScript specific to this page here.
+        // The sidebar toggle logic and Bootstrap JS are already in _AdminLayout.
+        // You might want to add logic for the status preview here.
+        document.getElementById('orderStatus').addEventListener('change', function() {
+            const selectedStatus = this.value;
+            const previewText = document.querySelector('.status-preview .alert');
+            let message = '';
+
+            switch (selectedStatus) {
+                case 'processing':
+                    message = 'Your order #ORD-001 is now being processed. We\'ll notify you when it ships.';
+                    break;
+                case 'shipped':
+                    message = 'Great news! Your order #ORD-001 has been shipped. You should receive it soon.';
+                    break;
+                case 'delivered':
+                    message = 'Your order #ORD-001 has been successfully delivered. Enjoy your books!';
+                    break;
+                case 'cancelled':
+                    message = 'Your order #ORD-001 has been cancelled as per your request.';
+                    break;
+                default:
+                    message = 'Select a status to see the preview.';
+                    break;
+            }
+            previewText.textContent = message;
+        });
+
+        document.getElementById('statusUpdateForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // In a real application, you would send this data to a server
+            alert('Order status updated (simulated)!');
+            // Optionally redirect after successful update
+            window.location.href = '@Url.Action("allorder", "Admin")';
+        });
+    </script>

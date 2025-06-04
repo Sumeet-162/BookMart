@@ -1,0 +1,79 @@
+@model BookMart.Models.RegisterViewModel
+@{
+    Layout = "~/Views/Shared/_loginLayout.cshtml";
+    ViewData["Title"] = "Register - BookMart";
+}
+
+<div class="auth-container">
+    <div class="auth-card register-card">
+        <div class="row g-0">
+            <div class="col-md-5 brand-section d-none d-md-flex">
+                <div class="brand-content">
+                    <h1 class="brand-title">BookMart</h1>
+                    <p class="brand-text">Your gateway to endless stories and knowledge.</p>
+                </div>
+            </div>
+            <div class="col-md-7 form-section">
+                <div class="form-content">
+                    <h2 class="auth-title">Create Account</h2>
+                    <p class="auth-subtitle mb-4">Join our community of book lovers</p>
+
+                    <form asp-controller="Account" asp-action="Register" method="post" class="compact-form">
+                        @Html.AntiForgeryToken()
+                        <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
+
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <label asp-for="FirstName" class="form-label">First Name</label>
+                                <input asp-for="FirstName" class="form-control" placeholder="First name" />
+                                <span asp-validation-for="FirstName" class="field-validation-error"></span>
+                            </div>
+                            <div class="col-6">
+                                <label asp-for="LastName" class="form-label">Last Name</label>
+                                <input asp-for="LastName" class="form-control" placeholder="Last name" />
+                                <span asp-validation-for="LastName" class="field-validation-error"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="Username" class="form-label">Username</label>
+                                <input asp-for="Username" class="form-control" placeholder="Choose username" />
+                                <span asp-validation-for="Username" class="field-validation-error"></span>
+                            </div>
+                            <div class="col-md-7">
+                                <label asp-for="Email" class="form-label">Email</label>
+                                <input asp-for="Email" class="form-control" placeholder="Email address" />
+                                <span asp-validation-for="Email" class="field-validation-error"></span>
+                            </div>
+                            <div class="col-md-5">
+                                <label asp-for="Phone" class="form-label">Phone</label>
+                                <input asp-for="Phone" class="form-control" placeholder="Phone number" />
+                                <span asp-validation-for="Phone" class="field-validation-error"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Password" class="form-label">Password</label>
+                                <input asp-for="Password" class="form-control" placeholder="Create password" />
+                                <span asp-validation-for="Password" class="field-validation-error"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="ConfirmPassword" class="form-label">Confirm</label>
+                                <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm password" />
+                                <span asp-validation-for="ConfirmPassword" class="field-validation-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary w-100">Create Account</button>
+                        </div>
+
+                        <div class="form-footer mt-3">
+                            <p class="text-center mb-0">Already have an account? <a asp-controller="Account" asp-action="Login">Sign In</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

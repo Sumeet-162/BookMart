@@ -1,0 +1,197 @@
+﻿@model BookMart.Models.Book
+
+@{
+    ViewData["Title"] = "Book Details";
+    Layout = "userCommonLayout";
+}
+
+<link href="~/css/user.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"> @* Ensure Font Awesome is linked if not in layout *@
+
+
+<div class="container mt-5 pt-5">
+    <!-- Back Button -->
+    <a href="@Url.Action("UserHome", "User")" class="btn btn-outline-primary mb-3">
+        Back to home
+    </a>
+
+    @if (Model != null)
+    {
+        <div class="row g-4">
+            <!-- Book Images Column -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div id="bookImages" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="@Model.CoverImageURL" class="d-block w-100" alt="Book Cover">
+                            </div>
+                            @* If you have more images for a book, you would add more carousel-item divs here *@
+                            @* For now, it uses the same image for a second slide for demonstration *@
+                            <div class="carousel-item">
+                                <img src="@Model.CoverImageURL" class="d-block w-100" alt="Book Cover Alternate">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#bookImages" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#bookImages" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book Info Column -->
+            <div class="col-md-8">
+                <h1 class="mb-3">@Model.Title</h1> @* Dynamic Title *@
+                <div class="d-flex align-items-center mb-3">
+                    <div class="me-3">
+                        <span class="text-muted">by</span>
+                        <a href="#" class="text-decoration-none">@Model.Author</a> @* Dynamic Author *@
+                    </div>
+                    @* Static rating for now, you would implement dynamic rating logic if available *@
+                    <div class="rating">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star-half-alt text-warning"></i>
+                        <span class="ms-2">(4.5/5)</span>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h2 class="h5">About this book</h2>
+                    <p class="text-muted">@Model.Description</p> @* Dynamic Description *@
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6 col-md-3">
+                                <small class="text-muted d-block">Price</small>
+                                @if (Model.DiscountedPrice.HasValue)
+                                {
+                                    <span class="h4 text-danger">₹@Model.DiscountedPrice.Value.ToString("F0")</span>
+                                    <span class="text-muted text-decoration-line-through ms-2">₹@Model.Price.ToString("F0")</span>
+                                }
+                                else
+                                {
+                                    <span class="h4">₹@Model.Price.ToString("F0")</span> @* Dynamic Price *@
+                                }
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <small class="text-muted d-block">Genre</small>
+                                <span>@Model.Genre?.Name</span> @* Dynamic Genre Name *@
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <small class="text-muted d-block">Pages</small>
+                                <span>@Model.PageCount</span> @* Dynamic Page Count *@
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <small class="text-muted d-block">Language</small>
+                                <span>@Model.Language</span> @* Dynamic Language *@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex mb-4">
+                    @* Add to Cart button - now dynamic and sends book ID to controller *@
+                    <form asp-controller="User" asp-action="AddToCart" method="post" class="d-grid flex-grow-1">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="bookId" value="@Model.BookID" />
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                        </button>
+                    </form>
+                    <button class="btn btn-outline-primary btn-lg">
+                        <i class="far fa-heart"></i> @* Add to Wishlist (placeholder) *@
+                    </button>
+                </div>
+
+                <!-- Book Details Tabs -->
+                <ul class="nav nav-tabs" id="bookDetailTabs" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#description">
+                            Description
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#reviews">
+                            Reviews
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#authorInfo">
+                            Author Info
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content p-4 border border-top-0">
+                    <div class="tab-pane fade show active" id="description">
+                        <p>@Model.Description</p> @* Dynamic Description in tab *@
+                    </div>
+                    <div class="tab-pane fade" id="reviews">
+                        <!-- Reviews content (static for now) -->
+                        <div class="review-item mb-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="User">
+                                <div>
+                                    <h6 class="mb-0">John Doe</h6>
+                                    <small class="text-muted">Posted 2 days ago</small>
+                                </div>
+                            </div>
+                            <div class="rating mb-2">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                            <p>A masterpiece that remains relevant today. The writing is brilliant and the message is powerful.</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="authorInfo">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://via.placeholder.com/100" class="rounded-circle me-3" alt="Author">
+                            <div>
+                                <h4>@Model.Author</h4> @* Dynamic Author Name *@
+                                <p class="text-muted mb-0">English novelist and essayist</p> @* Placeholder description *@
+                            </div>
+                        </div>
+                        <p>@Model.Author's biography goes here. You would typically fetch this from a separate Author entity if you had one. For now, this is a placeholder.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5">
+            <p class="lead">Book not found.</p>
+            <p>The book you are looking for might not exist or is currently unavailable.</p>
+            <a href="@Url.Action("UserHome", "User")" class="btn btn-primary mt-3">Return to Home</a>
+        </div>
+    }
+
+    <!-- Similar Books Section -->
+    <section class="my-5">
+        <h3 class="mb-4">Similar Books You Might Like</h3>
+        <div class="row g-4">
+            <!-- Similar book cards will be populated here (requires controller logic to fetch) -->
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script>
+        // Any specific JavaScript for this page can go here.
+        // For example, if you wanted to handle the "Add to Cart" button with AJAX,
+        // you would put that logic here.
+    </script>
+}

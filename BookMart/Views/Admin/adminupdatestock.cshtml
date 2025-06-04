@@ -1,0 +1,128 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+    ViewData["Title"] = "Update Stock"; // Sets the page title
+    Layout = "adminLayout"; // Specifies the layout file to use
+}
+
+
+<link href="~/css/site.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="me-4">
+                            <img src="~/images/1984.jpg" alt="Book" style="width: 80px; height: 120px; object-fit: cover;" class="rounded">
+                        </div>
+                        <div>
+                            <h5 class="card-title mb-1">1984</h5>
+                            <p class="text-muted mb-0">by George Orwell</p>
+                            <div class="small text-muted mt-1">Fiction</div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-12 col-md-4 mb-3 mb-md-0">
+                            <div class="stat-card h-100">
+                                <div class="d-flex align-items-center">
+                                    <div class="stat-icon bg-warning bg-opacity-10 text-warning me-3">
+                                        <i class="fas fa-boxes"></i>
+                                    </div>
+                                    <div>
+                                        <div class="small text-muted mb-1">Current Stock</div>
+                                        <h4 class="mb-0">12</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 mb-3 mb-md-0">
+                            <div class="stat-card h-100">
+                                <div class="d-flex align-items-center">
+                                    <div class="stat-icon bg-info bg-opacity-10 text-info me-3">
+                                        <i class="fas fa-box"></i>
+                                    </div>
+                                    <div>
+                                        <div class="small text-muted mb-1">Minimum Stock</div>
+                                        <h4 class="mb-0">20</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="stat-card h-100">
+                                <div class="d-flex align-items-center">
+                                    <div class="stat-icon bg-primary bg-opacity-10 text-primary me-3">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <div>
+                                        <div class="small text-muted mb-1">On Order</div>
+                                        <h4 class="mb-0">0</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="updateStockForm">
+                        <div class="mb-4">
+                            <label for="operation" class="form-label">Operation</label>
+                            <select class="form-control" id="operation" required>
+                                <option value="">Select operation</option>
+                                <option value="add">Add Stock</option>
+                                <option value="remove">Remove Stock</option>
+                                <option value="adjust">Adjust Stock Level</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="quantity" class="form-label">Quantity</label>
+                            <input type="number" class="form-control" id="quantity" min="1" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="reason" class="form-label">Reason</label>
+                            <select class="form-control" id="reason" required>
+                                <option value="">Select reason</option>
+                                <option value="restock">New Stock Arrival</option>
+                                <option value="damaged">Damaged Items</option>
+                                <option value="return">Customer Return</option>
+                                <option value="correction">Stock Correction</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="notes" class="form-label">Notes</label>
+                            <textarea class="form-control" id="notes" rows="3" placeholder="Add any additional notes here..."></textarea>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-outline-secondary" onclick="window.location.href='@Url.Action("AdminStock", "Admin")'">
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        document.getElementById('updateStockForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Implement your form submission logic here, e.g., using AJAX to send data to your controller.
+            alert('Stock update form submitted (simulated)!');
+            // Redirect to the stock overview page after submission
+            window.location.href = '@Url.Action("adminstock", "Admin")';
+        });
+    </script>

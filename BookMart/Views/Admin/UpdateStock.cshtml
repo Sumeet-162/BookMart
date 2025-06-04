@@ -1,0 +1,183 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model BookMart.Models.ViewModels.UpdateStockViewModel
+
+@{
+    ViewData["Title"] = "Update Stock";
+    Layout = "adminLayout"; // Assuming you have an admin layout
+}
+
+<link href="~/css/site.css" rel="stylesheet" />
+<link href="~/css/AddBook.css" rel="stylesheet" />
+
+<main class="main-content-addbook">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">Update Stock for: @Model.Title</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="me-4">
+                                <img src="@(Model.CoverImageURL ?? "/images/default-book.png")" alt="Book Cover" style="width: 80px; height: 120px; object-fit: cover;" class="rounded">
+                            </div>
+                            <div>
+                                <h5 class="card-title mb-1">@Model.Title</h5>
+                                <p class="text-muted mb-0">by @Model.Author</p>
+                                <div class="small text-muted mt-1">@Model.GenreName</div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-12 col-md-4 mb-3 mb-md-0">
+                                <div class="stat-card h-100">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stat-icon @(Model.CurrentStockQuantity <= 0 ? "bg-danger" : (Model.CurrentStockQuantity < Model.MinStockLevel ? "bg-warning" : "bg-primary")) bg-opacity-10 text-primary me-3">
+                                            <i class="fas fa-boxes"></i>
+                                        </div>
+                                        <div>
+                                            <div class="small text-muted mb-1">Current Stock</div>
+                                            <h4 class="mb-0">@Model.CurrentStockQuantity</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 mb-3 mb-md-0">
+                                <div class="stat-card h-100">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stat-icon bg-info bg-opacity-10 text-info me-3">
+                                            <i class="fas fa-box"></i>
+                                        </div>
+                                        <div>
+                                            <div class="small text-muted mb-1">Minimum Stock</div>
+                                            <h4 class="mb-0">@Model.MinStockLevel</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="stat-card h-100">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stat-icon bg-secondary bg-opacity-10 text-secondary me-3">
+                                            <i class="fas fa-dolly"></i>
+                                        </div>
+                                        <div>
+                                            <div class="small text-muted mb-1">Required Stock</div>
+                                            <h4 class="mb-0">@(Model.MinStockLevel - Model.CurrentStockQuantity > 0 ? Model.MinStockLevel - Model.CurrentStockQuantity : 0)</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form asp-action="UpdateStock" method="post" id="updateStockForm">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" asp-for="BookId" />
+                            <input type="hidden" asp-for="Title" /> @* Keep for model state repopulation if needed *@
+                            <input type="hidden" asp-for="Author" />
+                            <input type="hidden" asp-for="CoverImageURL" />
+                            <input type="hidden" asp-for="GenreName" />
+                            <input type="hidden" asp-for="CurrentStockQuantity" />
+                            <input type="hidden" asp-for="MinStockLevel" />
+
+
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                            <div class="mb-3">
+                                <label asp-for="Operation" class="form-label"></label>
+                                <select asp-for="Operation" class="form-select" required>
+                                    <option value="">Select operation</option>
+                                    <option value="add">Add Stock</option>
+                                    <option value="remove">Remove Stock</option>
+                                    <option value="adjust">Adjust Stock Level</option>
+                                </select>
+                                <span asp-validation-for="Operation" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Quantity" class="form-label"></label>
+                                <input type="number" asp-for="Quantity" class="form-control" min="1" required>
+                                <span asp-validation-for="Quantity" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Reason" class="form-label"></label>
+                                <select asp-for="Reason" class="form-select" required>
+                                    <option value="">Select reason</option>
+                                    <option value="New Stock Arrival">New Stock Arrival</option>
+                                    <option value="Damaged Items">Damaged Items</option>
+                                    <option value="Customer Return">Customer Return</option>
+                                    <option value="Stock Correction">Stock Correction</option>
+                                    <option value="Lost/Stolen">Lost/Stolen</option>
+                                    <option value="Promotion/Giveaway">Promotion/Giveaway</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <span asp-validation-for="Reason" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-4">
+                                <label asp-for="Notes" class="form-label"></label>
+                                <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Add any additional notes here..."></textarea>
+                                <span asp-validation-for="Notes" class="text-danger"></span>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <a asp-action="Stock" class="btn btn-outline-secondary">
+                                    Cancel
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-2"></i>Save Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // Any specific JS for this page, e.g., dynamic form changes if needed.
+    </script>
+<style>
+    /* For stat cards alignment */
+    .stat-card {
+        background-color: #fff;
+        border-radius: .5rem;
+        padding: 1.25rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
+        height: 100%;
+    }
+
+    .stat-icon {
+        width: 48px;
+        height: 48px;
+        display: inline-flex;
+        align-items-center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 1.25rem;
+    }
+
+    .text-primary {
+        color: #0d6efd !important;
+    }
+
+    .text-info {
+        color: #0dcaf0 !important;
+    }
+
+    .text-secondary {
+        color: #6c757d !important;
+    }
+</style>

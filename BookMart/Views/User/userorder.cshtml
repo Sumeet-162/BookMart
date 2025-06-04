@@ -1,0 +1,187 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+    ViewData["Title"] = "User orders";
+    Layout = "userOrderLayout";
+}
+
+<link href="~/css/user.css" rel="stylesheet" />
+
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <!-- Order Filters -->
+        <div class="col-lg-3">
+            <div class="order-filter mb-4">
+                <h5 class="mb-3">Filter Orders</h5>
+                <div class="mb-3">
+                    <label class="form-label">Order Status</label>
+                    <select class="form-select">
+                        <option value="">All Orders</option>
+                        <option value="processing">Processing</option>
+                        <option value="shipped">Shipped</option>
+                        <option value="delivered">Delivered</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Time Period</label>
+                    <select class="form-select">
+                        <option value="">All Time</option>
+                        <option value="last30">Last 30 Days</option>
+                        <option value="last90">Last 90 Days</option>
+                        <option value="last180">Last 180 Days</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary w-100">Apply Filters</button>
+            </div>
+        </div>
+
+        <!-- Order List -->
+        <div class="col-lg-9">
+            <h4 class="mb-4">My Orders</h4>
+
+            <!-- Recent Order -->
+            <div class="card shadow-sm mb-4 order-card" data-bs-toggle="collapse" data-bs-target="#orderDetails1">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-3">
+                            <span class="text-muted">#BOK987654</span>
+                            <p class="mb-0">May 21, 2025</p>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="d-flex align-items-center">
+                                <img src="images/1984.jpg" alt="1984" class="rounded me-2" style="width: 40px; height: 60px; object-fit: cover;">
+                                <img src="images/the alchemist.jpg" alt="The Alchemist" class="rounded" style="width: 40px; height: 60px; object-fit: cover;">
+                                <div class="ms-3">
+                                    <p class="mb-0">2 Items</p>
+                                    <small class="text-muted">₹624.40</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <span class="status-badge processing">Processing</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Collapsed Details -->
+                <div class="collapse" id="orderDetails1">
+                    <hr class="my-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Order Items -->
+                            <div class="col-md-6">
+                                <h6 class="mb-3">Order Items</h6>
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="images/1984.jpg" alt="1984" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
+                                    <div class="ms-3">
+                                        <h6 class="mb-0">1984</h6>
+                                        <small class="text-muted">Qty: 1 × ₹299</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <img src="images/the alchemist.jpg" alt="The Alchemist" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
+                                    <div class="ms-3">
+                                        <h6 class="mb-0">The Alchemist</h6>
+                                        <small class="text-muted">Qty: 1 × ₹249</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tracking Info -->
+                            <div class="col-md-6">
+                                <h6 class="mb-3">Order Status</h6>
+                                <div class="tracking-info">
+                                    <div class="tracking-step">
+                                        <p class="mb-0">Order Confirmed</p>
+                                        <small class="text-muted">May 21, 2025 12:30 PM</small>
+                                    </div>
+                                    <div class="tracking-step">
+                                        <p class="mb-0">Processing</p>
+                                        <small class="text-muted">Expected: May 21, 2025</small>
+                                    </div>
+                                    <div class="tracking-step">
+                                        <p class="mb-0">Shipping</p>
+                                        <small class="text-muted">Expected: May 22, 2025</small>
+                                    </div>
+                                    <div class="tracking-step">
+                                        <p class="mb-0">Delivery</p>
+                                        <small class="text-muted">Expected: May 24, 2025</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Past Order Example -->
+            <div class="card shadow-sm mb-4 order-card" data-bs-toggle="collapse" data-bs-target="#orderDetails2">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-3">
+                            <span class="text-muted">#BOK987653</span>
+                            <p class="mb-0">May 15, 2025</p>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="d-flex align-items-center">
+                                <img src="images/the diary.jpg" alt="The Diary" class="rounded" style="width: 40px; height: 60px; object-fit: cover;">
+                                <div class="ms-3">
+                                    <p class="mb-0">1 Item</p>
+                                    <small class="text-muted">₹399</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <span class="status-badge delivered">Delivered</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Collapsed Details -->
+                <div class="collapse" id="orderDetails2">
+                    <hr class="my-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Order Items -->
+                            <div class="col-md-6">
+                                <h6 class="mb-3">Order Items</h6>
+                                <div class="d-flex align-items-center">
+                                    <img src="images/the diary.jpg" alt="The Diary" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
+                                    <div class="ms-3">
+                                        <h6 class="mb-0">The Diary</h6>
+                                        <small class="text-muted">Qty: 1 × ₹399</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tracking Info -->
+                            <div class="col-md-6">
+                                <h6 class="mb-3">Order Status</h6>
+                                <div class="tracking-info">
+                                    <div class="tracking-step">
+                                        <p class="mb-0">Delivered</p>
+                                        <small class="text-muted">May 17, 2025 2:30 PM</small>
+                                    </div>
+                                    <div class="tracking-step">
+                                        <p class="mb-0">Out for Delivery</p>
+                                        <small class="text-muted">May 17, 2025 9:00 AM</small>
+                                    </div>
+                                    <div class="tracking-step">
+                                        <p class="mb-0">Shipped</p>
+                                        <small class="text-muted">May 16, 2025</small>
+                                    </div>
+                                    <div class="tracking-step">
+                                        <p class="mb-0">Order Confirmed</p>
+                                        <small class="text-muted">May 15, 2025</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

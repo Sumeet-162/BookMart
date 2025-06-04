@@ -1,0 +1,177 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookMart - Your Online Bookstore</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="user.css">
+    <style>
+        .payment-option {
+            border: 2px solid var(--bg-alt);
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .payment-option:hover {
+                border-color: var(--color-cta);
+                transform: translateY(-2px);
+            }
+
+            .payment-option.selected {
+                border-color: var(--color-cta);
+                background-color: var(--bg-alt);
+            }
+
+        .payment-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--color-cta);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="home.html">
+                <img src="spell-book (1).png" alt="BookMart Logo" style="width: 35px; margin-right: 10px;">
+                <span>BookMart</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="@Url.Action("usercart", "User")" class="nav-link cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("userorder", "User")" class="nav-link">
+                            Orders
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a href="@Url.Action("userprofile", "User")" class="dropdown-item">
+                                    <i class="fas fa-user-circle me-2"></i>Profile
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a href="@Url.Action("login", "Account")" class="dropdown-item">
+                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5 class="text-white">About BookMart</h5>
+                    <p class="text-white-50">Your one-stop destination for all literary needs.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-white">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">About Us</a></li>
+                        <li><a href="#" class="text-white-50">Contact</a></li>
+                        <li><a href="#" class="text-white-50">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-white">Connect With Us</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="text-center text-white-50">
+                <p class="mb-0">&copy; 2025 BookMart. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let selectedPayment = '';
+        const proceedBtn = document.getElementById('proceedBtn');
+        const codFee = document.querySelector('.cod-fee');
+        const totalAmount = document.querySelector('.h4');
+        const baseAmount = 575.40;
+
+        function selectPayment(method) {
+            // Remove selected class from all options
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+
+            // Add selected class to clicked option
+            const selectedOption = event.currentTarget;
+            selectedOption.classList.add('selected');
+
+            selectedPayment = method;
+            proceedBtn.disabled = false;
+
+            // Handle COD fee
+            if (method === 'cod') {
+                codFee.classList.remove('d-none');
+                totalAmount.textContent = `₹${(baseAmount + 49).toFixed(2)}`;
+            } else {
+                codFee.classList.add('d-none');
+                totalAmount.textContent = `₹${baseAmount.toFixed(2)}`;
+            }
+        }
+
+        function proceedToPayment() {
+            switch(selectedPayment) {
+                case 'card':
+                    window.location.href = '@Url.Action("usercardpayment","User")';
+                    break;
+                case 'upi':
+                    window.location.href = '@Url.Action("userupipayment", "User")';
+                    break;
+                case 'cod':
+                    window.location.href = '@Url.Action("usercod", "User")';
+                    break;
+                case 'netbanking':
+                    window.location.href = 'netbanking.html';
+                    break;
+            }
+        }
+    </script>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
