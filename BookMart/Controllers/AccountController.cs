@@ -66,7 +66,7 @@ public class AccountController(ApplicationDbContext context) : Controller
 
                 if (user.IsAdmin)
                 {
-                    return RedirectToAction("Dashboard", "Admin");
+                    return RedirectToAction("dashboard", "Admin");
                 }
                 return RedirectToAction("UserHome", "User");
             }

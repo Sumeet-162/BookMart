@@ -1,42 +1,68 @@
+@model HomeViewModel
+
 @{
     ViewData["Title"] = "Home - BookMart";
 }
 
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-12">
-            <h1 class="display-4 text-center mb-4">Welcome to BookMart</h1>
-            <p class="lead text-center">Your one-stop destination for all your favorite books.</p>
-        </div>
-    </div>
-
-    <div class="row mt-4">
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Browse Books</h5>
-                    <p class="card-text">Explore our vast collection of books across various genres.</p>
-                    <a href="#" class="btn btn-primary">Browse Now</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">New Arrivals</h5>
-                    <p class="card-text">Check out the latest additions to our bookstore.</p>
-                    <a href="#" class="btn btn-primary">View New Books</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Special Offers</h5>
-                    <p class="card-text">Don't miss out on our current deals and discounts.</p>
-                    <a href="#" class="btn btn-primary">See Offers</a>
-                </div>
-            </div>
-        </div>
+<div class="hero-banner">
+    <div class="hero-content">
+        <h1 class="display-3">Your Gateway to Knowledge</h1>
+        <p class="lead">Discover millions of eBooks, audiobooks, and more at your fingertips.</p>
+        <a href="#explore-section" class="btn btn-dark btn-lg mt-3">Explore Books</a>
     </div>
 </div>
+
+<section id="explore-section" class="explore-books py-5">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Explore Books</h2>
+            <p class="section-subtitle">Discover our curated collection of books across various genres</p>
+        </div>
+        
+        <div class="book-grid">
+            @foreach (var book in Model.Books)
+            {
+                <div class="book-card card h-100">
+                    <div class="book-image-container">
+                        <img src="@book.CoverImageURL" class="card-img-top" alt="@book.Title">
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">@book.Title</h5>
+                        <p class="card-text text-muted mb-2">@book.Author</p>
+                        <div class="book-price mb-3">₹@book.Price</div>
+                        <a href="#" class="btn btn-add-cart mt-auto">Add to Cart</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="welcome-offers py-5 bg-light">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Welcome Offers</h2>
+            <p class="section-subtitle">Special deals handpicked for you</p>
+        </div>
+        
+        <div class="book-grid">
+            @foreach (var offer in Model.Offers)
+            {
+                <div class="book-card card h-100">
+                    <div class="book-image-container">
+                        <img src="@offer.CoverImageURL" class="card-img-top" alt="@offer.Title">
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">@offer.Title</h5>
+                        <p class="card-text text-muted mb-2">@offer.Author</p>
+                        <div class="book-price mb-3">
+                            <span class="text-decoration-line-through text-muted me-2">₹@offer.Price</span>
+                            <span class="text-dark">₹@offer.DiscountedPrice</span>
+                        </div>
+                        <a href="#" class="btn btn-add-cart mt-auto">Add to Cart</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

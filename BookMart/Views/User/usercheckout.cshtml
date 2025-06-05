@@ -1,22 +1,22 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model BookMart.Models.CheckoutViewModel
+
 @{
     ViewData["Title"] = "Checkout";
-    Layout = "userCheckoutLayout";
+    Layout = "userCheckoutLayout"; // Assuming userCheckoutLayout exists and renders scripts
+    // It's good practice to ensure userCheckoutLayout also calls @RenderSectionAsync("Scripts", required: false)
 }
 
 <link href="~/css/user.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /> @* Ensure Font Awesome is linked if not in layout *@
+
 
 <div class="container mt-5 pt-5">
     <!-- Checkout Steps -->
     <div class="checkout-steps mb-5">
-        <div class="step completed">1</div>
-        <div class="step active">2</div>
-        <div class="step">3</div>
-        <div class="step">4</div>
+        <div class="step completed">1</div> @* Cart step *@
+        <div class="step active">2</div> @* Address step *@
+        <div class="step">3</div> @* Payment step *@
+        <div class="step">4</div> @* Confirmation step *@
     </div>
 
     <div class="row">
@@ -29,65 +29,85 @@
                     </h4>
                 </div>
                 <div class="card-body">
-                    <form id="checkoutForm">
+                    @* Form to submit shipping address and proceed to payment *@
+                    <form asp-controller="User" asp-action="ProcessCheckout" method="post" id="checkoutForm">
+                        @Html.AntiForgeryToken() @* Anti-forgery token for security *@
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label">First Name</label>
-                                <input type="text" class="form-control" required>
+                                <label asp-for="ShippingFirstName" class="form-label"></label>
+                                <input asp-for="ShippingFirstName" type="text" class="form-control" required>
+                                <span asp-validation-for="ShippingFirstName" class="text-danger"></span>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Last Name</label>
-                                <input type="text" class="form-control" required>
+                                <label asp-for="ShippingLastName" class="form-label"></label>
+                                <input asp-for="ShippingLastName" type="text" class="form-control" required>
+                                <span asp-validation-for="ShippingLastName" class="text-danger"></span>
                             </div>
                             <div class="col-12">
-                                <label class="form-label">Address</label>
-                                <input type="text" class="form-control" placeholder="Street address" required>
+                                <label asp-for="ShippingAddressLine1" class="form-label"></label>
+                                <input asp-for="ShippingAddressLine1" type="text" class="form-control" placeholder="Street address" required>
+                                <span asp-validation-for="ShippingAddressLine1" class="text-danger"></span>
                             </div>
                             <div class="col-12">
-                                <input type="text" class="form-control" placeholder="Apartment, suite, etc. (optional)">
+                                <label asp-for="ShippingAddressLine2" class="form-label"></label>
+                                <input asp-for="ShippingAddressLine2" type="text" class="form-control" placeholder="Apartment, suite, etc. (optional)">
+                                <span asp-validation-for="ShippingAddressLine2" class="text-danger"></span>
                             </div>
                             <div class="col-md-5">
-                                <label class="form-label">City</label>
-                                <input type="text" class="form-control" required>
+                                <label asp-for="ShippingCity" class="form-label"></label>
+                                <input asp-for="ShippingCity" type="text" class="form-control" required>
+                                <span asp-validation-for="ShippingCity" class="text-danger"></span>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">State</label>
-                                <select class="form-select" required>
+                                <label asp-for="ShippingState" class="form-label"></label>
+                                <select asp-for="ShippingState" class="form-select" required>
                                     <option value="">Choose...</option>
                                     <option>Kerala</option>
                                     <option>Tamil Nadu</option>
                                     <option>Karnataka</option>
+                                    <option>Maharashtra</option>
+                                    <option>Delhi</option>
+                                    <option>Uttar Pradesh</option>
+                                    @* Add more states as needed *@
                                 </select>
+                                <span asp-validation-for="ShippingState" class="text-danger"></span>
                             </div>
                             <div class="col-md-3">
-                                <label class="form-label">PIN Code</label>
-                                <input type="text" class="form-control" required>
+                                <label asp-for="ShippingPinCode" class="form-label"></label>
+                                <input asp-for="ShippingPinCode" type="text" class="form-control" required>
+                                <span asp-validation-for="ShippingPinCode" class="text-danger"></span>
                             </div>
                             <div class="col-12">
-                                <label class="form-label">Phone</label>
-                                <input type="tel" class="form-control" required>
+                                <label asp-for="ShippingPhone" class="form-label"></label>
+                                <input asp-for="ShippingPhone" type="tel" class="form-control" required>
+                                <span asp-validation-for="ShippingPhone" class="class=" text-danger""></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="ShippingEmail" class="form-label"></label>
+                                <input asp-for="ShippingEmail" type="email" class="form-control" required>
+                                <span asp-validation-for="ShippingEmail" class="text-danger"></span>
                             </div>
                             <div class="col-12">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="saveAddress">
+                                    <input asp-for="SaveAddressForFuture" type="checkbox" class="form-check-input" id="saveAddress">
                                     <label class="form-check-label" for="saveAddress">
                                         Save this address for future orders
                                     </label>
                                 </div>
                             </div>
                         </div>
+                        <!-- Navigation Buttons (inside the form to submit it) -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="@Url.Action("UserCart", "User")" class="btn btn-outline-primary">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Cart
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                @* Changed to type="submit" *@
+                                Continue to Payment<i class="fas fa-arrow-right ms-2"></i>
+                            </button>
+                        </div>
                     </form>
                 </div>
-            </div>
-
-            <!-- Navigation Buttons -->
-            <div class="d-flex justify-content-between mt-4">
-                <a href="@Url.Action("usercart", "User")" class="btn btn-outline-primary">
-                    <i class="fas fa-arrow-left me-2"></i>Back to Cart
-                </a>
-                <a href="@Url.Action("userpaymentselection", "User")" class="btn btn-primary">
-                    Continue to Payment<i class="fas fa-arrow-right ms-2"></i>
-                </a>
             </div>
         </div>
 
@@ -98,48 +118,57 @@
                     <h4 class="mb-0">Order Summary</h4>
                 </div>
                 <div class="card-body">
-                    <!-- Order Items -->
+                    <!-- Order Items (Dynamic) -->
                     <div class="order-items">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="images/1984.jpg" alt="1984" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
-                            <div class="ms-3">
-                                <h6 class="mb-0">1984</h6>
-                                <small class="text-muted">Qty: 1</small>
-                            </div>
-                            <span class="ms-auto">₹299</span>
-                        </div>
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="images/the alchemist.jpg" alt="The Alchemist" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
-                            <div class="ms-3">
-                                <h6 class="mb-0">The Alchemist</h6>
-                                <small class="text-muted">Qty: 1</small>
-                            </div>
-                            <span class="ms-auto">₹249</span>
-                        </div>
+                        @if (Model.CartItems != null && Model.CartItems.Any())
+                        {
+                            @foreach (var item in Model.CartItems)
+                            {
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="@item.Book?.CoverImageURL" alt="@item.Book?.Title" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
+                                    <div class="ms-3">
+                                        <h6 class="mb-0">@item.Book?.Title</h6>
+                                        <small class="text-muted">Qty: @item.Quantity</small>
+                                    </div>
+                                    <span class="ms-auto">₹@(item.Quantity * item.Price).ToString("F0")</span>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p class="text-muted text-center">No items in cart.</p>
+                        }
                     </div>
 
                     <hr>
 
-                    <!-- Cost Breakdown -->
+                    <!-- Cost Breakdown (Dynamic) -->
                     <div class="d-flex justify-content-between mb-2">
                         <span>Subtotal</span>
-                        <span>₹548</span>
+                        <span>₹@Model.SubTotal.ToString("F0")</span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span>Shipping</span>
-                        <span class="text-success">Free</span>
+                        <span class="text-success">₹@Model.ShippingCost.ToString("F0")</span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span>Tax</span>
-                        <span>₹27.40</span>
+                        <span>₹@Model.TaxAmount.ToString("F2")</span>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between">
                         <strong>Total</strong>
-                        <strong class="h4">₹575.40</strong>
+                        <strong class="h4">₹@Model.TotalAmount.ToString("F2")</strong>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" /> @* Include client-side validation scripts *@
+    <script>
+        // Any specific JavaScript for this page can go here.
+    </script>
+}

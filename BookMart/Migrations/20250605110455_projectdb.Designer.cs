@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookMart.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250604062108_initial")]
-    partial class initial
+    [Migration("20250605110455_projectdb")]
+    partial class projectdb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -223,7 +223,7 @@ namespace BookMart.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserID")
@@ -338,9 +338,6 @@ namespace BookMart.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderID"));
 
-                    b.Property<int?>("BillingAddressID")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
@@ -356,20 +353,61 @@ namespace BookMart.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int?>("ShippingAddressID")
-                        .HasColumnType("int");
+                    b.Property<string>("ShippingAddressLine1")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("ShippingAddressLine2")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("ShippingCity")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("ShippingCost")
-                        .HasColumnType("decimal(10, 2)");
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ShippingEmail")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("ShippingFirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ShippingLastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ShippingPhone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ShippingPinCode")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ShippingState")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("SubTotal")
-                        .HasColumnType("decimal(10, 2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("TaxAmount")
-                        .HasColumnType("decimal(10, 2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(10, 2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("UserID")
                         .HasColumnType("int");
@@ -378,10 +416,6 @@ namespace BookMart.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("OrderID");
-
-                    b.HasIndex("BillingAddressID");
-
-                    b.HasIndex("ShippingAddressID");
 
                     b.HasIndex("UserID");
 
@@ -608,14 +642,6 @@ namespace BookMart.Migrations
 
             modelBuilder.Entity("BookMart.Models.Order", b =>
                 {
-                    b.HasOne("BookMart.Models.UserAddress", "BillingAddress")
-                        .WithMany()
-                        .HasForeignKey("BillingAddressID");
-
-                    b.HasOne("BookMart.Models.UserAddress", "ShippingAddress")
-                        .WithMany()
-                        .HasForeignKey("ShippingAddressID");
-
                     b.HasOne("BookMart.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserID")
@@ -625,10 +651,6 @@ namespace BookMart.Migrations
                     b.HasOne("BookMart.Models.User", null)
                         .WithMany("Orders")
                         .HasForeignKey("UserID1");
-
-                    b.Navigation("BillingAddress");
-
-                    b.Navigation("ShippingAddress");
 
                     b.Navigation("User");
                 });

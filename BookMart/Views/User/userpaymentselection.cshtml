@@ -1,28 +1,26 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model BookMart.Models.CheckoutViewModel
+
 @{
-}
-@{
-    ViewData["Title"] = "Payment";
-    Layout = "userPaymentSelectionLayout";
+    ViewData["Title"] = "Payment Selection";
+    Layout = "userCheckoutLayout"; // Using the consistent checkout layout
 }
 
 <link href="~/css/user.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
 <div class="container mt-5 pt-5">
     <!-- Checkout Steps -->
     <div class="checkout-steps mb-5">
-        <div class="step completed">1</div>
-        <div class="step completed">2</div>
-        <div class="step active">3</div>
-        <div class="step">4</div>
+        <div class="step completed">1</div> @* Cart step *@
+        <div class="step completed">2</div> @* Address step *@
+        <div class="step active">3</div> @* Payment step *@
+        <div class="step">4</div> @* Confirmation step *@
     </div>
 
     <div class="row">
         <!-- Payment Options -->
         <div class="col-lg-8">
-            <div class="card shadow-sm">
+            <div class="card shadow-sm mb-4">
                 <div class="card-header bg-white py-3">
                     <h4 class="mb-0">
                         <i class="fas fa-credit-card me-2"></i>Select Payment Method
@@ -32,79 +30,75 @@
                     <div class="row g-4">
                         <!-- Credit/Debit Card -->
                         <div class="col-md-6">
-                            <div class="payment-option" onclick="selectPayment('card')">
+                            <a href="@Url.Action("UserCardPayment", "User")" class="payment-option text-decoration-none">
                                 <div class="text-center">
                                     <i class="fas fa-credit-card payment-icon"></i>
                                     <h5>Credit/Debit Card</h5>
                                     <p class="text-muted mb-0">Pay securely with your card</p>
                                     <div class="mt-3">
-                                        <img src="https://via.placeholder.com/40" alt="Visa" class="me-2">
-                                        <img src="https://via.placeholder.com/40" alt="Mastercard" class="me-2">
-                                        <img src="https://via.placeholder.com/40" alt="American Express">
+                                        <img src="https://placehold.co/40x40/FF5733/FFFFFF?text=Visa" alt="Visa" class="me-2 rounded">
+                                        <img src="https://placehold.co/40x40/3366FF/FFFFFF?text=MC" alt="Mastercard" class="me-2 rounded">
+                                        <img src="https://placehold.co/40x40/6633FF/FFFFFF?text=AmEx" alt="American Express" class="rounded">
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                         <!-- UPI -->
                         <div class="col-md-6">
-                            <div class="payment-option" onclick="selectPayment('upi')">
+                            <a href="@Url.Action("UserUpiPayment", "User")" class="payment-option text-decoration-none">
                                 <div class="text-center">
                                     <i class="fas fa-mobile-alt payment-icon"></i>
                                     <h5>UPI</h5>
                                     <p class="text-muted mb-0">Pay using UPI</p>
                                     <div class="mt-3">
-                                        <img src="https://via.placeholder.com/40" alt="GPay" class="me-2">
-                                        <img src="https://via.placeholder.com/40" alt="PhonePe" class="me-2">
-                                        <img src="https://via.placeholder.com/40" alt="Paytm">
+                                        <img src="https://placehold.co/40x40/4CAF50/FFFFFF?text=GPay" alt="GPay" class="me-2 rounded">
+                                        <img src="https://placehold.co/40x40/8BC34A/FFFFFF?text=PhonePe" alt="PhonePe" class="me-2 rounded">
+                                        <img src="https://placehold.co/40x40/FFC107/FFFFFF?text=Paytm" alt="Paytm" class="rounded">
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                         <!-- Cash on Delivery -->
                         <div class="col-md-6">
-                            <div class="payment-option" onclick="selectPayment('cod')">
+                            <a href="@Url.Action("usercod", "User")" class="payment-option text-decoration-none">
                                 <div class="text-center">
                                     <i class="fas fa-money-bill-wave payment-icon"></i>
                                     <h5>Cash on Delivery</h5>
                                     <p class="text-muted mb-0">Pay when you receive</p>
                                     <small class="text-danger mt-2 d-block">Additional ₹49 fee applies</small>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                         <!-- Net Banking -->
                         <div class="col-md-6">
-                            <div class="payment-option" onclick="selectPayment('netbanking')">
+                            <a href="@Url.Action("usernetonlinepayment", "User")" class="payment-option text-decoration-none">
                                 <div class="text-center">
                                     <i class="fas fa-university payment-icon"></i>
                                     <h5>Net Banking</h5>
                                     <p class="text-muted mb-0">Pay through your bank</p>
                                     <div class="mt-3">
-                                        <img src="https://via.placeholder.com/40" alt="SBI" class="me-2">
-                                        <img src="https://via.placeholder.com/40" alt="HDFC" class="me-2">
-                                        <img src="https://via.placeholder.com/40" alt="ICICI">
+                                        <img src="https://placehold.co/40x40/007BFF/FFFFFF?text=SBI" alt="SBI" class="me-2 rounded">
+                                        <img src="https://placehold.co/40x40/6F42C1/FFFFFF?text=HDFC" alt="HDFC" class="me-2 rounded">
+                                        <img src="https://placehold.co/40x40/28A745/FFFFFF?text=ICICI" alt="ICICI" class="rounded">
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Navigation Buttons -->
-            <div class="d-flex justify-content-between mt-4">
-                <a href="@Url.Action("usercheckout", "User")" class="btn btn-outline-primary">
-                    <i class="fas fa-arrow-left me-2"></i>Back to Shipping
+            <!-- Back Button -->
+            <div class="d-flex justify-content-start mt-4">
+                <a href="@Url.Action("UserCheckout", "User")" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Address
                 </a>
-                <button class="btn btn-primary" onclick="proceedToPayment()" disabled id="proceedBtn">
-                    Proceed to Pay<i class="fas fa-arrow-right ms-2"></i>
-                </button>
             </div>
         </div>
 
-        <!-- Order Summary -->
+        <!-- Order Summary (Dynamic - from the CheckoutViewModel model) -->
         <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="card shadow-sm">
                 <div class="card-header bg-white py-3">
@@ -113,22 +107,24 @@
                 <div class="card-body">
                     <!-- Order Items -->
                     <div class="order-items">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="images/1984.jpg" alt="1984" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
-                            <div class="ms-3">
-                                <h6 class="mb-0">1984</h6>
-                                <small class="text-muted">Qty: 1</small>
-                            </div>
-                            <span class="ms-auto">₹299</span>
-                        </div>
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="images/the alchemist.jpg" alt="The Alchemist" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
-                            <div class="ms-3">
-                                <h6 class="mb-0">The Alchemist</h6>
-                                <small class="text-muted">Qty: 1</small>
-                            </div>
-                            <span class="ms-auto">₹249</span>
-                        </div>
+                        @if (Model.CartItems != null && Model.CartItems.Any())
+                        {
+                            @foreach (var item in Model.CartItems)
+                            {
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="@item.Book?.CoverImageURL" alt="@item.Book?.Title" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
+                                    <div class="ms-3">
+                                        <h6 class="mb-0">@item.Book?.Title</h6>
+                                        <small class="text-muted">Qty: @item.Quantity</small>
+                                    </div>
+                                    <span class="ms-auto">₹@(item.Quantity * item.Price).ToString("F0")</span>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p class="text-muted text-center">No items found for this order.</p>
+                        }
                     </div>
 
                     <hr>
@@ -136,27 +132,73 @@
                     <!-- Cost Breakdown -->
                     <div class="d-flex justify-content-between mb-2">
                         <span>Subtotal</span>
-                        <span>₹548</span>
+                        <span>₹@Model.SubTotal.ToString("F0")</span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span>Shipping</span>
-                        <span class="text-success">Free</span>
+                        <span class="text-success">₹@Model.ShippingCost.ToString("F0")</span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span>Tax</span>
-                        <span>₹27.40</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-2 cod-fee d-none">
-                        <span>COD Fee</span>
-                        <span class="text-danger">₹49</span>
+                        <span>₹@Model.TaxAmount.ToString("F2")</span> @* Corrected: Removed '?' *@
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between">
                         <strong>Total</strong>
-                        <strong class="h4">₹575.40</strong>
+                        <strong class="h4">₹@Model.TotalAmount.ToString("F2")</strong>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <style>
+        .payment-option {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            height: 100%; /* Ensure consistent height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #333; /* Ensure text is visible */
+        }
+
+            .payment-option:hover {
+                border-color: var(--color-primary); /* Assuming var(--color-primary) is defined in user.css */
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+
+        .payment-icon {
+            font-size: 3rem;
+            color: var(--color-cta); /* Assuming var(--color-cta) is defined */
+            margin-bottom: 1rem;
+        }
+
+        .secure-badge {
+            font-size: 0.85rem;
+            color: #28a745;
+            background-color: #e6ffe6;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+            .secure-badge i {
+                margin-right: 0.5rem;
+            }
+
+        img.rounded {
+            border-radius: 0.25rem !important; /* Ensure rounded corners for placeholder images */
+        }
+    </style>
+    <script>
+        // No specific JS needed here as we are using direct links for navigation.
+    </script>
+}

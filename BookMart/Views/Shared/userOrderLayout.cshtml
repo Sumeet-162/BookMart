@@ -1,44 +1,38 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookMart - Your Online Bookstore</title>
+    <title>@ViewData["Title"] - BookMart</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="user.css">
+    <link rel="stylesheet" href="~/css/user.css" asp-append-version="true">
     <style>
-        body {
-            padding-top: 55px;
-            overflow: auto;
-            scrollbar-width: none;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scrollbar-width: none; /* For Firefox */
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body::-webkit-scrollbar {
-            display: none;
+        :root {
+            --color-accent: #007bff;
+            --color-warning: #ffc107;
+            --color-cta: #17a2b8;
+            --bg-alt: #f8f9fa;
+            --color-danger: #dc3545;
+            --navbar-height: 56px;
         }
 
         body {
+            min-height: 100vh;
             background-color: #e6f0f8;
         }
 
+        .navbar {
+            height: var(--navbar-height);
+            background-color: #000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        main {
+            padding-top: var(--navbar-height);
+        }
+
+        /* --- Your provided styles below --- */
         .order-card {
             transition: transform 0.2s ease;
             cursor: pointer;
@@ -52,21 +46,28 @@
             border-radius: 50px;
             padding: 0.25rem 0.75rem;
             font-size: 0.875rem;
+            color: white; /* Ensure text is white for dark backgrounds */
         }
 
             .status-badge.delivered {
-                background-color: var(--color-accent);
-                color: white;
+                background-color: var(--color-accent); /* Using CSS variable */
             }
 
             .status-badge.processing {
-                background-color: var(--color-warning);
-                color: white;
+                background-color: var(--color-warning); /* Using CSS variable */
             }
 
             .status-badge.shipped {
-                background-color: var(--color-cta);
-                color: white;
+                background-color: var(--color-cta); /* Using CSS variable */
+            }
+
+            .status-badge.pending { /* Added for pending status */
+                background-color: #ffc107; /* Bootstrap yellow */
+                color: #343a40; /* Dark text for light background */
+            }
+
+            .status-badge.cancelled { /* Added for cancelled status */
+                background-color: var(--color-danger); /* Using CSS variable */
             }
 
         .tracking-info {
@@ -81,7 +82,7 @@
                 top: 0;
                 bottom: 0;
                 width: 2px;
-                background: var(--bg-alt);
+                background: var(--bg-alt); /* Using CSS variable */
             }
 
         .tracking-step {
@@ -92,17 +93,17 @@
             .tracking-step::before {
                 content: "";
                 position: absolute;
-                left: -30px;
+                left: 10px; /* Adjusted to align with vertical line */
                 top: 0;
                 width: 12px;
                 height: 12px;
                 border-radius: 50%;
-                background: var(--color-accent);
+                background: var(--color-accent); /* Using CSS variable */
                 border: 2px solid white;
             }
 
         .order-filter {
-            background-color: var(--bg-alt);
+            background-color: var(--bg-alt); /* Using CSS variable */
             border-radius: 8px;
             padding: 1rem;
         }
@@ -112,8 +113,8 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="home.html">
-                <img src="spell-book (1).png" alt="BookMart Logo" style="width: 35px; margin-right: 10px;">
+            <a class="navbar-brand d-flex align-items-center" href="@Url.Action("UserHome", "User")">
+                <img src="https://raw.githubusercontent.com/Sumeet-162/eCommerce.Net/refs/heads/main/spell-book%20(1).png" alt="BookMart Logo" style="width: 35px; margin-right: 10px;">
                 <span>BookMart</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
@@ -122,12 +123,14 @@
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a href="@Url.Action("usercart", "User")" class="nav-link active cart-icon">
+                        <a href="@Url.Action("UserCart", "User")" class="nav-link cart-icon">
                             <i class="fas fa-shopping-cart"></i>
+                            <span class="ms-1">Cart</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="@Url.Action("userorder", "User")" class="nav-link">
+                        <a href="@Url.Action("UserOrder", "User")" class="nav-link active">
+                            <i class="fas fa-box me-1"></i>
                             Orders
                         </a>
                     </li>
@@ -137,15 +140,18 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a href="@Url.Action("userprofile", "User")" class="dropdown-item">
+                                <a href="@Url.Action("UserProfile", "User")" class="dropdown-item">
                                     <i class="fas fa-user-circle me-2"></i>Profile
                                 </a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
-                                <a href="@Url.Action("login", "Account")" class="dropdown-item">
-                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
-                                </a>
+                                <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="dropdown-item">
+                                        <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                    </button>
+                                </form>
                             </li>
                         </ul>
                     </li>
@@ -186,7 +192,7 @@
             </div>
             <hr class="my-4 bg-light">
             <div class="text-center text-white-50">
-                <p class="mb-0">&copy; 2025 BookMart. All rights reserved.</p>
+                <p class="mb-0">&copy; @DateTime.Now.Year - BookMart. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -194,5 +200,7 @@
     <!-- Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+
 </body>
 </html>

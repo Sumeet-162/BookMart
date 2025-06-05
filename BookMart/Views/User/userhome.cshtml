@@ -1,13 +1,14 @@
-﻿@model BookMart.Models.HomeViewModel // Declare the strong-typed model at the top
+﻿@model BookMart.Models.HomeViewModel
+@using System.Globalization
 
 @{
     ViewData["Title"] = "BookMart - Your Online Bookstore";
-    Layout = "userHomeLayout"; // Assuming this layout exists
+    Layout = "userHomeLayout";
 }
 
 <link href="~/css/user.css" rel="stylesheet" />
 
-<!-- Toast Container -->
+<!-- Toast Container for notifications -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
     <div id="bookAddedToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
@@ -52,147 +53,277 @@
     </div>
 </section>
 
-<section id="featured-books" class="py-5">
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2>Welcome offers</h2>
-            <a href="#" class="btn btn-link">View All</a>
-        </div>
-        <div class="row g-4">
-            @* Use Model.FeaturedBooks instead of ViewBag.FeaturedBooks *@
-            @if (Model.FeaturedBooks != null)
-            {
-                @foreach (var book in Model.FeaturedBooks)
+<!-- Search Results Section -->
+@if (Model.IsFiltered)
+{
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="mb-1">
+                        @if (!string.IsNullOrEmpty(Model.SearchQuery))
+                        {
+                            <span>Search Results for "@Model.SearchQuery"</span>
+                        }
+                        else if (!string.IsNullOrEmpty(Model.GenreName))
+                        {
+                            <span>@Model.GenreName Books</span>
+                        }
+                    </h2>
+                    <p class="text-muted mb-0">Found @Model.TotalBooks result(s)</p>
+                </div>
+                <a href="@Url.Action("UserHome", "User")" class="btn btn-outline-primary">
+                    <i class="fas fa-times me-2"></i>Clear Filters
+                </a>
+            </div>
+            <div class="row g-4">
+                @if (Model.SearchResults != null && Model.SearchResults.Any())
                 {
-                    <div class="col-6 col-md-3">
-                        <div class="book-card card h-100">
-                            <div class="position-relative">
-                                <img src="@book.CoverImageURL" class="card-img-top" alt="@book.Title">
-                                @if (book.DiscountedPrice.HasValue)
-                                {
-                                    var discountPercentage = (int)(((book.Price - book.DiscountedPrice.Value) / book.Price) * 100);
-                                    <span class="badge bg-danger position-absolute top-0 end-0 m-2">@discountPercentage% OFF</span>
-                                }
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">@book.Title</h5>
-                                <p class="card-text text-muted">@book.Author</p>
-                                <div class="mt-auto">
-                                    <div class="d-flex align-items-center mb-2">
+                    @foreach (var book in Model.SearchResults)
+                    {
+                        <div class="col-6 col-md-3">
+                            <a href="@Url.Action("UserViewBookDetails", "User", new { id = book.BookID })" class="text-decoration-none">
+                                <div class="book-card card h-100 shadow-sm hover-effect">
+                                    <div class="position-relative book-image-container">
+                                        <img src="@book.CoverImageURL" class="card-img-top" alt="@book.Title" style="width: 100%; height: 100%; object-fit: contain; background-color: #f8f9fa;">
                                         @if (book.DiscountedPrice.HasValue)
                                         {
-                                            <span class="text-decoration-line-through text-muted me-2">₹@book.Price.ToString("F0")</span>
-                                            <span class="h5 mb-0">₹@book.DiscountedPrice.Value.ToString("F0")</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="h5 mb-0">₹@book.Price.ToString("F0")</span>
+                                            var discountPercentage = (int)(((book.Price - book.DiscountedPrice.Value) / book.Price) * 100);
+                                            <span class="badge bg-danger position-absolute top-0 end-0 m-2">@discountPercentage% OFF</span>
                                         }
                                     </div>
-                                    <div class="d-flex gap-2">
-                                        <a href="@Url.Action("UserViewBookDetails", "User", new { id = book.BookID })" class="btn btn-outline-primary btn-sm flex-grow-1">
-                                            View Details
-                                        </a>
-                                        <button onclick="addToCart(@book.BookID, '@book.Title')" class="btn btn-primary btn-sm">
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </button>
+                                    <div class="card-body d-flex flex-column p-3">
+                                        <h6 class="card-title text-dark mb-1 text-truncate">@book.Title</h6>
+                                        <p class="card-text text-muted small mb-2">@book.Author</p>
+                                        <div class="mt-auto">
+                                            <div class="d-flex align-items-center mb-2">
+                                                @if (book.DiscountedPrice.HasValue)
+                                                {
+                                                    <span class="text-decoration-line-through text-muted me-2 small">₹@book.Price.ToString("F0", CultureInfo.InvariantCulture)</span>
+                                                    <span class="text-primary fw-bold">₹@book.DiscountedPrice.Value.ToString("F0", CultureInfo.InvariantCulture)</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-primary fw-bold">₹@book.Price.ToString("F0", CultureInfo.InvariantCulture)</span>
+                                                }
+                                            </div>
+                                            <button onclick="addToCart(@book.BookID, '@book.Title'); event.preventDefault();" class="btn btn-primary btn-sm w-100">
+                                                <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="col-12">
+                        <div class="text-center py-5">
+                            <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                            <h3>No Results Found</h3>
+                            <p class="text-muted">Try adjusting your search criteria or browse our categories.</p>
                         </div>
                     </div>
                 }
-            }
-        </div>
-    </div>
-</section>
-
-<section class="py-5 bg-light">
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2>New Arrivals</h2>
-            <a href="#" class="btn btn-link">View All</a>
-        </div>
-        <div class="row g-4">
-            @* Use Model.NewArrivals instead of ViewBag.NewArrivals *@
-            @if (Model.NewArrivals != null)
-            {
-                @foreach (var book in Model.NewArrivals)
-                {
-                    <div class="col-6 col-md-3">
-                        <div class="book-card card h-100">
-                            <img src="@book.CoverImageURL" class="card-img-top" alt="@book.Title">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">@book.Title</h5>
-                                <p class="card-text text-muted">@book.Author</p>
-                                <div class="mt-auto">
-                                    <div class="d-flex align-items-center mb-2">
-                                        @if (book.DiscountedPrice.HasValue)
-                                        {
-                                            <span class="text-decoration-line-through text-muted me-2">₹@book.Price.ToString("F0")</span>
-                                            <span class="h5 mb-0">₹@book.DiscountedPrice.Value.ToString("F0")</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="h5 mb-0">₹@book.Price.ToString("F0")</span>
-                                        }
-                                    </div>
-                                    <div class="d-flex gap-2">
-                                        <a href="@Url.Action("UserViewBookDetails", "User", new { id = book.BookID })" class="btn btn-outline-primary btn-sm flex-grow-1">
-                                            View Details
-                                        </a>
-                                        <button onclick="addToCart(@book.BookID, '@book.Title')" class="btn btn-primary btn-sm">
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
-        </div>
-    </div>
-</section>
-
-<section class="py-5 bg-primary text-white">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6 text-center">
-                <h2 class="mb-4">Subscribe to Our Newsletter</h2>
-                <p class="text-white-50 mb-4">Get updates on new releases and exclusive offers!</p>
-                <form class="newsletter-form">
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Enter your email" aria-label="Enter your email">
-                        <button class="btn btn-light" type="submit">Subscribe</button>
-                    </div>
-                </form>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+}
+
+@if (!Model.IsFiltered)
+{
+    <!-- Welcome Offers Section -->
+    <section id="featured-books" class="py-5">
+        <div class="container">
+            <h2 class="mb-4">Welcome Offers</h2>
+            <div class="row g-4">
+                @if (Model.FeaturedBooks != null && Model.FeaturedBooks.Any())
+                {
+                    @foreach (var book in Model.FeaturedBooks)
+                    {
+                        <div class="col-6 col-md-3">
+                            <a href="@Url.Action("UserViewBookDetails", "User", new { id = book.BookID })" class="text-decoration-none">
+                                <div class="book-card card h-100 shadow-sm hover-effect">
+                                    <div class="position-relative book-image-container">
+                                        <img src="@book.CoverImageURL" class="card-img-top" alt="@book.Title">
+                                        @if (book.DiscountedPrice.HasValue)
+                                        {
+                                            var discountPercentage = (int)(((book.Price - book.DiscountedPrice.Value) / book.Price) * 100);
+                                            <span class="badge bg-danger position-absolute top-0 end-0 m-2">@discountPercentage% OFF</span>
+                                        }
+                                    </div>
+                                    <div class="card-body d-flex flex-column p-3">
+                                        <h6 class="card-title text-dark mb-1">@book.Title</h6>
+                                        <p class="card-text text-muted small mb-2">@book.Author</p>
+                                        <div class="mt-auto">
+                                            <div class="d-flex align-items-center mb-2">
+                                                @if (book.DiscountedPrice.HasValue)
+                                                {
+                                                    <span class="text-decoration-line-through text-muted me-2 small">₹@book.Price.ToString("F0", CultureInfo.InvariantCulture)</span>
+                                                    <span class="text-primary fw-bold">₹@book.DiscountedPrice.Value.ToString("F0", CultureInfo.InvariantCulture)</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-primary fw-bold">₹@book.Price.ToString("F0", CultureInfo.InvariantCulture)</span>
+                                                }
+                                            </div>
+                                            <button onclick="addToCart(@book.BookID, '@book.Title'); event.preventDefault();" class="btn btn-primary btn-sm w-100">
+                                                <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="text-center mt-4">
+                <button id="loadMoreFeatured" class="btn btn-outline-primary">
+                    <span class="spinner-border spinner-border-sm d-none me-2" role="status" aria-hidden="true"></span>
+                    Load More Books
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explore Books Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="mb-4">Explore Books</h2>
+            <div class="row g-4" id="exploreBooks">
+                @if (Model.NewArrivals != null && Model.NewArrivals.Any())
+                {
+                    @foreach (var book in Model.NewArrivals)
+                    {
+                        <div class="col-6 col-md-3">
+                            <a href="@Url.Action("UserViewBookDetails", "User", new { id = book.BookID })" class="text-decoration-none">
+                                <div class="book-card card h-100 shadow-sm hover-effect">
+                                    <div class="position-relative book-image-container">
+                                        <img src="@book.CoverImageURL" class="card-img-top" alt="@book.Title">
+                                        @if (book.DiscountedPrice.HasValue)
+                                        {
+                                            var discountPercentage = (int)(((book.Price - book.DiscountedPrice.Value) / book.Price) * 100);
+                                            <span class="badge bg-danger position-absolute top-0 end-0 m-2">@discountPercentage% OFF</span>
+                                        }
+                                    </div>
+                                    <div class="card-body d-flex flex-column p-3">
+                                        <h6 class="card-title text-dark mb-1">@book.Title</h6>
+                                        <p class="card-text text-muted small mb-2">@book.Author</p>
+                                        <div class="mt-auto">
+                                            <div class="d-flex align-items-center mb-2">
+                                                @if (book.DiscountedPrice.HasValue)
+                                                {
+                                                    <span class="text-decoration-line-through text-muted me-2 small">₹@book.Price.ToString("F0", CultureInfo.InvariantCulture)</span>
+                                                    <span class="text-primary fw-bold">₹@book.DiscountedPrice.Value.ToString("F0", CultureInfo.InvariantCulture)</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-primary fw-bold">₹@book.Price.ToString("F0", CultureInfo.InvariantCulture)</span>
+                                                }
+                                            </div>
+                                            <button onclick="addToCart(@book.BookID, '@book.Title'); event.preventDefault();" class="btn btn-primary btn-sm w-100">
+                                                <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="text-center mt-4">
+                <button id="loadMoreExplore" class="btn btn-outline-primary">
+                    <span class="spinner-border spinner-border-sm d-none me-2" role="status" aria-hidden="true"></span>
+                    Load More Books
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Authors Section -->
+    <section class="py-5 popular-authors">
+        <div class="container">
+            <h2 class="mb-4">Popular Authors</h2>
+            <div class="row g-4">
+                @if (Model.PopularAuthors != null)
+                {
+                    @foreach (var author in Model.PopularAuthors)
+                    {
+                        <div class="col-6 col-md-3">
+                            <div class="card author-card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">@author.AuthorName</h5>
+                                    <p class="text-muted">@author.Genre</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </section>
+}
 
 @section Scripts {
     <script>
-        function addToCart(bookId, bookTitle) {
-            // Get the anti-forgery token
-            var token = $('input[name="__RequestVerificationToken"]').val();
+        // Common function to create book HTML
+        function createBookCard(book) {
+            const discountPercentage = book.discountedPrice ? 
+                Math.round(((book.price - book.discountedPrice) / book.price) * 100) : 0;
 
+            return `
+                <div class="col-6 col-md-3">
+                    <a href="/User/UserViewBookDetails/${book.bookID}" class="text-decoration-none">
+                        <div class="book-card card h-100 shadow-sm hover-effect">
+                            <div class="position-relative book-image-container">
+                                <img src="${book.coverImageURL}" class="card-img-top" alt="${book.title}" 
+                                     style="width: 100%; height: 100%; object-fit: contain; background-color: #f8f9fa;">
+                                ${book.discountedPrice ? 
+                                    `<span class="badge bg-danger position-absolute top-0 end-0 m-2">
+                                        ${discountPercentage}% OFF
+                                    </span>` : ''}
+                            </div>
+                            <div class="card-body d-flex flex-column p-3">
+                                <h6 class="card-title text-dark mb-1 text-truncate">${book.title}</h6>
+                                <p class="card-text text-muted small mb-2">${book.author}</p>
+                                <div class="mt-auto">
+                                    <div class="d-flex align-items-center mb-2">
+                                        ${book.discountedPrice ? 
+                                            `<span class="text-decoration-line-through text-muted me-2 small">₹${book.price.toFixed(0)}</span>
+                                             <span class="text-primary fw-bold">₹${book.discountedPrice.toFixed(0)}</span>` :
+                                            `<span class="text-primary fw-bold">₹${book.price.toFixed(0)}</span>`}
+                                    </div>
+                                    <button onclick="addToCart(${book.bookID}, '${book.title}'); event.preventDefault();" 
+                                        class="btn btn-primary btn-sm w-100">
+                                        <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `;
+        }
+
+        // Add to Cart functionality
+        function addToCart(bookId, bookTitle) {
+            var token = $('input[name="__RequestVerificationToken"]').val();
+            
             $.ajax({
                 url: '@Url.Action("AddToCart", "User")',
                 type: 'POST',
                 data: { bookId: bookId, quantity: 1, __RequestVerificationToken: token },
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
                 success: function(response) {
                     if (response.success) {
-                        // Show success toast
                         const toast = new bootstrap.Toast(document.getElementById('bookAddedToast'));
                         document.getElementById('toastMessage').textContent = response.message;
                         toast.show();
                     } else {
-                        // Show error message
                         alert(response.message);
                     }
                 },
@@ -201,6 +332,70 @@
                 }
             });
         }
+
+        // Load More Featured Books
+        let featuredPage = 1;
+        const featuredContainer = document.querySelector('#featured-books .row');
+        const loadMoreFeaturedBtn = document.getElementById('loadMoreFeatured');
+
+        loadMoreFeaturedBtn?.addEventListener('click', async function() {
+            const spinner = this.querySelector('.spinner-border');
+            spinner.classList.remove('d-none');
+            this.disabled = true;
+            
+            try {
+                const response = await fetch(`@Url.Action("GetMoreFeaturedBooks", "User")?page=${++featuredPage}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    if (data.books.length === 0 || !data.hasMore) {
+                        this.style.display = 'none';
+                        return;
+                    }
+                    
+                    const booksHtml = data.books.map(book => createBookCard(book)).join('');
+                    featuredContainer.insertAdjacentHTML('beforeend', booksHtml);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                this.textContent = 'Error loading books';
+            } finally {
+                spinner.classList.add('d-none');
+                this.disabled = false;
+            }
+        });
+
+        // Load More Explore Books
+        let explorePage = 1;
+        const exploreContainer = document.getElementById('exploreBooks');
+        const loadMoreExploreBtn = document.getElementById('loadMoreExplore');
+        
+        loadMoreExploreBtn?.addEventListener('click', async function() {
+            const spinner = this.querySelector('.spinner-border');
+            spinner.classList.remove('d-none');
+            this.disabled = true;
+            
+            try {
+                const response = await fetch(`@Url.Action("LoadMoreBooks", "User")?page=${++explorePage}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    if (data.books.length === 0 || !data.hasMore) {
+                        this.style.display = 'none';
+                        return;
+                    }
+                    
+                    const booksHtml = data.books.map(book => createBookCard(book)).join('');
+                    exploreContainer.insertAdjacentHTML('beforeend', booksHtml);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                this.textContent = 'Error loading books';
+            } finally {
+                spinner.classList.add('d-none');
+                this.disabled = false;
+            }
+        });
 
         // Initialize toasts
         document.addEventListener('DOMContentLoaded', function () {

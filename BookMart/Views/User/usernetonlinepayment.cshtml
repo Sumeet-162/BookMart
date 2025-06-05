@@ -1,8 +1,7 @@
 ﻿@model BookMart.Models.CheckoutViewModel
-@using System.Globalization
 
 @{
-    ViewData["Title"] = "Card Payment";
+    ViewData["Title"] = "Net Banking Payment";
     Layout = "userCheckoutLayout"; // Using the consistent checkout layout
 }
 
@@ -19,13 +18,13 @@
     </div>
 
     <div class="row">
-        <!-- Card Payment Form -->
+        <!-- Net Banking Payment Form -->
         <div class="col-lg-8">
             <div class="card shadow-sm">
                 <div class="card-header bg-white py-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <h4 class="mb-0">
-                            <i class="fas fa-credit-card me-2"></i>Card Payment
+                            <i class="fas fa-university me-2"></i>Net Banking Payment
                         </h4>
                         <span class="secure-badge">
                             <i class="fas fa-lock"></i>Secure Payment
@@ -33,7 +32,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form asp-controller="User" asp-action="ProcessPayment" method="post" id="cardPaymentForm">
+                    <form asp-controller="User" asp-action="ProcessPayment" method="post" id="netBankingPaymentForm">
                         @Html.AntiForgeryToken()
 
                         @* Hidden fields to pass ALL CheckoutViewModel properties back to ProcessPayment *@
@@ -51,7 +50,7 @@
                         <input type="hidden" asp-for="ShippingPhone" />
                         <input type="hidden" asp-for="ShippingEmail" />
                         <input type="hidden" asp-for="SaveAddressForFuture" />
-                        <input type="hidden" name="paymentMethod" value="Card" /> @* Explicitly set payment method *@
+                        <input type="hidden" name="paymentMethod" value="Net Banking" /> @* Explicitly set payment method *@
 
                         @* Hidden fields for CartItems (for OrderItem creation on server) *@
                         @for (int i = 0; i < Model.CartItems.Count; i++)
@@ -61,72 +60,41 @@
                             <input type="hidden" name="CartItems[@i].Price" value="@Model.CartItems[i].Price" />
                         }
 
-                        <!-- Card Number -->
+                        <!-- Bank Selection -->
                         <div class="mb-4">
-                            <label for="cardNumber" class="form-label">Card Number</label>
-                            <div class="position-relative">
-                                <input type="text" class="form-control card-input"
-                                       id="cardNumber"
-                                       maxlength="19"
-                                       placeholder="1234 5678 9012 3456"
-                                       required>
-                                <i class="fas fa-credit-card card-icon"></i>
-                            </div>
+                            <label for="bankSelect" class="form-label">Select Your Bank</label>
+                            <select class="form-select" id="bankSelect" required>
+                                <option value="">-- Choose Bank --</option>
+                                <option value="SBI">State Bank of India</option>
+                                <option value="HDFC">HDFC Bank</option>
+                                <option value="ICICI">ICICI Bank</option>
+                                <option value="Axis">Axis Bank</option>
+                                <option value="PNB">Punjab National Bank</option>
+                                <option value="Other">Other Bank</option>
+                            </select>
                         </div>
 
-                        <div class="row mb-4">
-                            <!-- Expiry Date -->
-                            <div class="col-md-6 mb-3 mb-md-0">
-                                <label for="expiryDate" class="form-label">Expiry Date</label>
-                                <div class="position-relative">
-                                    <input type="text" class="form-control card-input"
-                                           id="expiryDate"
-                                           maxlength="5"
-                                           placeholder="MM/YY"
-                                           required>
-                                    <i class="fas fa-calendar card-icon"></i>
-                                </div>
-                            </div>
-
-                            <!-- CVV -->
-                            <div class="col-md-6">
-                                <label for="cvv" class="form-label">CVV</label>
-                                <div class="position-relative">
-                                    <input type="password" class="form-control card-input"
-                                           id="cvv"
-                                           maxlength="4"
-                                           placeholder="***"
-                                           required>
-                                    <i class="fas fa-lock card-icon"></i>
-                                </div>
-                            </div>
+                        <!-- User ID / Password (conceptual, for demonstration) -->
+                        <div class="mb-4">
+                            <label for="netBankingUserId" class="form-label">Net Banking User ID</label>
+                            <input type="text" class="form-control" id="netBankingUserId" placeholder="Enter your Net Banking User ID" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="netBankingPassword" class="form-label">Net Banking Password</label>
+                            <input type="password" class="form-control" id="netBankingPassword" placeholder="Enter your Net Banking Password" required>
                         </div>
 
-                        <!-- Card Holder Name -->
-                        <div class="mb-4">
-                            <label for="cardHolderName" class="form-label">Card Holder Name</label>
-                            <div class="position-relative">
-                                <input type="text" class="form-control card-input"
-                                       id="cardHolderName"
-                                       placeholder="Name as on card"
-                                       required>
-                                <i class="fas fa-user card-icon"></i>
-                            </div>
-                        </div>
-
-                        <!-- Save Card Checkbox -->
-                        <div class="mb-4">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="saveCard">
-                                <label class="form-check-label" for="saveCard">
-                                    Save card for future payments
-                                </label>
-                            </div>
+                        <!-- Terms and Conditions (conceptual) -->
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                            <label class="form-check-label" for="termsCheck">
+                                I agree to the <a href="#" class="text-decoration-none">Terms and Conditions</a>
+                            </label>
                         </div>
 
                         <!-- Submit Button -->
                         <button type="submit" class="btn btn-primary btn-lg w-100">
-                            Pay ₹@Model.TotalAmount.ToString("F2", CultureInfo.InvariantCulture)<i class="fas fa-lock ms-2"></i>
+                            Pay ₹@Model.TotalAmount.ToString("F2")<i class="fas fa-lock ms-2"></i>
                         </button>
                     </form>
                 </div>
@@ -173,7 +141,7 @@
                                         <h6 class="mb-0">@item.Book?.Title</h6>
                                         <small class="text-muted">Qty: @item.Quantity</small>
                                     </div>
-                                    <span class="ms-auto">₹@(item.Quantity * item.Price).ToString("F0", CultureInfo.InvariantCulture)</span>
+                                    <span class="ms-auto">₹@((item.Quantity * item.Price)).ToString("F0")</span>
                                 </div>
                             }
                         }
@@ -187,20 +155,20 @@
                     <div class="border-top pt-3">
                         <div class="d-flex justify-content-between mb-2">
                             <span>Subtotal</span>
-                            <span>₹@Model.SubTotal.ToString("F0", CultureInfo.InvariantCulture)</span>
+                            <span>₹@Model.SubTotal.ToString("F0")</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Shipping</span>
-                            <span class="text-success">₹@Model.ShippingCost.ToString("F0", CultureInfo.InvariantCulture)</span>
+                            <span class="text-success">₹@Model.ShippingCost.ToString("F0")</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Tax</span>
-                            <span>₹@Model.TaxAmount.ToString("F2", CultureInfo.InvariantCulture)</span> @* Corrected: Removed '?' *@
+                            <span>₹@Model.TaxAmount.ToString("F2")</span>
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between">
                             <strong>Total</strong>
-                            <strong class="h4">₹@Model.TotalAmount.ToString("F2", CultureInfo.InvariantCulture)</strong>
+                            <strong class="h4">₹@Model.TotalAmount.ToString("F2")</strong>
                         </div>
                     </div>
                 </div>
@@ -211,41 +179,21 @@
 
 @section Scripts {
     <style>
-        .card-input {
-            padding-right: 2.5rem; /* Space for icon */
+        .secure-badge {
+            font-size: 0.85rem;
+            color: #28a745;
+            background-color: #e6ffe6;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            display: inline-flex;
+            align-items: center;
         }
 
-        .card-icon {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #ccc;
-        }
+            .secure-badge i {
+                margin-right: 0.5rem;
+            }
     </style>
     <script>
-        // Client-side validation/formatting for card number, expiry, CVV
-        document.addEventListener('DOMContentLoaded', function () {
-            const cardNumberInput = document.getElementById('cardNumber');
-            const expiryDateInput = document.getElementById('expiryDate');
-
-            // Format card number with spaces
-            cardNumberInput.addEventListener('input', function (e) {
-                const target = e.target;
-                let value = target.value.replace(/\D/g, ''); // Remove non-digits
-                value = value.replace(/(\d{4})(?=\d)/g, '$1 '); // Add space every 4 digits
-                target.value = value;
-            });
-
-            // Format expiry date as MM/YY
-            expiryDateInput.addEventListener('input', function (e) {
-                const target = e.target;
-                let value = target.value.replace(/\D/g, ''); // Remove non-digits
-                if (value.length > 2) {
-                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
-                }
-                target.value = value;
-            });
-        });
+        // No specific JS for Net Banking beyond form submission for this conceptual example.
     </script>
 }

@@ -7,7 +7,11 @@ using Microsoft.AspNetCore.Authentication.Cookies; // Required for CookieAuthent
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options => {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+        options.JsonSerializerOptions.MaxDepth = 64; // Increase max depth if needed
+    });
 
 // Configure DbContext to use SQL Server
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -60,6 +64,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Account}/{action=Login}/{id?}"); // Your existing default route
+    pattern: "{controller=Account}/{action=login}/{id?}"); // Your existing default route
 
 app.Run();

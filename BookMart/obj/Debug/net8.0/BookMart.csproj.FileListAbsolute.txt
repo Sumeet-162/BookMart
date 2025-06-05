@@ -32,8 +32,6 @@ C:\Users\2406761\source\repos\BookMart\BookMart\obj\Debug\net8.0\refint\BookMart
 C:\Users\2406761\source\repos\BookMart\BookMart\obj\Debug\net8.0\BookMart.pdb
 C:\Users\2406761\source\repos\BookMart\BookMart\obj\Debug\net8.0\BookMart.genruntimeconfig.cache
 C:\Users\2406761\source\repos\BookMart\BookMart\obj\Debug\net8.0\ref\BookMart.dll
-C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\appsettings.Development.json
-C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\appsettings.json
 C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\BookMart.staticwebassets.endpoints.json
 C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\BookMart.staticwebassets.runtime.json
 C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\BookMart.exe
@@ -546,3 +544,6 @@ C:\Users\2406756\OneDrive - Cognizant\Desktop\BookMart- Done Sumeet\BookMart\obj
 C:\Users\2406756\OneDrive - Cognizant\Desktop\BookMart- Done Sumeet\BookMart\obj\Debug\net8.0\ref\BookMart.dll
 C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0\scopedcss\projectbundle\BookMart.bundle.scp.css
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\appsettings.json

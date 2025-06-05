@@ -16,26 +16,56 @@ namespace BookMart.Models
 
         public DateTime OrderDate { get; set; } = DateTime.Now;
 
-        [ForeignKey("ShippingAddress")]
-        public int? ShippingAddressID { get; set; }
-        public UserAddress? ShippingAddress { get; set; }
+        // --- Shipping Address Fields (Directly in Order table) ---
+        [Required(ErrorMessage = "Shipping First Name is required.")]
+        [StringLength(100)]
+        public string ShippingFirstName { get; set; } = string.Empty;
 
-        [ForeignKey("BillingAddress")]
-        public int? BillingAddressID { get; set; }
-        public UserAddress? BillingAddress { get; set; }
+        [Required(ErrorMessage = "Shipping Last Name is required.")]
+        [StringLength(100)]
+        public string ShippingLastName { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Shipping Address is required.")]
+        [StringLength(250)]
+        public string ShippingAddressLine1 { get; set; } = string.Empty;
+
+        [StringLength(250)]
+        public string? ShippingAddressLine2 { get; set; } // Apartment, suite, etc. (optional)
+
+        [Required(ErrorMessage = "Shipping City is required.")]
+        [StringLength(100)]
+        public string ShippingCity { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Shipping State is required.")]
+        [StringLength(100)]
+        public string ShippingState { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Shipping PIN Code is required.")]
+        [StringLength(20)]
+        public string ShippingPinCode { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Shipping Phone is required.")]
+        [StringLength(20)]
+        public string ShippingPhone { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Shipping Email is required.")]
+        [StringLength(250)]
+        [EmailAddress(ErrorMessage = "Invalid Email Address.")]
+        public string ShippingEmail { get; set; } = string.Empty;
+        // --- End Shipping Address Fields ---
 
         [Required]
-        [Column(TypeName = "decimal(10, 2)")]
+        [Column(TypeName = "decimal(18,2)")] // Increased precision for currency
         public decimal SubTotal { get; set; }
 
-        [Column(TypeName = "decimal(10, 2)")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal ShippingCost { get; set; } = 0;
 
-        [Column(TypeName = "decimal(10, 2)")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? TaxAmount { get; set; }
 
         [Required]
-        [Column(TypeName = "decimal(10, 2)")]
+        [Column(TypeName = "decimal(18,2)")] // Increased precision for currency
         public decimal TotalAmount { get; set; }
 
         [StringLength(50)]

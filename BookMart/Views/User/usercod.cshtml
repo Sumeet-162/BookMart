@@ -1,15 +1,13 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model BookMart.Models.CheckoutViewModel
+@using System.Globalization
 
 @{
-    ViewData["Title"] = "Cash on delivery";
-    Layout = "userCodLayout";
+    ViewData["Title"] = "Cash on Delivery";
+    Layout = "userCheckoutLayout"; // Using the consistent checkout layout
 }
 
 <link href="~/css/user.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
 <div class="container mt-5 pt-5">
     <!-- Checkout Steps -->
@@ -17,7 +15,7 @@
         <div class="step completed">1</div>
         <div class="step completed">2</div>
         <div class="step completed">3</div>
-        <div class="step active">4</div>
+        <div class="step active">4</div> @* COD is the final step for payment selection/confirmation before final order confirmation *@
     </div>
 
     <div class="row">
@@ -40,46 +38,74 @@
                         <i class="fas fa-info-circle instruction-icon"></i>
                         <h5>Important Instructions</h5>
                         <ul class="mb-0">
-                            <li>Keep ₹575.40 ready for payment during delivery</li>
+                            <li>Keep ₹@Model.TotalAmount.ToString("F2", CultureInfo.InvariantCulture) ready for payment during delivery</li>
                             <li>Verify the package before making the payment</li>
                             <li>Payment should be made to the delivery person only</li>
                             <li>Ask for payment receipt after successful payment</li>
                         </ul>
                     </div>
 
-                    <!-- Delivery Timeline -->
+                    <!-- Delivery Timeline (Conceptual, dynamic status would come from backend) -->
                     <div class="delivery-info mt-4">
                         <div class="delivery-step">
                             <h6>Order Confirmed</h6>
-                            <p class="text-muted mb-0">Your order has been confirmed</p>
-                            <small class="text-muted">May 21, 2025 12:30 PM</small>
+                            <p class="text-muted mb-0">Your order is being processed</p>
+                            <small class="text-muted">@DateTime.Now.ToString("MMM dd,yyyy hh:mm tt")</small>
                         </div>
                         <div class="delivery-step">
                             <h6>Processing</h6>
                             <p class="text-muted mb-0">We're preparing your order</p>
-                            <small class="text-muted">Expected: May 21, 2025</small>
+                            <small class="text-muted">Expected: @DateTime.Now.AddDays(1).ToString("MMM dd,yyyy")</small>
                         </div>
                         <div class="delivery-step">
                             <h6>Shipping</h6>
                             <p class="text-muted mb-0">Your order will be shipped</p>
-                            <small class="text-muted">Expected: May 22, 2025</small>
+                            <small class="text-muted">Expected: @DateTime.Now.AddDays(2).ToString("MMM dd,yyyy")</small>
                         </div>
                         <div class="delivery-step">
                             <h6>Delivery</h6>
                             <p class="text-muted mb-0">Estimated delivery date</p>
-                            <small class="text-muted">Expected: May 24, 2025</small>
+                            <small class="text-muted">Expected: @DateTime.Now.AddDays(3).ToString("MMM dd,yyyy")</small>
                         </div>
                     </div>
 
-                    <!-- Action Buttons -->
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
-                        <a href="@Url.Action("userorder", "User")" class="btn btn-primary" ">
-                            Track order
-                        </a>
-                        <a href="@Url.Action("userhome", "User")" class="btn btn-outline-primary">
-                            Continue shopping
-                        </a>
-                    </div>
+                    <!-- Action Buttons - Submit form to ProcessPayment -->
+                    <form asp-controller="User" asp-action="ProcessPayment" method="post" id="codPaymentForm">
+                        @Html.AntiForgeryToken()
+                        @* Hidden fields to pass ALL CheckoutViewModel properties back to ProcessPayment *@
+                        <input type="hidden" asp-for="SubTotal" />
+                        <input type="hidden" asp-for="ShippingCost" />
+                        <input type="hidden" asp-for="TaxAmount" />
+                        <input type="hidden" asp-for="TotalAmount" />
+                        <input type="hidden" asp-for="ShippingFirstName" />
+                        <input type="hidden" asp-for="ShippingLastName" />
+                        <input type="hidden" asp-for="ShippingAddressLine1" />
+                        <input type="hidden" asp-for="ShippingAddressLine2" />
+                        <input type="hidden" asp-for="ShippingCity" />
+                        <input type="hidden" asp-for="ShippingState" />
+                        <input type="hidden" asp-for="ShippingPinCode" />
+                        <input type="hidden" asp-for="ShippingPhone" />
+                        <input type="hidden" asp-for="ShippingEmail" />
+                        <input type="hidden" asp-for="SaveAddressForFuture" />
+                        <input type="hidden" name="paymentMethod" value="COD" /> @* Explicitly set payment method *@
+
+                        @* Hidden fields for CartItems (for OrderItem creation on server) *@
+                        @for (int i = 0; i < Model.CartItems.Count; i++)
+                        {
+                            <input type="hidden" name="CartItems[@i].BookID" value="@Model.CartItems[i].BookID" />
+                            <input type="hidden" name="CartItems[@i].Quantity" value="@Model.CartItems[i].Quantity" />
+                            <input type="hidden" name="CartItems[@i].Price" value="@Model.CartItems[i].Price" />
+                        }
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-receipt me-2"></i>Confirm COD Order
+                            </button>
+                            <a href="@Url.Action("UserHome", "User")" class="btn btn-outline-primary">
+                                <i class="fas fa-home me-2"></i>Continue shopping
+                            </a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -90,65 +116,166 @@
                 <div class="card-header bg-white py-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <h4 class="mb-0">Order Summary</h4>
-                        <span class="badge bg-primary">Order #BOK987654</span>
+                        <span class="badge bg-primary">Order Preview</span> @* No actual OrderID yet *@
                     </div>
                 </div>
                 <div class="card-body">
-                    <!-- Delivery Address -->
+                    <!-- Delivery Address (from CheckoutViewModel) -->
                     <div class="mb-4">
                         <h5 class="mb-3">Delivery Address</h5>
-                        <p class="mb-1">John Doe</p>
-                        <p class="mb-1">123 Main Street</p>
-                        <p class="mb-1">Apartment 4B</p>
-                        <p class="mb-0">New York, NY 10001</p>
+                        <p class="mb-1">@Model.ShippingFirstName @Model.ShippingLastName</p>
+                        <p class="mb-1">@Model.ShippingAddressLine1</p>
+                        @if (!string.IsNullOrWhiteSpace(Model.ShippingAddressLine2))
+                        {
+                            <p class="mb-1">@Model.ShippingAddressLine2</p>
+                        }
+                        <p class="mb-0">@Model.ShippingCity, @Model.ShippingState @Model.ShippingPinCode</p>
                     </div>
 
                     <hr>
 
                     <!-- Order Items -->
                     <div class="order-items mb-4">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="images/1984.jpg" alt="1984" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
-                            <div class="ms-3">
-                                <h6 class="mb-0">1984</h6>
-                                <small class="text-muted">Qty: 1</small>
-                            </div>
-                            <span class="ms-auto">₹299</span>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <img src="images/the alchemist.jpg" alt="The Alchemist" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
-                            <div class="ms-3">
-                                <h6 class="mb-0">The Alchemist</h6>
-                                <small class="text-muted">Qty: 1</small>
-                            </div>
-                            <span class="ms-auto">₹249</span>
-                        </div>
+                        @if (Model.CartItems != null && Model.CartItems.Any())
+                        {
+                            @foreach (var item in Model.CartItems)
+                            {
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="@item.Book?.CoverImageURL" alt="@item.Book?.Title" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
+                                    <div class="ms-3">
+                                        <h6 class="mb-0">@item.Book?.Title</h6>
+                                        <small class="text-muted">Qty: @item.Quantity</small>
+                                    </div>
+                                    <span class="ms-auto">₹@((item.Quantity * item.Price)).ToString("F0", CultureInfo.InvariantCulture)</span>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p class="text-muted text-center">No items found for this order.</p>
+                        }
                     </div>
 
                     <!-- Cost Breakdown -->
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Subtotal</span>
-                        <span>₹548</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Shipping</span>
-                        <span class="text-success">Free</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Tax</span>
-                        <span>₹27.40</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>COD Fee</span>
-                        <span class="text-danger">₹49</span>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <strong>Total</strong>
-                        <strong class="h4">₹624.40</strong>
+                    <div class="border-top pt-3">
+                        @{
+                            decimal codFee = 49M; // Define COD fee for display only
+                            decimal displayTotalWithCod = Model.TotalAmount + codFee; // TotalAmount is assumed non-nullable
+                        }
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal</span>
+                            <span>₹@Model.SubTotal.ToString("F0", CultureInfo.InvariantCulture)</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Shipping</span>
+                            <span class="text-success">₹@Model.ShippingCost.ToString("F0", CultureInfo.InvariantCulture)</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Tax</span>
+                            <span>₹@Model.TaxAmount.ToString("F2", CultureInfo.InvariantCulture)</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>COD Fee</span>
+                            <span class="text-danger">₹@codFee.ToString("F0")</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <strong>Total</strong>
+                            <strong class="h4">₹@displayTotalWithCod.ToString("F2")</strong>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <style>
+        .instruction-card {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 1.5rem;
+            border-radius: 5px;
+        }
+
+        .instruction-icon {
+            font-size: 2rem;
+            color: #007bff;
+            margin-right: 1rem;
+            float: left;
+        }
+
+        .instruction-card h5 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .instruction-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+            .instruction-card ul li {
+                margin-bottom: 0.25rem;
+            }
+
+        .delivery-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 1rem 0;
+        }
+
+        .delivery-step {
+            border-left: 2px solid #ddd;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+            .delivery-step::before {
+                content: "\f058"; /* Font Awesome checkmark icon */
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                position: absolute;
+                left: -11px;
+                top: 0;
+                background-color: white;
+                color: #28a745;
+                border: 2px solid #28a745;
+                border-radius: 50%;
+                padding: 2px;
+            }
+
+        .verification-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #e6ffe6;
+            color: #28a745;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+            .verification-badge i {
+                margin-right: 0.5rem;
+            }
+
+        .secure-badge {
+            font-size: 0.85rem;
+            color: #28a745;
+            background-color: #e6ffe6;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+            .secure-badge i {
+                margin-right: 0.5rem;
+            }
+    </style>
+    <script>
+        // No specific JS for Net Banking beyond form submission for this conceptual example.
+    </script>
+}

@@ -10,17 +10,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookMart - Your Online Bookstore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&family=Goudy+Bookletter+1911&family=Libre+Baskerville&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/user.css"> @* Use ~/ for root-relative paths *@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        .libre-baskerville-regular {
+            font-family: "Libre Baskerville", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .goudy-bookletter-1911-regular {
+            font-family: "Goudy Bookletter 1911", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .gentium-book-plus-regular {
+            font-family: "Gentium Book Plus", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .gentium-book-plus-bold {
+            font-family: "Gentium Book Plus", serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .gentium-book-plus-regular-italic {
+            font-family: "Gentium Book Plus", serif;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .gentium-book-plus-bold-italic {
+            font-family: "Gentium Book Plus", serif;
+            font-weight: 700;
+            font-style: italic;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-white">
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="@Url.Action("UserHome", "User")">
                 @* Changed to Url.Action for consistency *@
-                <img src="~/spell-book (1).png" alt="BookMart Logo" style="width: 35px; margin-right: 10px;"> @* Use ~/ for root-relative paths *@
+                <img src="https://raw.githubusercontent.com/Sumeet-162/eCommerce.Net/refs/heads/main/spell-book%20(1).png" alt="BookMart Logo" style="width: 35px; margin-right: 10px;"> @* Use ~/ for root-relative paths *@
                 <span>BookMart</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
@@ -68,38 +109,34 @@
     </nav>
 
     <!-- Main Content -->
-    <main role="main" class="pb-3">
+    <main role="main" class="pb-3" style="margin-top: 56px;">
         @RenderBody()
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4">
-        <div class="container">
+    <footer class="border-top footer text-muted bg-dark">
+        <div class="container text-white py-4">
             <div class="row">
                 <div class="col-md-4">
-                    <h5 class="text-white">About BookMart</h5>
-                    <p class="text-white-50">Your one-stop destination for all literary needs.</p>
+                    <h5 class="text-white mb-3">About BookMart</h5>
+                    <p class="mb-0">Your one-stop destination for all your reading needs.</p>
                 </div>
                 <div class="col-md-4">
-                    <h5 class="text-white">Quick Links</h5>
+                    <h5 class="text-white mb-3">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-white-50">About Us</a></li>
-                        <li><a href="#" class="text-white-50">Contact</a></li>
-                        <li><a href="#" class="text-white-50">FAQs</a></li>
+                        <li><a href="#" class="text-white-50">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white-50">Terms of Service</a></li>
+                        <li><a href="#" class="text-white-50">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h5 class="text-white">Connect With Us</h5>
+                    <h5 class="text-white mb-3">Connect With Us</h5>
                     <div class="social-links">
-                        <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white-50 me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white-50 me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white-50 me-3"><i class="bi bi-instagram"></i></a>
                     </div>
                 </div>
-            </div>
-            <hr class="my-4 bg-light">
-            <div class="text-center text-white-50">
-                <p class="mb-0">&copy; 2025 BookMart. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -107,7 +144,7 @@
     <!-- Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    @* --- CRUCIAL ADDITION: Renders the "Scripts" section from views --- *@
-    @RenderSection("Scripts", required: false)
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

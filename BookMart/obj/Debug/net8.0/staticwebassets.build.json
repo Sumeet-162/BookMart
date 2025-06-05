@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zlaS/y8eFIG4EtdOe5V5twhjsXDkDHAdxrZ1CW+iMyE=",
+  "Hash": "uxjtFIEyZddouYWyxIjvll43VjO/mcMN7gdMSdwyRMk=",
   "Source": "BookMart",
   "BasePath": "_content/BookMart",
   "Mode": "Default",
@@ -94,8 +94,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "0ef4k62jml",
-      "Integrity": "6HJ6M76w6mIxAa+FGbOsJugr1/8gV54+BeXRLbCKzbU=",
+      "Fingerprint": "alh19a6vfz",
+      "Integrity": "sr8OEBjn6XOTuqOuwaxNXxJEPuNX7d5m6g8jg/ZpfEM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -115,8 +115,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "825ivvj97x",
-      "Integrity": "4EplR9IdON6GIysz4Y5DYpnKoeTW2dWGGTqdPjxrSOs=",
+      "Fingerprint": "2hjm0rjvjl",
+      "Integrity": "Fkg+UzFxkrRPOexuFDuD/5E/jwxosoBwzgMY+Mgv+ZE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\user.css"
@@ -1406,7 +1406,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 06:15:45 GMT"
+          "Value": "Thu, 05 Jun 2025 09:42:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1443,7 +1443,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 06:15:45 GMT"
+          "Value": "Thu, 05 Jun 2025 09:42:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1488,7 +1488,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 06:15:45 GMT"
+          "Value": "Thu, 05 Jun 2025 09:42:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1533,7 +1533,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 06:15:45 GMT"
+          "Value": "Thu, 05 Jun 2025 09:42:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1630,7 +1630,7 @@
       ]
     },
     {
-      "Route": "css/site.0ef4k62jml.css",
+      "Route": "css/site.alh19a6vfz.css",
       "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1640,7 +1640,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8707"
+          "Value": "9345"
         },
         {
           "Name": "Content-Type",
@@ -1648,11 +1648,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"6HJ6M76w6mIxAa+FGbOsJugr1/8gV54+BeXRLbCKzbU=\""
+          "Value": "\"sr8OEBjn6XOTuqOuwaxNXxJEPuNX7d5m6g8jg/ZpfEM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 06:15:45 GMT"
+          "Value": "Thu, 05 Jun 2025 09:09:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1662,7 +1662,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "0ef4k62jml"
+          "Value": "alh19a6vfz"
         },
         {
           "Name": "label",
@@ -1670,7 +1670,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-6HJ6M76w6mIxAa+FGbOsJugr1/8gV54+BeXRLbCKzbU="
+          "Value": "sha256-sr8OEBjn6XOTuqOuwaxNXxJEPuNX7d5m6g8jg/ZpfEM="
         }
       ]
     },
@@ -1685,7 +1685,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8707"
+          "Value": "9345"
         },
         {
           "Name": "Content-Type",
@@ -1693,11 +1693,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"6HJ6M76w6mIxAa+FGbOsJugr1/8gV54+BeXRLbCKzbU=\""
+          "Value": "\"sr8OEBjn6XOTuqOuwaxNXxJEPuNX7d5m6g8jg/ZpfEM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 06:15:45 GMT"
+          "Value": "Thu, 05 Jun 2025 09:09:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1707,12 +1707,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-6HJ6M76w6mIxAa+FGbOsJugr1/8gV54+BeXRLbCKzbU="
+          "Value": "sha256-sr8OEBjn6XOTuqOuwaxNXxJEPuNX7d5m6g8jg/ZpfEM="
         }
       ]
     },
     {
-      "Route": "css/user.825ivvj97x.css",
+      "Route": "css/user.2hjm0rjvjl.css",
       "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\user.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1722,7 +1722,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "15709"
+          "Value": "21383"
         },
         {
           "Name": "Content-Type",
@@ -1730,11 +1730,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"4EplR9IdON6GIysz4Y5DYpnKoeTW2dWGGTqdPjxrSOs=\""
+          "Value": "\"Fkg+UzFxkrRPOexuFDuD/5E/jwxosoBwzgMY+Mgv+ZE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 06:15:45 GMT"
+          "Value": "Thu, 05 Jun 2025 16:57:41 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1744,7 +1744,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "825ivvj97x"
+          "Value": "2hjm0rjvjl"
         },
         {
           "Name": "label",
@@ -1752,7 +1752,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-4EplR9IdON6GIysz4Y5DYpnKoeTW2dWGGTqdPjxrSOs="
+          "Value": "sha256-Fkg+UzFxkrRPOexuFDuD/5E/jwxosoBwzgMY+Mgv+ZE="
         }
       ]
     },
@@ -1767,7 +1767,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "15709"
+          "Value": "21383"
         },
         {
           "Name": "Content-Type",
@@ -1775,11 +1775,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"4EplR9IdON6GIysz4Y5DYpnKoeTW2dWGGTqdPjxrSOs=\""
+          "Value": "\"Fkg+UzFxkrRPOexuFDuD/5E/jwxosoBwzgMY+Mgv+ZE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 06:15:45 GMT"
+          "Value": "Thu, 05 Jun 2025 16:57:41 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1789,7 +1789,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-4EplR9IdON6GIysz4Y5DYpnKoeTW2dWGGTqdPjxrSOs="
+          "Value": "sha256-Fkg+UzFxkrRPOexuFDuD/5E/jwxosoBwzgMY+Mgv+ZE="
         }
       ]
     },
@@ -1980,7 +1980,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 06:15:45 GMT"
+          "Value": "Thu, 05 Jun 2025 04:47:43 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2017,7 +2017,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 06:15:45 GMT"
+          "Value": "Thu, 05 Jun 2025 04:47:43 GMT"
         },
         {
           "Name": "Cache-Control",

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BookMart.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class projectdb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -92,7 +92,7 @@ namespace BookMart.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserID = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -103,6 +103,48 @@ namespace BookMart.Migrations
                         principalTable: "Users",
                         principalColumn: "UserID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    OrderID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ShippingFirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ShippingLastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ShippingAddressLine1 = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    ShippingAddressLine2 = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    ShippingCity = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ShippingState = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ShippingPinCode = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    ShippingPhone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    ShippingEmail = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    SubTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ShippingCost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TaxAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    PaymentStatus = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    OrderStatus = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    UserID1 = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.OrderID);
+                    table.ForeignKey(
+                        name: "FK_Orders_Users_UserID",
+                        column: x => x.UserID,
+                        principalTable: "Users",
+                        principalColumn: "UserID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Orders_Users_UserID1",
+                        column: x => x.UserID1,
+                        principalTable: "Users",
+                        principalColumn: "UserID");
                 });
 
             migrationBuilder.CreateTable(
@@ -185,51 +227,6 @@ namespace BookMart.Migrations
                         principalTable: "Carts",
                         principalColumn: "CartID",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    OrderID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID = table.Column<int>(type: "int", nullable: false),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ShippingAddressID = table.Column<int>(type: "int", nullable: true),
-                    BillingAddressID = table.Column<int>(type: "int", nullable: true),
-                    SubTotal = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    ShippingCost = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    TaxAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: true),
-                    TotalAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    PaymentMethod = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    PaymentStatus = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    OrderStatus = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    UserID1 = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.OrderID);
-                    table.ForeignKey(
-                        name: "FK_Orders_UserAddresses_BillingAddressID",
-                        column: x => x.BillingAddressID,
-                        principalTable: "UserAddresses",
-                        principalColumn: "AddressID");
-                    table.ForeignKey(
-                        name: "FK_Orders_UserAddresses_ShippingAddressID",
-                        column: x => x.ShippingAddressID,
-                        principalTable: "UserAddresses",
-                        principalColumn: "AddressID");
-                    table.ForeignKey(
-                        name: "FK_Orders_Users_UserID",
-                        column: x => x.UserID,
-                        principalTable: "Users",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Orders_Users_UserID1",
-                        column: x => x.UserID1,
-                        principalTable: "Users",
-                        principalColumn: "UserID");
                 });
 
             migrationBuilder.CreateTable(
@@ -326,16 +323,6 @@ namespace BookMart.Migrations
                 column: "OrderID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_BillingAddressID",
-                table: "Orders",
-                column: "BillingAddressID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_ShippingAddressID",
-                table: "Orders",
-                column: "ShippingAddressID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Orders_UserID",
                 table: "Orders",
                 column: "UserID");
@@ -381,6 +368,9 @@ namespace BookMart.Migrations
                 name: "StockTransactions");
 
             migrationBuilder.DropTable(
+                name: "UserAddresses");
+
+            migrationBuilder.DropTable(
                 name: "Carts");
 
             migrationBuilder.DropTable(
@@ -390,13 +380,10 @@ namespace BookMart.Migrations
                 name: "Books");
 
             migrationBuilder.DropTable(
-                name: "UserAddresses");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Genres");
-
-            migrationBuilder.DropTable(
-                name: "Users");
         }
     }
 }

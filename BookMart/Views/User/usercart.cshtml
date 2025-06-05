@@ -2,18 +2,17 @@
 
 @{
     ViewData["Title"] = "My Cart";
-    Layout = "userCommonLayout"; // Using user's preferred layout
+    Layout = "userCommonLayout";
 
-    // Moved grandTotal and taxRate declaration here to be accessible throughout the view
     decimal grandTotal = 0;
-    decimal taxRate = 0.05M; // 5% tax rate, adjust as needed
+    decimal taxRate = 0.05M;
 }
 
 <link href="~/css/user.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
 <!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header border-0">
@@ -21,7 +20,7 @@
             </div>
             <div class="modal-body text-center pb-4">
                 <i class="fas fa-exclamation-circle text-warning display-4 mb-4"></i>
-                <h4 class="modal-title mb-3" id="deleteConfirmModalLabel">Remove Book from Cart?</h4>
+                <h4 class="modal-title mb-3">Remove Book from Cart?</h4>
                 <p class="text-muted">Are you sure you want to remove <span id="bookTitleSpan"></span> from your cart?</p>
             </div>
             <div class="modal-footer border-0 justify-content-center">
@@ -33,46 +32,55 @@
 </div>
 
 <div class="container mt-5 pt-5 cart-page">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="mb-0">Shopping Cart</h4>
+        <a href="@Url.Action("UserHome", "User")" class="btn btn-outline-primary">
+            <i class="fas fa-arrow-left me-2"></i>Continue Shopping
+        </a>
+    </div>
+
     <div class="row">
         <!-- Cart Items -->
         <div class="col-lg-8">
             <div class="card shadow-sm">
                 <div class="card-header bg-white py-3">
-                    <h4 class="mb-0">
-                        <i class="fas fa-shopping-cart me-2"></i>Shopping Cart (@(Model?.Count() ?? 0) items)
-                    </h4>
+                    <h5 class="mb-0">
+                        <i class="fas fa-shopping-cart me-2"></i>Cart Items (@(Model?.Count() ?? 0))
+                    </h5>
                 </div>
                 <div class="card-body">
                     @if (Model != null && Model.Any())
                     {
-                        @* The grandTotal and taxRate are now declared above, so no need to declare here again *@
-                        @foreach (var item in Model)
+                        foreach (var item in Model)
                         {
-                            // Ensure Book navigation property is loaded
                             if (item.Book != null)
                             {
                                 decimal itemTotal = item.Quantity * item.Price;
-                                grandTotal += itemTotal; // Accumulate grandTotal
+                                grandTotal += itemTotal;
 
-                                <!-- Dynamic Cart Item -->
-                                <div class="cart-item row align-items-center mb-4 pb-3 border-bottom">
+                                <div class="cart-item row align-items-center">
                                     <div class="col-md-2">
                                         <img src="@item.Book.CoverImageURL" class="img-fluid rounded" alt="@item.Book.Title">
                                     </div>
                                     <div class="col-md-4">
                                         <h5 class="mb-1">@item.Book.Title</h5>
                                         <p class="mb-0 text-muted">by @item.Book.Author</p>
-                                        <small class="text-muted">@item.Book.Genre?.Name</small> @* Display genre if available *@
+                                        <small class="text-muted">@item.Book.Genre?.Name</small>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="input-group input-group-sm">
-                                            <button class="btn btn-outline-secondary" type="button" onclick="updateQuantity(@item.BookID, -1)">-</button>
-                                            <input type="number" class="form-control text-center" value="@item.Quantity" readonly> @* Made readonly as quantity is updated via buttons *@
-                                            <button class="btn btn-outline-secondary" type="button" onclick="updateQuantity(@item.BookID, 1)">+</button>
+                                            <button class="btn btn-outline-secondary" type="button" onclick="updateQuantity(@item.BookID, -1)">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <input type="number" class="form-control text-center" value="@item.Quantity" readonly>
+                                            <button class="btn btn-outline-secondary" type="button" onclick="updateQuantity(@item.BookID, 1)">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="col-md-2 text-end">
-                                        <span class="h5">₹@item.Price.ToString("F0")</span>
+                                        <span class="h5 mb-0">₹@item.Price.ToString("F0")</span>
                                     </div>
                                     <div class="col-md-2 text-end">
                                         <button class="btn btn-link text-danger" onclick="removeItem(@item.BookID, '@item.Book.Title')">
@@ -86,65 +94,55 @@
                     else
                     {
                         <div class="text-center py-5">
-                            <p class="lead">Your shopping cart is empty.</p>
-                            <p>Looks like you haven't added anything to your cart yet. Start shopping to fill it up!</p>
+                            <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                            <h5>Your cart is empty</h5>
+                            <p class="text-muted">Browse our collection and add some books to your cart!</p>
+                            <a href="@Url.Action("UserHome", "User")" class="btn btn-primary mt-3">
+                                Start Shopping
+                            </a>
                         </div>
                     }
                 </div>
-            </div>
-
-            <!-- Continue Shopping -->
-            <div class="mt-4">
-                <a href="@Url.Action("UserHome", "User")" class="btn btn-outline-primary">
-                    <i class="fas fa-arrow-left me-2"></i>Continue Shopping
-                </a>
             </div>
         </div>
 
         <!-- Order Summary -->
-        <div class="col-lg-4 mt-4 mt-lg-0">
+        <div class="col-lg-4">
             <div class="card shadow-sm">
                 <div class="card-header bg-white py-3">
-                    <h4 class="mb-0">Order Summary</h4>
+                    <h5 class="mb-0">Order Summary</h5>
                 </div>
                 <div class="card-body">
-                    @{
-                        decimal subtotal = grandTotal; // grandTotal is now accessible
-                        decimal shipping = 0M; // Assuming free shipping for now
-                        decimal tax = subtotal * taxRate; // taxRate is now accessible
-                        decimal total = subtotal + shipping + tax;
-                    }
-                    <div class="d-flex justify-content-between mb-2">
+                    <div class="d-flex justify-content-between mb-3">
                         <span>Subtotal</span>
-                        <span>₹@subtotal.ToString("F0")</span>
+                        <span>₹@grandTotal.ToString("F0")</span>
                     </div>
-                    <div class="d-flex justify-content-between mb-2">
+                    <div class="d-flex justify-content-between mb-3">
                         <span>Shipping</span>
                         <span class="text-success">Free</span>
                     </div>
-                    <div class="d-flex justify-content-between mb-2">
+                    <div class="d-flex justify-content-between mb-3">
                         <span>Tax (@(taxRate * 100)%)</span>
-                        <span>₹@tax.ToString("F2")</span> @* Display tax with two decimal places *@
+                        <span>₹@((grandTotal * taxRate).ToString("F0"))</span>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between mb-4">
                         <strong>Total</strong>
-                        <strong class="h4">₹@total.ToString("F2")</strong> @* Display total with two decimal places *@
+                        <strong>₹@((grandTotal + (grandTotal * taxRate)).ToString("F0"))</strong>
                     </div>
 
-                    <!-- Coupon Code -->
-                    <div class="mb-4">
-                        <p class="mb-2 text-dark">Have a coupon?</p>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Enter code" style="border-top-left-radius: 8px; border-bottom-left-radius: 8px;">
-                            <button class="btn btn-secondary" type="button" style="border-top-right-radius: 8px; border-bottom-right-radius: 8px; padding: 10px 24px;">Apply</button>
-                        </div>
-                    </div>
-
-                    <!-- Checkout Button -->
-                    <a href="@Url.Action("UserCheckout", "User")" class="btn btn-primary w-100 btn-lg">
-                        Proceed to Checkout
-                    </a>
+                    @if (Model != null && Model.Any())
+                    {
+                        <a href="@Url.Action("UserCheckout", "User")" class="btn btn-primary w-100">
+                            <i class="fas fa-lock me-2"></i>Proceed to Checkout
+                        </a>
+                    }
+                    else
+                    {
+                        <button class="btn btn-primary w-100" disabled>
+                            <i class="fas fa-lock me-2"></i>Proceed to Checkout
+                        </button>
+                    }
                 </div>
             </div>
         </div>
@@ -153,27 +151,17 @@
 
 @section Scripts {
     <script>
-        // Display TempData messages (if any)
-        // This script block should be placed after the HTML elements that display the alerts.
         document.addEventListener('DOMContentLoaded', function () {
             const successMessage = '@TempData["SuccessMessage"]';
             const errorMessage = '@TempData["ErrorMessage"]';
-            const infoMessage = '@TempData["InfoMessage"]';
-
             if (successMessage && successMessage !== '') {
-                // You might want to use a more sophisticated toast/alert system here
-                // For now, these are handled by the Bootstrap alert divs directly in HTML
                 console.log("Success: " + successMessage);
             }
             if (errorMessage && errorMessage !== '') {
                 console.log("Error: " + errorMessage);
             }
-            if (infoMessage && infoMessage !== '') {
-                console.log("Info: " + infoMessage);
-            }
         });
 
-        // JavaScript functions for quantity update and item removal
         function updateQuantity(bookId, change) {
             var antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
 
@@ -202,7 +190,7 @@
         let bookIdToDelete = null;
         const deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
 
-        function removeItem(bookId, bookTitle = 'this book') {
+        function removeItem(bookId, bookTitle) {
             bookIdToDelete = bookId;
             document.getElementById('bookTitleSpan').textContent = bookTitle;
             deleteModal.show();
@@ -223,19 +211,18 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        deleteModal.hide();
                         location.reload();
                     } else {
                         alert(data.message);
                     }
+                    deleteModal.hide();
                 })
                 .catch(error => {
                     console.error('Error removing item:', error);
                     alert('An error occurred while removing the item.');
+                    deleteModal.hide();
                 });
             }
         });
     </script>
-    @* Add this hidden anti-forgery token input. It's crucial for security on POST requests. *@
-    @Html.AntiForgeryToken()
 }

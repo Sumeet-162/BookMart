@@ -1,15 +1,10 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model BookMart.Models.ViewModels.AdminDashboardViewModel
+@using BookMart.Models.ViewModels
 
 @{
     ViewData["Title"] = "Admin Dashboard";
     Layout = "~/Views/Shared/adminLayout.cshtml";
 }
-
-<link href="~/css/site.css" rel="stylesheet" />
 
 <div class="container-fluid">
     @* Stats Row *@
@@ -22,7 +17,7 @@
                     </div>
                     <div>
                         <div class="small text-muted mb-1">Total Orders</div>
-                        <h4 class="mb-0">1,458</h4>
+                        <h4 class="mb-0">@Model.TotalOrders.ToString("N0")</h4>
                     </div>
                 </div>
             </div>
@@ -35,7 +30,7 @@
                     </div>
                     <div>
                         <div class="small text-muted mb-1">Books in Stock</div>
-                        <h4 class="mb-0">856</h4>
+                        <h4 class="mb-0">@Model.TotalBooksInStock.ToString("N0")</h4>
                     </div>
                 </div>
             </div>
@@ -48,7 +43,7 @@
                     </div>
                     <div>
                         <div class="small text-muted mb-1">Active Users</div>
-                        <h4 class="mb-0">245</h4>
+                        <h4 class="mb-0">@Model.ActiveUsers.ToString("N0")</h4>
                     </div>
                 </div>
             </div>
@@ -57,110 +52,96 @@
             <div class="stat-card">
                 <div class="d-flex align-items-center">
                     <div class="stat-icon bg-info bg-opacity-10 text-info me-3">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-rupee-sign"></i>
                     </div>
                     <div>
-                        <div class="small text-muted mb-1">Revenue</div>
-                        <h4 class="mb-0">₹52,945</h4>
+                        <div class="small text-muted mb-1">Total Revenue</div>
+                        <h4 class="mb-0">₹@Model.TotalRevenue.ToString("N2")</h4>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    @* Recent Orders *@
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h5 class="card-title mb-0">Recent Orders</h5>
-                <a href="@Url.Action("allorder", "Admin")" class="btn btn-link text-decoration-none">View All</a>
-            </div>
-            <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
-                    <thead>
-                        <tr>
-                            <th>Order ID</th>
-                            <th>Customer</th>
-                            <th>Books</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#ORD-001</td>
-                            <td>
-                                <div>John Doe</div>
-                                <small class="text-muted">john@example.com</small>
-                            </td>
-                            <td>
-                                <div>The Alchemist</div>
-                                <small class="text-muted">2 more items</small>
-                            </td>
-                            <td>₹999</td>
-                            <td><span class="status-badge bg-info bg-opacity-10 text-info">Shipped</span></td>
-                            <td>
-                                <a href="@Url.Action("adminoperation", "Admin")" class="btn btn-sm btn-outline-primary">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        @* Add more order rows as needed *@
-                    </tbody>
-                </table>
+    <div class="row g-4">
+        @* Recent Orders *@
+        <div class="col-12 col-xl-8 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-white py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Recent Orders</h5>
+                        <a href="@Url.Action("Orders", "Admin")" class="btn btn-sm btn-primary">
+                            View All
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Items</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var order in Model.RecentOrders)
+                                {
+                                    <tr>
+                                        <td>#@order.OrderID</td>
+                                        <td>@($"{order.ShippingFirstName} {order.ShippingLastName}")</td>
+                                        <td>@order.OrderItems?.Count items</td>
+                                        <td>₹@order.TotalAmount.ToString("N2")</td>
+                                        <td>
+                                            @{
+                                                var statusClass = order.OrderStatus?.ToLower() switch
+                                                {
+                                                    "pending" => "warning",
+                                                    "processing" => "info",
+                                                    "shipped" => "primary",
+                                                    "delivered" => "success",
+                                                    "cancelled" => "danger",
+                                                    _ => "secondary"
+                                                };
+                                            }
+                                            <span class="badge bg-@statusClass">@order.OrderStatus</span>
+                                        </td>
+                                        <td>@order.OrderDate.ToString("MMM dd, yyyy")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    @* Low Stock Alert *@
-    <div class="card">
-        <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h5 class="card-title mb-0">Low Stock Alert</h5>
-                <a href="@Url.Action("AdminStock", "Admin")" class="btn btn-link text-decoration-none">View All</a>
-            </div>
-            <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
-                    <thead>
-                        <tr>
-                            <th>Book</th>
-                            <th>Genre</th>
-                            <th>Current Stock</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <img src="~/images/1984.jpg" alt="Book" style="width: 40px; height: 60px; object-fit: cover;" class="me-3"> @* Assuming images are in wwwroot/images folder *@
-                                    <div>
-                                        <div>1984</div>
-                                        <small class="text-muted">George Orwell</small>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>Fiction</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="stock-level me-2" style="width: 100px;">
-                                        <div class="stock-level-bar bg-warning" style="width: 25%"></div>
-                                    </div>
-                                    <span>12</span>
-                                </div>
-                            </td>
-                            <td><span class="status-badge bg-warning bg-opacity-10 text-warning">Low Stock</span></td>
-                            <td>
-                                <a href="@Url.Action("AdminUpdateStock", "Admin")" class="btn btn-sm btn-outline-primary">
-                                    <i class="fas fa-plus"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        @* Add more stock rows as needed *@
-                    </tbody>
-                </table>
+        @* Top Selling Books *@
+        <div class="col-12 col-xl-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0">Top Selling Books</h5>
+                </div>
+                <div class="card-body">
+                    @foreach (var book in Model.TopSellingBooks)
+                    {
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="@book.CoverImageURL" alt="@book.Title" class="rounded shadow-sm" style="width: 48px; height: 72px; object-fit: cover;">
+                            <div class="ms-3 flex-grow-1">
+                                <h6 class="mb-0">@book.Title</h6>
+                                <small class="text-muted">by @book.Author</small>
+                            </div>
+                            <div class="text-end">
+                                <div class="small text-success">@book.TotalSold sold</div>
+                                <small class="text-muted">₹@book.Revenue.ToString("N0")</small>
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     </div>

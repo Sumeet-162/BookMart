@@ -1,15 +1,12 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model BookMart.Models.CheckoutViewModel
 
 @{
-    ViewData["Title"] = "Upi payment";
-    Layout = "userUpiPaymentLayout";
+    ViewData["Title"] = "UPI Payment";
+    Layout = "userCheckoutLayout"; // Using the consistent checkout layout
 }
 
 <link href="~/css/user.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
 <!-- Main Content -->
 <div class="container mt-5 pt-5">
@@ -36,62 +33,89 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <!-- UPI Apps -->
-                    <div class="payment-methods">
-                        <div class="payment-method active" onclick="selectMethod('gpay')">
-                            <i class="fab fa-google-pay method-icon"></i>
-                            <h6>Google Pay</h6>
-                        </div>
-                        <div class="payment-method" onclick="selectMethod('phonepe')">
-                            <i class="fas fa-mobile-alt method-icon"></i>
-                            <h6>PhonePe</h6>
-                        </div>
-                        <div class="payment-method" onclick="selectMethod('paytm')">
-                            <i class="fas fa-wallet method-icon"></i>
-                            <h6>Paytm</h6>
-                        </div>
-                        <div class="payment-method" onclick="selectMethod('bhim')">
-                            <i class="fas fa-mobile method-icon"></i>
-                            <h6>BHIM</h6>
-                        </div>
-                    </div>
+                    <form asp-controller="User" asp-action="ProcessPayment" method="post" id="upiPaymentForm">
+                        @Html.AntiForgeryToken()
+                        @* Hidden fields to pass ALL CheckoutViewModel properties back to ProcessPayment *@
+                        <input type="hidden" asp-for="SubTotal" />
+                        <input type="hidden" asp-for="ShippingCost" />
+                        <input type="hidden" asp-for="TaxAmount" />
+                        <input type="hidden" asp-for="TotalAmount" />
+                        <input type="hidden" asp-for="ShippingFirstName" />
+                        <input type="hidden" asp-for="ShippingLastName" />
+                        <input type="hidden" asp-for="ShippingAddressLine1" />
+                        <input type="hidden" asp-for="ShippingAddressLine2" />
+                        <input type="hidden" asp-for="ShippingCity" />
+                        <input type="hidden" asp-for="ShippingState" />
+                        <input type="hidden" asp-for="ShippingPinCode" />
+                        <input type="hidden" asp-for="ShippingPhone" />
+                        <input type="hidden" asp-for="ShippingEmail" />
+                        <input type="hidden" asp-for="SaveAddressForFuture" />
+                        <input type="hidden" name="paymentMethod" value="UPI" id="selectedUpiMethod" /> @* Default UPI method *
 
-                    <!-- QR Code Section -->
-                    <div class="text-center mb-4">
-                        <div class="qr-code">
-                            <img src="https://via.placeholder.com/300" alt="UPI QR Code">
-                            <div class="timer" id="timer">05:00</div>
-                            <p class="text-muted">Scan this QR code using your UPI app</p>
-                        </div>
-                    </div>
+                        @* Hidden fields for CartItems (for OrderItem creation on server) *@
+                        @for (int i = 0; i < Model.CartItems.Count; i++)
+                        {
+                            <input type="hidden" name="CartItems[@i].BookID" value="@Model.CartItems[i].BookID" />
+                            <input type="hidden" name="CartItems[@i].Quantity" value="@Model.CartItems[i].Quantity" />
+                            <input type="hidden" name="CartItems[@i].Price" value="@Model.CartItems[i].Price" />
+                        }
 
-                    <!-- OR Divider -->
-                    <div class="text-center mb-4">
-                        <div class="position-relative">
-                            <hr>
-                            <span class="position-absolute top-50 start-50 translate-middle px-3 bg-white text-muted">OR</span>
+                        <!-- UPI Apps -->
+                        <div class="payment-methods">
+                            <div class="payment-method active" onclick="selectMethod(this, 'Google Pay')">
+                                <i class="fab fa-google-pay method-icon"></i>
+                                <h6>Google Pay</h6>
+                            </div>
+                            <div class="payment-method" onclick="selectMethod(this, 'PhonePe')">
+                                <i class="fas fa-mobile-alt method-icon"></i>
+                                <h6>PhonePe</h6>
+                            </div>
+                            <div class="payment-method" onclick="selectMethod(this, 'Paytm')">
+                                <i class="fas fa-wallet method-icon"></i>
+                                <h6>Paytm</h6>
+                            </div>
+                            <div class="payment-method" onclick="selectMethod(this, 'BHIM UPI')">
+                                <i class="fas fa-mobile method-icon"></i>
+                                <h6>BHIM</h6>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- UPI ID Input -->
-                    <div class="upi-input">
-                        <form onsubmit="handleUPISubmit(event)">
+                        <!-- QR Code Section -->
+                        <div class="text-center mb-4">
+                            <div class="qr-code">
+                                <img src="https://placehold.co/300x300/4CAF50/FFFFFF?text=Scan+to+Pay" alt="UPI QR Code">
+                                <div class="timer" id="timer">05:00</div>
+                                <p class="text-muted">Scan this QR code using your UPI app</p>
+                            </div>
+                        </div>
+
+                        <!-- OR Divider -->
+                        <div class="text-center mb-4">
+                            <div class="position-relative">
+                                <hr>
+                                <span class="position-absolute top-50 start-50 translate-middle px-3 bg-white text-muted">OR</span>
+                            </div>
+                        </div>
+
+                        <!-- UPI ID Input -->
+                        <div class="upi-input">
+                            * This div is now part of the main form *
                             <div class="mb-4">
-                                <label class="form-label">Enter UPI ID</label>
+                                <label for="upiId" class="form-label">Enter UPI ID</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="yourname@upi" required>
-                                    <button class="btn btn-primary" type="submit">Pay ₹575.40</button>
+                                    <input type="text" id="upiId" class="form-control" placeholder="yourname@upi" required>
+                                    <button class="btn btn-primary" type="submit">Pay ₹@Model.TotalAmount.ToString("F2")</button>
                                 </div>
                                 <small class="text-muted">Example: username@bankname</small>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
 
             <!-- Navigation Buttons -->
             <div class="d-flex justify-content-start mt-4">
-                <a href="@Url.Action("userpaymentselection", "User")" class="btn btn-outline-primary">
+                <a href="@Url.Action("UserPaymentSelection", "User")" class="btn btn-outline-primary">
                     <i class="fas fa-arrow-left me-2"></i>Change Payment Method
                 </a>
             </div>
@@ -104,48 +128,167 @@
                     <h4 class="mb-0">Order Summary</h4>
                 </div>
                 <div class="card-body">
-                    <!-- Order Items -->
-                    <div class="order-items">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="images/1984.jpg" alt="1984" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
-                            <div class="ms-3">
-                                <h6 class="mb-0">1984</h6>
-                                <small class="text-muted">Qty: 1</small>
-                            </div>
-                            <span class="ms-auto">₹299</span>
-                        </div>
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="images/the alchemist.jpg" alt="The Alchemist" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
-                            <div class="ms-3">
-                                <h6 class="mb-0">The Alchemist</h6>
-                                <small class="text-muted">Qty: 1</small>
-                            </div>
-                            <span class="ms-auto">₹249</span>
-                        </div>
+                    <!-- Delivery Address (from CheckoutViewModel) -->
+                    <div class="mb-4">
+                        <h5 class="mb-3">Delivery Address</h5>
+                        <p class="mb-1">@Model.ShippingFirstName @Model.ShippingLastName</p>
+                        <p class="mb-1">@Model.ShippingAddressLine1</p>
+                        @if (!string.IsNullOrWhiteSpace(Model.ShippingAddressLine2))
+                        {
+                            <p class="mb-1">@Model.ShippingAddressLine2</p>
+                        }
+                        <p class="mb-0">@Model.ShippingCity, @Model.ShippingState @Model.ShippingPinCode</p>
                     </div>
 
                     <hr>
+
+                    <!-- Order Items -->
+                    <div class="order-items mb-4">
+                        @if (Model.CartItems != null && Model.CartItems.Any())
+                        {
+                            @foreach (var item in Model.CartItems)
+                            {
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="@item.Book?.CoverImageURL" alt="@item.Book?.Title" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
+                                    <div class="ms-3">
+                                        <h6 class="mb-0">@item.Book?.Title</h6>
+                                        <small class="text-muted">Qty: @item.Quantity</small>
+                                    </div>
+                                    <span class="ms-auto">₹@(item.Quantity * item.Price).ToString("F0")</span>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p class="text-muted text-center">No items found for this order.</p>
+                        }
+                    </div>
 
                     <!-- Cost Breakdown -->
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Subtotal</span>
-                        <span>₹548</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Shipping</span>
-                        <span class="text-success">Free</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Tax</span>
-                        <span>₹27.40</span>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <strong>Total</strong>
-                        <strong class="h4">₹575.40</strong>
+                    <div class="border-top pt-3">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal</span>
+                            <span>₹@Model.SubTotal.ToString("F0")</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Shipping</span>
+                            <span class="text-success">₹@Model.ShippingCost.ToString("F0")</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Tax</span>
+                            <span>₹@Model.TaxAmount.ToString("F2")</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <strong>Total</strong>
+                            <strong class="h4">₹@Model.TotalAmount.ToString("F2")</strong>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <style>
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .payment-method {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            text-align: center;
+            flex: 1 1 calc(33% - 1rem); /* 3 items per row on larger screens */
+            max-width: 150px; /* Adjust as needed */
+        }
+
+            .payment-method:hover {
+                border-color: var(--color-primary);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+
+            .payment-method.active {
+                border-color: var(--color-cta);
+                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            }
+
+        .method-icon {
+            font-size: 2.5rem;
+            color: var(--color-cta);
+            margin-bottom: 0.5rem;
+        }
+
+        .qr-code {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+
+            .qr-code img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 5px;
+                margin-bottom: 1rem;
+            }
+
+        .timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #dc3545; /* Red color for timer */
+            margin-bottom: 0.5rem;
+        }
+
+        .upi-input .input-group {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let selectedUpiMethod = "Google Pay"; // Default selected UPI method
+
+            // Function to handle method selection (visual feedback and update hidden input)
+            window.selectMethod = function (element, methodName) {
+                document.querySelectorAll('.payment-method').forEach(function (el) {
+                    el.classList.remove('active');
+                });
+                element.classList.add('active');
+                selectedUpiMethod = methodName;
+                document.getElementById('selectedUpiMethod').value = methodName; // Update hidden input
+            };
+
+            // Countdown timer for QR code
+            let timerElement = document.getElementById('timer');
+            let timeLeft = 5 * 60; // 5 minutes in seconds
+
+            function startTimer() {
+                let countdown = setInterval(function () {
+                    let minutes = Math.floor(timeLeft / 60);
+                    let seconds = timeLeft % 60;
+
+                    timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                    if (timeLeft <= 0) {
+                        clearInterval(countdown);
+                        timerElement.textContent = "Expired";
+                        // Optionally disable payment options or show an alert
+                    }
+                    timeLeft--;
+                }, 1000);
+            }
+
+            startTimer();
+        });
+    </script>
+
+}
