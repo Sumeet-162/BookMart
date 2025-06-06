@@ -13,7 +13,7 @@ namespace BookMart.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20250605110455_projectdb")]
-    partial class projectdb
+    partial class ProjectDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

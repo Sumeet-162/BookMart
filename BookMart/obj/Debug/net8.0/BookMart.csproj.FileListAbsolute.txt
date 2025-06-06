@@ -547,3 +547,10 @@ C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\obj\Debug\net8.0
 C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\appsettings.json
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\Microsoft.Extensions.WebEncoders.dll
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\System.Security.Cryptography.Xml.dll
+C:\Users\2406761\OneDrive - Cognizant\Desktop\BookMart\BookMart\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll

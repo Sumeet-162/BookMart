@@ -2,20 +2,19 @@
 
 @{
     ViewData["Title"] = "UPI Payment";
-    Layout = "userCheckoutLayout"; // Using the consistent checkout layout
+    Layout = "userCommonLayout";
 }
 
 <link href="~/css/user.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
-<!-- Main Content -->
 <div class="container mt-5 pt-5">
     <!-- Checkout Steps -->
     <div class="checkout-steps mb-5">
-        <div class="step completed">1</div>
-        <div class="step completed">2</div>
-        <div class="step completed">3</div>
-        <div class="step active">4</div>
+        <div class="step active">1</div>
+        <div class="step active">2</div>
+        <div class="step active">3</div>
+        <div class="step">4</div>
     </div>
 
     <div class="row">
@@ -104,7 +103,7 @@
                                 <label for="upiId" class="form-label">Enter UPI ID</label>
                                 <div class="input-group">
                                     <input type="text" id="upiId" class="form-control" placeholder="yourname@upi" required>
-                                    <button class="btn btn-primary" type="submit">Pay ₹@Model.TotalAmount.ToString("F2")</button>
+                                    <button class="btn btn-primary" type="submit">Pay ₹@Model.TotalAmount.ToString("N2")</button>
                                 </div>
                                 <small class="text-muted">Example: username@bankname</small>
                             </div>
@@ -113,15 +112,18 @@
                 </div>
             </div>
 
-            <!-- Navigation Buttons -->
-            <div class="d-flex justify-content-start mt-4">
+            <!-- Navigation Buttons with consistent styling -->
+            <div class="d-flex justify-content-between mt-4">
                 <a href="@Url.Action("UserPaymentSelection", "User")" class="btn btn-outline-primary">
                     <i class="fas fa-arrow-left me-2"></i>Change Payment Method
                 </a>
+                <button type="submit" form="upiPaymentForm" class="btn btn-primary">
+                    Confirm Payment<i class="fas fa-arrow-right ms-2"></i>
+                </button>
             </div>
         </div>
 
-        <!-- Order Summary -->
+        <!-- Order Summary with consistent styling -->
         <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="card shadow-sm">
                 <div class="card-header bg-white py-3">
@@ -154,7 +156,7 @@
                                         <h6 class="mb-0">@item.Book?.Title</h6>
                                         <small class="text-muted">Qty: @item.Quantity</small>
                                     </div>
-                                    <span class="ms-auto">₹@(item.Quantity * item.Price).ToString("F0")</span>
+                                    <span class="ms-auto">₹@(item.Quantity * item.Price).ToString("N0")</span>
                                 </div>
                             }
                         }
@@ -168,20 +170,20 @@
                     <div class="border-top pt-3">
                         <div class="d-flex justify-content-between mb-2">
                             <span>Subtotal</span>
-                            <span>₹@Model.SubTotal.ToString("F0")</span>
+                            <span>₹@Model.SubTotal.ToString("N0")</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Shipping</span>
-                            <span class="text-success">₹@Model.ShippingCost.ToString("F0")</span>
+                            <span class="text-success">₹@Model.ShippingCost.ToString("N0")</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Tax</span>
-                            <span>₹@Model.TaxAmount.ToString("F2")</span>
+                            <span>₹@Model.TaxAmount.ToString("N2")</span>
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between">
                             <strong>Total</strong>
-                            <strong class="h4">₹@Model.TotalAmount.ToString("F2")</strong>
+                            <strong class="h4">₹@Model.TotalAmount.ToString("N2")</strong>
                         </div>
                     </div>
                 </div>
@@ -193,64 +195,75 @@
 @section Scripts {
     <style>
         .payment-methods {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 1rem;
             margin-bottom: 2rem;
-            justify-content: center;
         }
 
         .payment-method {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 1rem;
+            border: 2px solid var(--color-gray-200);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
             cursor: pointer;
-            transition: all 0.2s ease-in-out;
+            transition: all 0.3s ease;
             text-align: center;
-            flex: 1 1 calc(33% - 1rem); /* 3 items per row on larger screens */
-            max-width: 150px; /* Adjust as needed */
+            background: var(--color-white);
         }
 
-            .payment-method:hover {
-                border-color: var(--color-primary);
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            }
+        .payment-method:hover {
+            border-color: var(--color-black);
+            transform: translateY(-2px);
+        }
 
-            .payment-method.active {
-                border-color: var(--color-cta);
-                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-            }
+        .payment-method.active {
+            border-color: var(--color-black);
+            background: var(--color-gray-50);
+        }
 
         .method-icon {
             font-size: 2.5rem;
-            color: var(--color-cta);
-            margin-bottom: 0.5rem;
+            color: var(--color-black);
+            margin-bottom: 1rem;
         }
 
         .qr-code {
-            border: 1px solid #ddd;
-            padding: 1rem;
-            border-radius: 8px;
-            background-color: #f8f9fa;
+            border: 2px solid var(--color-gray-200);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            background: var(--color-gray-50);
+            max-width: 350px;
+            margin: 0 auto;
         }
 
-            .qr-code img {
-                max-width: 100%;
-                height: auto;
-                border-radius: 5px;
-                margin-bottom: 1rem;
-            }
+        .qr-code img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
 
         .timer {
             font-size: 1.5rem;
-            font-weight: bold;
-            color: #dc3545; /* Red color for timer */
-            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--color-black);
+            margin: 1rem 0;
         }
 
         .upi-input .input-group {
             max-width: 400px;
-            margin: 0 auto;
+            margin: 2rem auto 0;
+        }
+
+        .secure-badge {
+            font-size: 0.875rem;
+            color: var(--color-black);
+            background: var(--color-gray-100);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
     </style>
     <script>

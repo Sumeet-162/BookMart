@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uxjtFIEyZddouYWyxIjvll43VjO/mcMN7gdMSdwyRMk=",
+  "Hash": "SmDdhIlw6HmtWPjzcmvV1CNkVwfo2xtQiCrZy8d3EwA=",
   "Source": "BookMart",
   "BasePath": "_content/BookMart",
   "Mode": "Default",
@@ -80,6 +80,48 @@
       "OriginalItemSpec": "wwwroot\\css\\AddBook.css"
     },
     {
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\admin.css",
+      "SourceId": "BookMart",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
+      "BasePath": "_content/BookMart",
+      "RelativePath": "css/admin#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "rp1by1ubh6",
+      "Integrity": "b4MjkBPpIbJJgFv0cW9AKFPvDKg5XaAquD+oETFB7gU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\admin.css"
+    },
+    {
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\orderDetails.css",
+      "SourceId": "BookMart",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
+      "BasePath": "_content/BookMart",
+      "RelativePath": "css/orderDetails#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5ipweew5fc",
+      "Integrity": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\orderDetails.css"
+    },
+    {
       "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\site.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
@@ -101,6 +143,27 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
+      "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\typography.css",
+      "SourceId": "BookMart",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\",
+      "BasePath": "_content/BookMart",
+      "RelativePath": "css/typography#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "6a2bld14vk",
+      "Integrity": "soYM3oWUCi+VAH8XWvZzZwOpvQqIyJ6A2q8zWUA1HYg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\typography.css"
+    },
+    {
       "Identity": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\user.css",
       "SourceId": "BookMart",
       "SourceType": "Discovered",
@@ -115,8 +178,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "2hjm0rjvjl",
-      "Integrity": "Fkg+UzFxkrRPOexuFDuD/5E/jwxosoBwzgMY+Mgv+ZE=",
+      "Fingerprint": "fn8eztb7yn",
+      "Integrity": "SyqH8Pa2YZYh6sJO5Ff2tm7SGeoiiyQWE3yJRlrjC8Q=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\user.css"
@@ -1630,6 +1693,170 @@
       ]
     },
     {
+      "Route": "css/admin.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\admin.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13701"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"b4MjkBPpIbJJgFv0cW9AKFPvDKg5XaAquD+oETFB7gU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 06 Jun 2025 06:23:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-b4MjkBPpIbJJgFv0cW9AKFPvDKg5XaAquD+oETFB7gU="
+        }
+      ]
+    },
+    {
+      "Route": "css/admin.rp1by1ubh6.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\admin.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13701"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"b4MjkBPpIbJJgFv0cW9AKFPvDKg5XaAquD+oETFB7gU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 06 Jun 2025 06:23:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rp1by1ubh6"
+        },
+        {
+          "Name": "label",
+          "Value": "css/admin.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-b4MjkBPpIbJJgFv0cW9AKFPvDKg5XaAquD+oETFB7gU="
+        }
+      ]
+    },
+    {
+      "Route": "css/orderDetails.5ipweew5fc.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\orderDetails.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 06 Jun 2025 10:05:14 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5ipweew5fc"
+        },
+        {
+          "Name": "label",
+          "Value": "css/orderDetails.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
+    {
+      "Route": "css/orderDetails.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\orderDetails.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "0"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 06 Jun 2025 10:05:14 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+        }
+      ]
+    },
+    {
       "Route": "css/site.alh19a6vfz.css",
       "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\site.css",
       "Selectors": [],
@@ -1652,7 +1879,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 05 Jun 2025 09:09:07 GMT"
+          "Value": "Fri, 06 Jun 2025 06:33:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1697,7 +1924,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 05 Jun 2025 09:09:07 GMT"
+          "Value": "Fri, 06 Jun 2025 06:33:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1712,8 +1939,8 @@
       ]
     },
     {
-      "Route": "css/user.2hjm0rjvjl.css",
-      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\user.css",
+      "Route": "css/typography.6a2bld14vk.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\typography.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1722,7 +1949,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "21383"
+          "Value": "1841"
         },
         {
           "Name": "Content-Type",
@@ -1730,11 +1957,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Fkg+UzFxkrRPOexuFDuD/5E/jwxosoBwzgMY+Mgv+ZE=\""
+          "Value": "\"soYM3oWUCi+VAH8XWvZzZwOpvQqIyJ6A2q8zWUA1HYg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 05 Jun 2025 16:57:41 GMT"
+          "Value": "Fri, 06 Jun 2025 10:51:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1744,15 +1971,52 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "2hjm0rjvjl"
+          "Value": "6a2bld14vk"
         },
         {
           "Name": "label",
-          "Value": "css/user.css"
+          "Value": "css/typography.css"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-Fkg+UzFxkrRPOexuFDuD/5E/jwxosoBwzgMY+Mgv+ZE="
+          "Value": "sha256-soYM3oWUCi+VAH8XWvZzZwOpvQqIyJ6A2q8zWUA1HYg="
+        }
+      ]
+    },
+    {
+      "Route": "css/typography.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\typography.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1841"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"soYM3oWUCi+VAH8XWvZzZwOpvQqIyJ6A2q8zWUA1HYg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 06 Jun 2025 10:51:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-soYM3oWUCi+VAH8XWvZzZwOpvQqIyJ6A2q8zWUA1HYg="
         }
       ]
     },
@@ -1767,7 +2031,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "21383"
+          "Value": "24731"
         },
         {
           "Name": "Content-Type",
@@ -1775,11 +2039,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Fkg+UzFxkrRPOexuFDuD/5E/jwxosoBwzgMY+Mgv+ZE=\""
+          "Value": "\"SyqH8Pa2YZYh6sJO5Ff2tm7SGeoiiyQWE3yJRlrjC8Q=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 05 Jun 2025 16:57:41 GMT"
+          "Value": "Fri, 06 Jun 2025 11:03:50 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1789,7 +2053,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Fkg+UzFxkrRPOexuFDuD/5E/jwxosoBwzgMY+Mgv+ZE="
+          "Value": "sha256-SyqH8Pa2YZYh6sJO5Ff2tm7SGeoiiyQWE3yJRlrjC8Q="
+        }
+      ]
+    },
+    {
+      "Route": "css/user.fn8eztb7yn.css",
+      "AssetFile": "C:\\Users\\2406761\\OneDrive - Cognizant\\Desktop\\BookMart\\BookMart\\wwwroot\\css\\user.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "24731"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SyqH8Pa2YZYh6sJO5Ff2tm7SGeoiiyQWE3yJRlrjC8Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 06 Jun 2025 11:03:50 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fn8eztb7yn"
+        },
+        {
+          "Name": "label",
+          "Value": "css/user.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SyqH8Pa2YZYh6sJO5Ff2tm7SGeoiiyQWE3yJRlrjC8Q="
         }
       ]
     },
@@ -1898,7 +2207,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 06:15:45 GMT"
+          "Value": "Fri, 06 Jun 2025 06:33:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1943,7 +2252,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 06:15:45 GMT"
+          "Value": "Fri, 06 Jun 2025 06:33:32 GMT"
         },
         {
           "Name": "Cache-Control",

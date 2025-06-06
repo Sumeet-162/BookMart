@@ -3,7 +3,7 @@
 
 @{
     ViewData["Title"] = "Card Payment";
-    Layout = "userCheckoutLayout"; // Using the consistent checkout layout
+    Layout = "userCommonLayout";
 }
 
 <link href="~/css/user.css" rel="stylesheet" />
@@ -12,10 +12,18 @@
 <div class="container mt-5 pt-5">
     <!-- Checkout Steps -->
     <div class="checkout-steps mb-5">
-        <div class="step completed">1</div>
-        <div class="step completed">2</div>
-        <div class="step completed">3</div>
-        <div class="step active">4</div>
+        <div class="step completed">
+          
+        </div>
+        <div class="step completed">
+           
+        </div>
+        <div class="step completed">
+           
+        </div>
+        <div class="step active">
+        
+        </div>
     </div>
 
     <div class="row">
@@ -132,11 +140,14 @@
                 </div>
             </div>
 
-            <!-- Navigation Buttons -->
-            <div class="d-flex justify-content-start mt-4">
+            <!-- Navigation Buttons with consistent styling -->
+            <div class="d-flex justify-content-between mt-4">
                 <a href="@Url.Action("UserPaymentSelection", "User")" class="btn btn-outline-primary">
                     <i class="fas fa-arrow-left me-2"></i>Change Payment Method
                 </a>
+                <button type="submit" form="cardPaymentForm" class="btn btn-primary">
+                    Confirm Payment<i class="fas fa-arrow-right ms-2"></i>
+                </button>
             </div>
         </div>
 
@@ -211,16 +222,46 @@
 
 @section Scripts {
     <style>
+        /* Card payment specific styles */
         .card-input {
-            padding-right: 2.5rem; /* Space for icon */
+            padding-right: 2.5rem;
+            border: 2px solid var(--color-gray-200);
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .card-input:focus {
+            border-color: var(--color-black);
+            box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
         }
 
         .card-icon {
             position: absolute;
-            right: 10px;
+            right: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            color: #ccc;
+            color: var(--color-gray-400);
+            transition: color 0.3s ease;
+        }
+
+        .card-input:focus + .card-icon {
+            color: var(--color-black);
+        }
+
+        .secure-badge {
+            font-size: 0.875rem;
+            color: var(--color-black);
+            background: var(--color-gray-100);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--color-black);
+            border-color: var(--color-black);
         }
     </style>
     <script>

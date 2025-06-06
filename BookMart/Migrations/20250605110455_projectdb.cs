@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BookMart.Migrations
 {
     /// <inheritdoc />
-    public partial class projectdb : Migration
+    public partial class ProjectDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

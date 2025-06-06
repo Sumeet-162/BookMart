@@ -3,6 +3,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Macondo&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911:wght@400&display=swap');
 /* Design System Variables */
 :root {
     /* Typography */
@@ -65,6 +69,32 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
 
 .welcome-text {
     font-family: var(--font-accent);
+}
+
+/* Enhance header styling */
+.page-title {
+    font-family: "Merriweather", serif;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+}
+
+.section-title {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    color: #34495e;
+    margin-bottom: 1.25rem;
+}
+
+.card-title {
+    font-family: "Gentium Book Plus", serif;
+    font-weight: 700;
+}
+
+.subsection-title {
+    font-family: "Goudy Bookletter 1911", serif;
+    font-weight: 400;
+    color: #2c3e50;
 }
 
 /* Section Headers */
@@ -892,6 +922,7 @@ section.bg-light {
     margin-bottom: 0.5rem;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     height: 2.8em;
@@ -970,4 +1001,112 @@ section.bg-light {
     color: #6b7280;
     max-width: 600px;
     margin: 0 auto;
+}
+
+/* Checkout Steps Styles */
+.checkout-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    position: relative;
+    padding: 0 20px;
+}
+
+.checkout-steps::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    right: 40px;
+    height: 3px;
+    background: var(--color-gray-200);
+    z-index: 1;
+    transform: translateY(-50%);
+}
+
+.checkout-steps .step {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--color-gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: var(--color-gray-400);
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.step::after {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.875rem;
+    color: var(--color-gray-500);
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.step:nth-child(1)::after { content: 'Cart'; }
+.step:nth-child(2)::after { content: 'Details'; }
+.step:nth-child(3)::after { content: 'Payment'; }
+.step:nth-child(4)::after { content: 'Confirmation'; }
+
+.step.active {
+    border-color: var(--color-black);
+    background: var(--color-black);
+    color: var(--color-white);
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
+}
+
+.step.active::after {
+    color: var(--color-black);
+    font-weight: 600;
+}
+
+.step.completed {
+    border-color: var(--color-black);
+    background: var(--color-white);
+    color: var(--color-black);
+}
+
+.step.completed::before {
+    content: '✓';
+    font-size: 1.2rem;
+}
+
+/* Progress line between steps */
+.step.completed ~ .step {
+    border-color: var(--color-gray-200);
+    background: var(--color-white);
+    color: var(--color-gray-400);
+}
+
+.step.completed + .step:not(.completed):not(.active)::before {
+    background: linear-gradient(to right, var(--color-black) 0%, var(--color-gray-200) 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .checkout-steps {
+        padding: 0 10px;
+    }
+    
+    .step::after {
+        font-size: 0.75rem;
+    }
+    
+    .checkout-steps .step {
+        width: 32px;
+        height: 32px;
+        font-size: 0.875rem;
+    }
 }

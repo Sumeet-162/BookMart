@@ -1,0 +1,462 @@
+/* admin.css - Black & White Apple UI Model */
+
+/* CSS Variables for Design System */
+:root {
+    /* Colors - Predominantly Black & White, with subtle grays */
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-gray-dark: #333333; /* For primary text, icons */
+    --color-gray-medium: #888888; /* For muted text, secondary info */
+    --color-gray-light: #f5f5f5; /* For backgrounds, hover states */
+    --color-border-light: #e0e0e0; /* Very subtle border color */
+    --color-border-dark: #cccccc; /* Slightly stronger border for inputs/dividers */
+    /* Primary Accent (subtle) - Apple's signature blue for subtle interactive accents */
+    --color-accent: #007aff;
+    --color-accent-hover: #005bb5; /* Darker accent for hover */
+    --color-accent-light-bg: rgba(0, 122, 255, 0.08); /* Light background for active/hover */
+    /* Status Colors (minimalist adaptation) */
+    --color-status-success: #28a745;
+    --color-status-warning: #ffc107;
+    --color-status-danger: #dc3545;
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px; /* Slightly more rounded for a modern feel */
+    /* Shadows - Soft and subtle, mimicking macOS elements */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.15);
+    /* Typography */
+    --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --font-size-base: 1rem;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    /* Layout Specifics */
+    --sidebar-width: 240px;
+    --navbar-height: 60px; /* Define navbar height */
+}
+
+/* Base Body Styles */
+body {
+    font-family: var(--font-family-system);
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+    color: var(--color-gray-dark);
+    background-color: var(--color-gray-light); /* Light gray background for content area */
+    margin: 0; /* Reset default body margin */
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    overflow-x: hidden; /* Prevent horizontal scrollbar from sidebar transition */
+}
+
+/* Links */
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+    a:hover {
+        color: var(--color-accent-hover);
+    }
+
+/* Admin Layout Container */
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--color-gray-light);
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--color-white);
+    box-shadow: var(--shadow-md); /* Softer shadow */
+    transition: all 0.3s ease;
+    z-index: 1000;
+    position: fixed;
+    height: 100vh;
+    border-right: 1px solid var(--color-border-light); /* Subtle right border */
+    padding-top: var(--spacing-lg); /* Padding at the top */
+}
+
+    .sidebar.collapsed {
+        width: 80px; /* Adjust collapsed width for icons */
+    }
+
+.sidebar-header {
+    /* Existing padding handled by Bootstrap classes */
+    padding-bottom: var(--spacing-lg); /* Ensure enough space at the bottom */
+    border-bottom: 1px solid var(--color-border-light); /* Separator */
+    margin-bottom: var(--spacing-lg);
+}
+
+.logo-text {
+    color: var(--color-black); /* Set logo text color to black */
+    font-size: 1.5rem; /* Slightly larger for prominence */
+    letter-spacing: -0.03em;
+}
+
+.nav-links {
+    /* Flex grow handles vertical space */
+    padding-top: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+}
+
+.sidebar .nav-link {
+    color: var(--color-gray-dark);
+    padding: var(--spacing-sm) var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+    border-radius: var(--radius-md); /* Rounded corners for nav items */
+    margin: 0 var(--spacing-md);
+    font-weight: var(--font-weight-medium);
+}
+
+    .sidebar .nav-link i {
+        min-width: 24px;
+        font-size: 1.1rem;
+        text-align: center;
+        margin-right: var(--spacing-md);
+        transition: margin 0.3s ease;
+    }
+
+.sidebar.collapsed .nav-link span {
+    opacity: 0;
+    visibility: hidden;
+    width: 0; /* Collapse text completely */
+    overflow: hidden;
+}
+
+.sidebar.collapsed .nav-link i {
+    margin-right: 0;
+}
+
+.sidebar .nav-link:hover {
+    background-color: var(--color-gray-light);
+    color: var(--color-black);
+}
+
+.sidebar .nav-link.active {
+    background-color: var(--color-accent-light-bg);
+    color: var(--color-accent); /* Active link in accent color */
+    font-weight: var(--font-weight-semibold);
+}
+
+.sidebar-footer {
+    border-top: 1px solid var(--color-border-light) !important; /* Ensure border is subtle */
+    color: var(--color-gray-dark);
+}
+
+/* Admin Navbar (now part of AdminNavigation) */
+.admin-navbar {
+    height: var(--navbar-height);
+    background: var(--color-white);
+    box-shadow: var(--shadow-sm); /* Subtle shadow for navbar */
+    padding: 0 var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    position: sticky; /* Sticky navbar */
+    top: 0;
+    z-index: 900;
+    border-bottom: 1px solid var(--color-border-light);
+    /* For navbar that's in the same partial as sidebar, it covers the full width initially. */
+    /* Its margin-left will be handled by main-content-wrapper */
+    width: calc(100% - var(--sidebar-width)); /* Adjust width based on sidebar */
+    margin-left: var(--sidebar-width); /* Push it over from sidebar */
+    transition: all 0.3s ease;
+}
+
+/* Adjust navbar width/margin when sidebar collapses */
+.sidebar.collapsed ~ .main-content-wrapper .admin-navbar {
+    width: calc(100% - 80px); /* New width when sidebar is 80px */
+    margin-left: 80px; /* New margin when sidebar is 80px */
+}
+
+
+.navbar-brand {
+    color: var(--color-black);
+}
+
+    .navbar-brand h5 {
+        font-weight: var(--font-weight-semibold);
+    }
+
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    color: var(--color-gray-dark);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+    .btn-icon:hover {
+        background-color: var(--color-gray-light);
+    }
+
+/* Main Content Wrapper for Navbar and Content */
+.main-content-wrapper {
+    margin-left: var(--sidebar-width); /* Initial push by sidebar width */
+    flex-grow: 1;
+    transition: margin-left 0.3s ease;
+    padding-top: var(--navbar-height); /* Add padding for the fixed navbar */
+}
+
+    /* Adjust wrapper margin when sidebar collapses */
+    .main-content-wrapper.collapsed {
+        margin-left: 80px; /* Match collapsed sidebar width */
+    }
+
+/* Main Content Area */
+.main-content {
+    padding: var(--spacing-xl); /* Ample padding for content */
+    min-height: calc(100vh - var(--navbar-height)); /* Ensure content takes remaining height below navbar */
+    background-color: var(--color-gray-light);
+}
+
+/* Card Styles */
+.card {
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    background-color: var(--color-white);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+    }
+
+.card-title {
+    color: var(--color-black);
+    font-weight: var(--font-weight-semibold);
+    font-size: 1.25rem; /* Larger title for cards */
+}
+
+/* Stat Cards */
+.stat-card {
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg); /* Match general card radius */
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+    height: 100%;
+    border: 1px solid var(--color-border-light);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.5rem; /* Slightly larger icon */
+}
+
+    /* Background colors for stat icons */
+    .stat-icon.bg-primary { /* Mapped to --color-accent-light-bg */
+        background-color: var(--color-accent-light-bg);
+        color: var(--color-accent);
+    }
+
+    .stat-icon.bg-warning {
+        background-color: rgba(255, 193, 7, 0.1);
+        color: var(--color-status-warning);
+    }
+
+    .stat-icon.bg-danger {
+        background-color: rgba(220, 53, 69, 0.1);
+        color: var(--color-status-danger);
+    }
+
+    .stat-icon.bg-success {
+        background-color: rgba(40, 167, 69, 0.1);
+        color: var(--color-status-success);
+    }
+
+/* Buttons */
+.btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-medium);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-black);
+    border-color: var(--color-black);
+    color: var(--color-white);
+}
+
+    .btn-primary:hover {
+        background-color: var(--color-gray-dark);
+        border-color: var(--color-gray-dark);
+        color: var(--color-white);
+    }
+
+.btn-outline-primary {
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    background-color: transparent;
+}
+
+    .btn-outline-primary:hover {
+        background-color: var(--color-accent);
+        color: var(--color-white);
+    }
+
+.btn-outline-dark { /* Specific for Logout button */
+    border: 1px solid var(--color-black);
+    color: var(--color-black);
+    background-color: transparent;
+}
+
+    .btn-outline-dark:hover {
+        background-color: var(--color-black);
+        color: var(--color-white);
+    }
+
+.btn-outline-secondary {
+    border: 1px solid var(--color-gray-medium);
+    color: var(--color-gray-medium);
+    background-color: transparent;
+}
+
+    .btn-outline-secondary:hover {
+        background-color: var(--color-gray-light);
+        color: var(--color-gray-dark);
+    }
+
+/* Form Controls */
+.form-control {
+    border: 1px solid var(--color-border-dark);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    color: var(--color-gray-dark);
+    background-color: var(--color-white);
+}
+
+    .form-control:focus {
+        border-color: var(--color-accent);
+        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.25); /* Subtle focus ring */
+    }
+
+/* Tables */
+.table {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
+    overflow: hidden; /* For rounded corners to apply to inner elements */
+    margin-bottom: 0;
+}
+
+    .table thead th {
+        background-color: var(--color-gray-light);
+        border-bottom: 1px solid var(--color-border-light);
+        padding: var(--spacing-md) var(--spacing-lg);
+        font-weight: var(--font-weight-semibold);
+        color: var(--color-black);
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 0.05em;
+    }
+
+    .table tbody tr {
+        transition: background-color 0.2s ease;
+    }
+
+        .table tbody tr:hover {
+            background-color: var(--color-gray-light);
+        }
+
+    .table td {
+        padding: var(--spacing-md) var(--spacing-lg);
+        vertical-align: middle;
+        color: var(--color-gray-dark);
+        border-top: 1px solid var(--color-border-light);
+    }
+
+    /* Book Image in Table */
+    .table img {
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--color-border-light);
+    }
+
+/* Status Badges */
+.status-badge {
+    padding: 0.35em 0.65em;
+    font-size: .75em;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    color: var(--color-white);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: var(--radius-sm);
+    display: inline-block;
+}
+
+    /* Specific badge colors */
+    .status-badge.bg-success {
+        background-color: var(--color-status-success);
+    }
+
+    .status-badge.bg-warning {
+        background-color: var(--color-status-warning);
+        color: var(--color-black); /* Warning badges often need dark text */
+    }
+
+    .status-badge.bg-danger {
+        background-color: var(--color-status-danger);
+    }
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .sidebar {
+        transform: translateX(-100%);
+        box-shadow: none;
+        border-right: none;
+    }
+
+        .sidebar.active {
+            transform: translateX(0);
+            box-shadow: var(--shadow-lg);
+        }
+
+    /* Adjust main content wrapper when sidebar is shown on mobile */
+    .admin-container .main-content-wrapper {
+        margin-left: 0; /* No sidebar push */
+        width: 100%;
+    }
+
+    .sidebar.active ~ .main-content-wrapper {
+        /* When sidebar is active, main content should NOT push */
+        margin-left: 0; /* Keep main content at 0 margin left */
+    }
+
+    .admin-navbar {
+        width: 100%;
+        margin-left: 0; /* Navbar spans full width on mobile */
+    }
+
+    .main-content {
+        padding-top: calc(var(--navbar-height) + var(--spacing-xl));
+    }
+}

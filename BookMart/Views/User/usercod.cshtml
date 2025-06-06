@@ -3,7 +3,7 @@
 
 @{
     ViewData["Title"] = "Cash on Delivery";
-    Layout = "userCheckoutLayout"; // Using the consistent checkout layout
+    Layout = "userCommonLayout"; // Using the consistent checkout layout
 }
 
 <link href="~/css/user.css" rel="stylesheet" />
@@ -12,10 +12,10 @@
 <div class="container mt-5 pt-5">
     <!-- Checkout Steps -->
     <div class="checkout-steps mb-5">
-        <div class="step completed">1</div>
-        <div class="step completed">2</div>
-        <div class="step completed">3</div>
-        <div class="step active">4</div> @* COD is the final step for payment selection/confirmation before final order confirmation *@
+        <div class="step active">1</div>
+        <div class="step active">2</div>
+        <div class="step active">3</div>
+        <div class="step">4</div>
     </div>
 
     <div class="row">
@@ -146,7 +146,7 @@
                                         <h6 class="mb-0">@item.Book?.Title</h6>
                                         <small class="text-muted">Qty: @item.Quantity</small>
                                     </div>
-                                    <span class="ms-auto">₹@((item.Quantity * item.Price)).ToString("F0", CultureInfo.InvariantCulture)</span>
+                                    <span class="ms-auto">₹@((item.Quantity * item.Price)).ToString("N0", CultureInfo.InvariantCulture)</span>
                                 </div>
                             }
                         }
@@ -164,24 +164,24 @@
                         }
                         <div class="d-flex justify-content-between mb-2">
                             <span>Subtotal</span>
-                            <span>₹@Model.SubTotal.ToString("F0", CultureInfo.InvariantCulture)</span>
+                            <span>₹@Model.SubTotal.ToString("N0", CultureInfo.InvariantCulture)</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Shipping</span>
-                            <span class="text-success">₹@Model.ShippingCost.ToString("F0", CultureInfo.InvariantCulture)</span>
+                            <span class="text-success">₹@Model.ShippingCost.ToString("N0", CultureInfo.InvariantCulture)</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Tax</span>
-                            <span>₹@Model.TaxAmount.ToString("F2", CultureInfo.InvariantCulture)</span>
+                            <span>₹@Model.TaxAmount.ToString("N2", CultureInfo.InvariantCulture)</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>COD Fee</span>
-                            <span class="text-danger">₹@codFee.ToString("F0")</span>
+                            <span class="text-danger">₹@codFee.ToString("N0", CultureInfo.InvariantCulture)</span>
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between">
                             <strong>Total</strong>
-                            <strong class="h4">₹@displayTotalWithCod.ToString("F2")</strong>
+                            <strong class="h4">₹@displayTotalWithCod.ToString("N2", CultureInfo.InvariantCulture)</strong>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,8 @@
 wwwroot\css\AddBook.css
+wwwroot\css\admin.css
+wwwroot\css\orderDetails.css
 wwwroot\css\site.css
+wwwroot\css\typography.css
 wwwroot\css\user.css
 wwwroot\favicon.ico
 wwwroot\js\admin.js

@@ -8,17 +8,22 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System;
 using Newtonsoft.Json; // Required for serializing/deserializing complex objects to TempData
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http; // Required for HttpContext.Session
+using Microsoft.Extensions.Logging; // Required for ILogger
 
 namespace BookMart.Controllers
 {
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<UserController> _logger;
 
-        public UserController(ApplicationDbContext context)
+        public UserController(ApplicationDbContext context, ILogger<UserController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // Helper method to get or create a UserId for the current session
@@ -67,7 +72,7 @@ namespace BookMart.Controllers
             return newGuestUser.UserID;
         }
 
-        public async Task<IActionResult> UserHome(string? searchQuery, int? genreId)
+        public async Task<IActionResult> UserHome(string? searchQuery, int? genreId, string? genre)
         {
             var viewModel = new HomeViewModel();
 
@@ -76,12 +81,6 @@ namespace BookMart.Controllers
 
             viewModel.SearchQuery = searchQuery;
             viewModel.GenreId = genreId;
-
-            if (genreId.HasValue && genreId.Value > 0)
-            {
-                var genre = await _context.Genres.FirstOrDefaultAsync(g => g.GenreID == genreId.Value);
-                viewModel.GenreName = genre?.Name;
-            }
 
             var booksQuery = _context.Books
                                     .Where(b => b.IsActive)
@@ -102,32 +101,40 @@ namespace BookMart.Controllers
             if (genreId.HasValue && genreId.Value > 0)
             {
                 booksQuery = booksQuery.Where(b => b.GenreID == genreId.Value);
+                var genreName = await _context.Genres
+                    .Where(g => g.GenreID == genreId.Value)
+                    .Select(g => g.Name)
+                    .FirstOrDefaultAsync();
+                viewModel.GenreName = genreName;
+            }
+            else if (!string.IsNullOrWhiteSpace(genre))
+            {
+                booksQuery = booksQuery.Where(b => b.Genre.Name == genre);
+                viewModel.GenreName = genre;
             }
 
-            // Get search results with ordering
+            // Get search results
             viewModel.SearchResults = await booksQuery
                 .OrderByDescending(b => b.CreatedAt)
                 .ToListAsync();
             viewModel.TotalBooks = await booksQuery.CountAsync();
-            viewModel.IsFiltered = !string.IsNullOrWhiteSpace(searchQuery) || genreId.HasValue;
+            viewModel.IsFiltered = !string.IsNullOrWhiteSpace(searchQuery) || genreId.HasValue || !string.IsNullOrWhiteSpace(genre);
 
-            // Only load featured and new arrivals if not filtering
+            // Only load featured and regular books if not filtering
             if (!viewModel.IsFiltered)
             {
-                // Load featured books (books with highest discounts)
+                // Load all active books for explore section
+                viewModel.Books = await _context.Books
+                    .Where(b => b.IsActive)
+                    .Include(b => b.Genre)
+                    .OrderByDescending(b => b.CreatedAt)
+                    .ToListAsync();
+
+                // Load all featured books (books with discounts)
                 viewModel.FeaturedBooks = await _context.Books
                     .Where(b => b.IsActive && b.DiscountedPrice.HasValue)
                     .Include(b => b.Genre)
                     .OrderByDescending(b => (b.Price - b.DiscountedPrice) / b.Price)
-                    .Take(4)
-                    .ToListAsync();
-
-                // Load new arrivals
-                viewModel.NewArrivals = await _context.Books
-                    .Where(b => b.IsActive)
-                    .Include(b => b.Genre)
-                    .OrderByDescending(b => b.CreatedAt)
-                    .Take(4)
                     .ToListAsync();
 
                 // Load popular authors
@@ -140,7 +147,7 @@ namespace BookMart.Controllers
                         AuthorName = g.Key,
                         Genre = g.First().Genre != null ? g.First().Genre.Name : "N/A"
                     })
-                    .Take(4)
+                    .Take(8) // Keep top 8 authors
                     .ToListAsync();
             }
 
@@ -317,24 +324,7 @@ namespace BookMart.Controllers
             return Json(new { success = true, message = "Item removed from cart." });
         }
 
-        public async Task<IActionResult> UserProfile()
-        {
-            ViewData["Title"] = "My Profile";
-
-            int userId = await GetOrCreateUserId();
-
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserID == userId);
-
-            if (user == null)
-            {
-                TempData["ErrorMessage"] = "User profile not found. Please log in.";
-                return RedirectToAction("Login", "Account");
-            }
-
-            return View(user);
-        }
-
- 
+        
 
         public async Task<IActionResult> UserOrder(string? statusFilter, string? timePeriodFilter)
         {
@@ -397,7 +387,17 @@ namespace BookMart.Controllers
                 return NotFound();
             }
 
+            // Get similar books from the same genre, excluding the current book
+            var similarBooks = await _context.Books
+                .Where(b => b.IsActive 
+                           && b.GenreID == book.GenreID 
+                           && b.BookID != book.BookID)
+                .Take(4)  // Get 4 similar books
+                .ToListAsync();
+
             ViewData["Title"] = book.Title;
+            ViewData["SimilarBooks"] = similarBooks;
+            
             return View(book);
         }
 
@@ -492,6 +492,156 @@ namespace BookMart.Controllers
         }
         // --- END ProcessCheckout (POST) ---
 
+        public async Task<IActionResult> UserProfile()
+        {
+            ViewData["Title"] = "My Profile";
+
+            int userId = await GetOrCreateUserId();
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserID == userId);
+
+            if (user == null)
+            {
+                TempData["ErrorMessage"] = "User profile not found. Please log in.";
+                return RedirectToAction("Login", "Account");
+            }
+
+            return View(user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateProfile(User model)
+        {
+            int userId = await GetOrCreateUserId();
+
+            if (userId != model.UserID)
+            {
+                return Json(new { success = false, message = "Unauthorized profile update attempt." });
+            }
+
+            var userToUpdate = await _context.Users.FirstOrDefaultAsync(u => u.UserID == userId);
+
+            if (userToUpdate == null)
+            {
+                return Json(new { success = false, message = "User not found." });
+            }
+
+            userToUpdate.FirstName = model.FirstName;
+            userToUpdate.LastName = model.LastName;
+            userToUpdate.Email = model.Email;
+            userToUpdate.Phone = model.Phone;
+
+            try
+            {
+                _context.Users.Update(userToUpdate);
+                await _context.SaveChangesAsync();
+                return Json(new { success = true, message = "Profile updated successfully!" });
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return Json(new { success = false, message = "Concurrency error. Please try again." });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = $"Error updating profile: {ex.Message}" });
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(string currentPassword, string newPassword, string confirmNewPassword)
+        {
+            int userId = await GetOrCreateUserId();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserID == userId);
+
+            if (user == null)
+            {
+                return Json(new { success = false, message = "User not found." });
+            }
+
+            if (string.IsNullOrEmpty(currentPassword) || !BCrypt.Net.BCrypt.Verify(currentPassword, user.PasswordHash))
+            {
+                return Json(new { success = false, message = "Incorrect current password." });
+            }
+
+            if (newPassword != confirmNewPassword)
+            {
+                return Json(new { success = false, message = "New password and confirmation do not match." });
+            }
+            if (string.IsNullOrWhiteSpace(newPassword) || newPassword.Length < 6)
+            {
+                return Json(new { success = false, message = "New password must be at least 6 characters long." });
+            }
+
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(newPassword);
+
+            try
+            {
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+                return Json(new { success = true, message = "Password changed successfully!" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = $"Error changing password: {ex.Message}" });
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteAccount(string confirmationText)
+        {
+            int userId = await GetOrCreateUserId();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserID == userId);
+
+            if (user == null)
+            {
+                // If user is already not found (e.g., deleted by another session), just report success
+                return Json(new { success = true, message = "User already deleted or not found. Redirecting to login." });
+            }
+
+            if (confirmationText?.ToLower() != "delete my account")
+            {
+                return Json(new { success = false, message = "Please type 'delete my account' to confirm account deletion." });
+            }
+
+            try
+            {
+                // Delete related data first (this order is important for foreign key constraints)
+                var userCart = await _context.Carts.FirstOrDefaultAsync(c => c.UserID == userId);
+                if (userCart != null)
+                {
+                    _context.CartItems.RemoveRange(_context.CartItems.Where(ci => ci.CartID == userCart.CartID));
+                    _context.Carts.Remove(userCart);
+                }
+                var userOrders = await _context.Orders.Where(o => o.UserID == userId).ToListAsync();
+                foreach (var order in userOrders)
+                {
+                    _context.OrderItems.RemoveRange(_context.OrderItems.Where(oi => oi.OrderID == order.OrderID));
+                }
+                _context.Orders.RemoveRange(userOrders);
+
+                // Ensure UserAddresses deletion:
+                _context.UserAddresses.RemoveRange(_context.UserAddresses.Where(a => a.UserID == userId));
+
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+
+                // *** IMPORTANT: Sign out the user's authentication cookie server-side ***
+                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                // Clear session data associated with the user
+                HttpContext.Session.Clear();
+
+                return Json(new { success = true, message = "Your account has been successfully deleted. Redirecting..." });
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (ex) in a real application
+                return Json(new { success = false, message = $"Error deleting account: {ex.Message}" });
+            }
+        }
+
         // --- UserPaymentSelection (GET) action - Retrieves data from TempData and keeps it alive ---
         public async Task<IActionResult> UserPaymentSelection()
         {
@@ -538,10 +688,23 @@ namespace BookMart.Controllers
             if (TempData.ContainsKey("CheckoutViewModel") && TempData["CheckoutViewModel"] is string serializedModel)
             {
                 model = JsonConvert.DeserializeObject<CheckoutViewModel>(serializedModel);
-                TempData["CheckoutViewModel"] = serializedModel; // Keep for next post
+                TempData["CheckoutViewModel"] = serializedModel;
+
+                // Validate cart items are still available
+                int userId = await GetOrCreateUserId();
+                var cart = await _context.Carts
+                    .Include(c => c.CartItems!)
+                    .ThenInclude(ci => ci.Book)
+                    .FirstOrDefaultAsync(c => c.UserID == userId);
+
+                if (cart == null || !cart.CartItems!.Any())
+                {
+                    TempData["ErrorMessage"] = "Invalid checkout state. Please restart the checkout process.";
+                    return RedirectToAction("UserCheckout");
+                }
             }
 
-            if (model == null || !model.CartItems.Any())
+            if (model == null)
             {
                 TempData["ErrorMessage"] = "Invalid checkout state. Please restart the checkout process.";
                 return RedirectToAction("UserCheckout");
@@ -557,10 +720,23 @@ namespace BookMart.Controllers
             if (TempData.ContainsKey("CheckoutViewModel") && TempData["CheckoutViewModel"] is string serializedModel)
             {
                 model = JsonConvert.DeserializeObject<CheckoutViewModel>(serializedModel);
-                TempData["CheckoutViewModel"] = serializedModel; // Keep for next post
+                TempData["CheckoutViewModel"] = serializedModel;
+
+                // Validate cart items are still available
+                int userId = await GetOrCreateUserId();
+                var cart = await _context.Carts
+                    .Include(c => c.CartItems!)
+                    .ThenInclude(ci => ci.Book)
+                    .FirstOrDefaultAsync(c => c.UserID == userId);
+
+                if (cart == null || !cart.CartItems!.Any())
+                {
+                    TempData["ErrorMessage"] = "Invalid checkout state. Please restart the checkout process.";
+                    return RedirectToAction("UserCheckout");
+                }
             }
 
-            if (model == null || !model.CartItems.Any())
+            if (model == null)
             {
                 TempData["ErrorMessage"] = "Invalid checkout state. Please restart the checkout process.";
                 return RedirectToAction("UserCheckout");
@@ -576,10 +752,23 @@ namespace BookMart.Controllers
             if (TempData.ContainsKey("CheckoutViewModel") && TempData["CheckoutViewModel"] is string serializedModel)
             {
                 model = JsonConvert.DeserializeObject<CheckoutViewModel>(serializedModel);
-                TempData["CheckoutViewModel"] = serializedModel; // Keep for next post
+                TempData["CheckoutViewModel"] = serializedModel;
+
+                // Validate cart items are still available
+                int userId = await GetOrCreateUserId();
+                var cart = await _context.Carts
+                    .Include(c => c.CartItems!)
+                    .ThenInclude(ci => ci.Book)
+                    .FirstOrDefaultAsync(c => c.UserID == userId);
+
+                if (cart == null || !cart.CartItems!.Any())
+                {
+                    TempData["ErrorMessage"] = "Invalid checkout state. Please restart the checkout process.";
+                    return RedirectToAction("UserCheckout");
+                }
             }
 
-            if (model == null || !model.CartItems.Any())
+            if (model == null)
             {
                 TempData["ErrorMessage"] = "Invalid checkout state. Please restart the checkout process.";
                 return RedirectToAction("UserCheckout");
@@ -595,10 +784,23 @@ namespace BookMart.Controllers
             if (TempData.ContainsKey("CheckoutViewModel") && TempData["CheckoutViewModel"] is string serializedModel)
             {
                 model = JsonConvert.DeserializeObject<CheckoutViewModel>(serializedModel);
-                TempData["CheckoutViewModel"] = serializedModel; // Keep for next post
+                TempData["CheckoutViewModel"] = serializedModel;
+
+                // Validate cart items are still available
+                int userId = await GetOrCreateUserId();
+                var cart = await _context.Carts
+                    .Include(c => c.CartItems!)
+                    .ThenInclude(ci => ci.Book)
+                    .FirstOrDefaultAsync(c => c.UserID == userId);
+
+                if (cart == null || !cart.CartItems!.Any())
+                {
+                    TempData["ErrorMessage"] = "Invalid checkout state. Please restart the checkout process.";
+                    return RedirectToAction("UserCheckout");
+                }
             }
 
-            if (model == null || !model.CartItems.Any())
+            if (model == null)
             {
                 TempData["ErrorMessage"] = "Invalid checkout state. Please restart the checkout process.";
                 return RedirectToAction("UserCheckout");
@@ -728,64 +930,73 @@ namespace BookMart.Controllers
         [HttpGet]
         public async Task<IActionResult> LoadMoreBooks(int page = 1)
         {
-            int pageSize = 8; // Number of books to load per page
-            var booksQuery = _context.Books
-                .Where(b => b.IsActive)
-                .Include(b => b.Genre)
-                .OrderByDescending(b => b.CreatedAt)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize + 1); // Take one extra to check if there are more
-
-            var books = await booksQuery.ToListAsync();
-            bool hasMore = books.Count > pageSize;
-            if (hasMore)
+            try
             {
-                books = books.Take(pageSize).ToList(); // Remove the extra book
+                int pageSize = 8;
+                var query = _context.Books
+                    .Where(b => b.IsActive)
+                    .OrderByDescending(b => b.CreatedAt);
+
+                var totalBooks = await query.CountAsync();
+                var hasMore = (page * pageSize) < totalBooks;
+
+                var books = await query
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .Select(b => new
+                    {
+                        bookID = b.BookID,
+                        title = b.Title,
+                        author = b.Author,
+                        coverImageURL = b.CoverImageURL ?? "/images/default-book.jpg",
+                        price = b.Price,
+                        discountedPrice = b.DiscountedPrice
+                    })
+                    .ToListAsync();
+
+                return Json(new { success = true, books, hasMore });
             }
-
-            var bookData = books.Select(b => new
+            catch (Exception ex)
             {
-                bookID = b.BookID,
-                title = b.Title,
-                author = b.Author,
-                coverImageURL = b.CoverImageURL,
-                price = b.Price,
-                discountedPrice = b.DiscountedPrice
-            });
-
-            return Json(new { success = true, books = bookData, hasMore = hasMore });
+                _logger.LogError(ex, "Error loading more books");
+                return Json(new { success = false, message = "Failed to load more books" });
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> GetMoreFeaturedBooks(int page = 1)
         {
-            int pageSize = 8;
-            var booksQuery = _context.Books
-                .Where(b => b.IsActive && b.DiscountedPrice.HasValue)
-                .Include(b => b.Genre)
-                .OrderByDescending(b => (b.Price - b.DiscountedPrice) / b.Price) // Sort by highest discount percentage
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize + 1); // Take one extra to check if there are more
-
-            var books = await booksQuery.ToListAsync();
-            bool hasMore = books.Count > pageSize;
-            if (hasMore)
+            try
             {
-                books = books.Take(pageSize).ToList();
+                int pageSize = 8;
+                var query = _context.Books
+                    .Where(b => b.IsActive && b.DiscountedPrice.HasValue)
+                    .OrderByDescending(b => (b.Price - b.DiscountedPrice!.Value) / b.Price);
+
+                var totalBooks = await query.CountAsync();
+                var hasMore = (page * pageSize) < totalBooks;
+
+                var books = await query
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .Select(b => new
+                    {
+                        bookID = b.BookID,
+                        title = b.Title,
+                        author = b.Author,
+                        coverImageURL = b.CoverImageURL ?? "/images/default-book.jpg",
+                        price = b.Price,
+                        discountedPrice = b.DiscountedPrice
+                    })
+                    .ToListAsync();
+
+                return Json(new { success = true, books, hasMore });
             }
-
-            var bookData = books.Select(b => new
+            catch (Exception ex)
             {
-                bookID = b.BookID,
-                title = b.Title,
-                author = b.Author,
-                coverImageURL = b.CoverImageURL,
-                price = b.Price,
-                discountedPrice = b.DiscountedPrice,
-                genreName = b.Genre?.Name
-            });
-
-            return Json(new { success = true, books = bookData, hasMore = hasMore });
+                _logger.LogError(ex, "Error loading more featured books");
+                return Json(new { success = false, message = "Failed to load more featured books" });
+            }
         }
     }
 
@@ -799,4 +1010,6 @@ namespace BookMart.Controllers
     {
         public int BookId { get; set; }
     }
+
 }
+

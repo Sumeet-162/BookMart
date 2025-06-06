@@ -1,0 +1,76 @@
+/* Typography Styles */
+@import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&family=Goudy+Bookletter+1911&family=Libre+Baskerville&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
+/* Libre Baskerville */
+.libre-baskerville-regular {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Goudy Bookletter 1911 */
+.goudy-bookletter-1911-regular {
+    font-family: "Goudy Bookletter 1911", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Gentium Book Plus */
+.gentium-book-plus-regular {
+    font-family: "Gentium Book Plus", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.gentium-book-plus-bold {
+    font-family: "Gentium Book Plus", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.gentium-book-plus-regular-italic {
+    font-family: "Gentium Book Plus", serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.gentium-book-plus-bold-italic {
+    font-family: "Gentium Book Plus", serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* Merriweather Variable Font */
+.merriweather-heading {
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+/* Apply fonts to heading elements */
+h1, .h1 {
+    font-family: "Merriweather", serif;
+    font-weight: 700;
+}
+
+h2, .h2 {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+}
+
+h3, .h3 {
+    font-family: "Gentium Book Plus", serif;
+    font-weight: 700;
+}
+
+h4, .h4 {
+    font-family: "Goudy Bookletter 1911", serif;
+    font-weight: 400;
+}
+
+h5, .h5, h6, .h6 {
+    font-family: "Gentium Book Plus", serif;
+    font-weight: 400;
+}
