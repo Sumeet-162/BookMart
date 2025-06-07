@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookMart.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250605110455_projectdb")]
-    partial class ProjectDb
+    [Migration("20250607091320_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

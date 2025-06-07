@@ -1,42 +1,54 @@
 ﻿@model BookMart.Models.Order
-@using System.Globalization
 
 @{
-    ViewData["Title"] = "Order Confirmation";
-    Layout = "~/Views/Shared/userPaymentSuccesfullLayout.cshtml";
+    ViewData["Title"] = "Payment Successful";
+    Layout = "userCommonLayout";
 }
 
-<div class="container mt-5 pt-5">
-    <div class="success-animation">
-        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
-            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-        </svg>
-        <h2 class="mt-4">Order Placed Successfully!</h2>
-        <p class="text-muted">Thank you for shopping with us.</p>
-    </div>
+<link href="~/css/user.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
+<div class="container mt-5 pt-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <div class="card shadow-sm mb-4">
-                <div class="card-header bg-white py-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h4 class="mb-0">Order Details</h4>
-                        <span class="badge bg-primary">Order #@Model.OrderID</span>
+            <div class="card shadow-sm mb-4 mt-4">
+                <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="success-animation m-0">
+                            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="mb-0">Order Placed Successfully!</h4>
+                            <div class="text-muted small">Thank you for shopping with us.</div>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a href="@Url.Action("UserHome", "User")" class="btn btn-dark">
+                            <i class="fas fa-shopping-cart me-2"></i>Continue Shopping
+                        </a>
+                        <a href="@Url.Action("UserOrder", "User")" class="btn btn-dark">
+                            <i class="fas fa-box me-2"></i>View All Orders
+                        </a>
                     </div>
                 </div>
                 <div class="card-body">
+                    <!-- Order Details -->
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="mb-0">Order Details</h5>
+                        <span class="badge bg-dark">Order #@Model.OrderID</span>
+                    </div>
                     <!-- Order Status -->
-                    <div class="mb-4">
-                        <h5 class="mb-3">Order Status</h5>
-                        <div class="alert alert-success">
+                    <div class="mb-3">
+                        <div class="alert alert-success mb-0">
                             <i class="fas fa-check-circle me-2"></i>Your order has been confirmed
                         </div>
                     </div>
-
                     <!-- Delivery Address -->
                     <div class="mb-4">
-                        <h5 class="mb-3">Delivery Address</h5>
+                        <h6 class="mb-2">Delivery Address</h6>
                         <p class="mb-1">@Model.ShippingFirstName @Model.ShippingLastName</p>
                         <p class="mb-1">@Model.ShippingAddressLine1</p>
                         @if (!string.IsNullOrWhiteSpace(Model.ShippingAddressLine2))
@@ -46,55 +58,127 @@
                         <p class="mb-1">@Model.ShippingCity, @Model.ShippingState @Model.ShippingPinCode</p>
                         <p class="mb-0">Phone: @Model.ShippingPhone</p>
                     </div>
-
                     <!-- Order Items -->
                     <div class="mb-4">
-                        <h5 class="mb-3">Order Items</h5>
-                        @foreach (var item in Model.OrderItems ?? Enumerable.Empty<OrderItem>())
+                        <h6 class="mb-2">Order Items</h6>
+                        @foreach (var item in Model.OrderItems ?? Enumerable.Empty<BookMart.Models.OrderItem>())
                         {
                             <div class="d-flex align-items-center mb-3">
                                 <img src="@item.Book?.CoverImageURL" alt="@item.Book?.Title" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
-                                <div class="ms-3">
-                                    <h6 class="mb-0">@item.Book?.Title</h6>
-                                    <small class="text-muted">Qty: @item.Quantity × ₹@item.Price.ToString("F2", CultureInfo.InvariantCulture)</small>
+                                <div class="ms-3 flex-grow-1">
+                                    <div class="fw-semibold">@item.Book?.Title</div>
+                                    <small class="text-muted">Qty: @item.Quantity × ₹@item.Price.ToString("N2")</small>
                                 </div>
-                                <span class="ms-auto">₹@(item.Quantity * item.Price).ToString("F2", CultureInfo.InvariantCulture)</span>
+                                <span class="fw-semibold ms-auto">₹@((item.Quantity * item.Price).ToString("N2"))</span>
                             </div>
                         }
                     </div>
-
                     <!-- Cost Breakdown -->
                     <div class="border-top pt-3">
                         <div class="d-flex justify-content-between mb-2">
                             <span>Subtotal</span>
-                            <span>₹@Model.SubTotal.ToString("F2", CultureInfo.InvariantCulture)</span>
+                            <span>₹@Model.SubTotal.ToString("N2")</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Shipping</span>
-                            <span>₹@Model.ShippingCost.ToString("F2", CultureInfo.InvariantCulture)</span>
+                            <span>₹@Model.ShippingCost.ToString("N2")</span>
                         </div>
-                        @* <div class="d-flex justify-content-between mb-2"> *@
-                        @*     <span>Tax</span> *@
-                        @*     <span>₹@Model.TaxAmount.ToString("F2", CultureInfo.InvariantCulture)</span> *@
-                        @* </div> *@
                         <hr>
                         <div class="d-flex justify-content-between">
                             <strong>Total</strong>
-                            <strong class="h4">₹@Model.TotalAmount.ToString("F2", CultureInfo.InvariantCulture)</strong>
+                            <strong class="h4">₹@Model.TotalAmount.ToString("N2")</strong>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Action Buttons -->
-            <div class="d-flex justify-content-between">
-                <a href="@Url.Action("UserHome", "User")" class="btn btn-outline-primary">
-                    <i class="fas fa-shopping-cart me-2"></i>Continue Shopping
-                </a>
-                <a href="@Url.Action("UserOrder", "User")" class="btn btn-primary">
-                    <i class="fas fa-box me-2"></i>View All Orders
-                </a>
-            </div>
         </div>
     </div>
 </div>
+
+<style>
+    .success-animation {
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    .checkmark {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        display: block;
+        stroke-width: 2;
+        stroke: #28a745;
+        stroke-miterlimit: 10;
+        box-shadow: 0 0 0 #28a745;
+        animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        margin: 0 auto 1rem;
+    }
+
+    .checkmark__circle {
+        stroke-dasharray: 166;
+        stroke-dashoffset: 166;
+        stroke-width: 2;
+        stroke-miterlimit: 10;
+        stroke: #28a745;
+        fill: none;
+        animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+
+    .checkmark__check {
+        transform-origin: 50% 50%;
+        stroke-dasharray: 48;
+        stroke-dashoffset: 48;
+        animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+    }
+
+    @@keyframes stroke {
+        100% {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    @@keyframes scale {
+        0%, 100% {
+            transform: none;
+        }
+        50% {
+            transform: scale3d(1.1, 1.1, 1);
+        }
+    }
+
+    @@keyframes fill {
+        100% {
+            box-shadow: inset 0 0 0 100px #28a745;
+        }
+    }
+
+    .btn {
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .btn-dark {
+        background-color: #212529;
+        border-color: #212529;
+    }
+
+    .btn-dark:hover {
+        background-color: #000;
+        border-color: #000;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        // Add any page-specific JavaScript here
+    </script>
+}

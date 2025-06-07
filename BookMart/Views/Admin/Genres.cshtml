@@ -6,51 +6,50 @@
 @model BookMart.Models.GenreViewModel
 @{
     ViewData["Title"] = "Genres";
-    Layout = "adminLayout"; // Ensure it uses your admin layout
+    Layout = "adminLayout";
 }
 
-<link href="~/css/site.css" rel="stylesheet" />
-
 <div class="container-fluid">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
-            <h4 class="mb-1">Book Genres</h4>
+            <h4 class="mb-1 fw-semibold">Book Genres</h4>
             <p class="text-muted mb-0">Manage and organize book categories</p>
         </div>
-        <a asp-controller="Admin" asp-action="AddGenre" class="btn btn-primary">
-            <i class="fas fa-plus me-2"></i>Add New Genre
+        <a asp-controller="Admin" asp-action="AddGenre" class="btn btn-outline d-flex align-items-center gap-2">
+            <i class="fas fa-plus"></i>
+            <span>Add New Genre</span>
         </a>
     </div>
 
     @if (TempData["SuccessMessage"] != null)
     {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
             @TempData["SuccessMessage"]
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
     @if (TempData["ErrorMessage"] != null)
     {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
             @TempData["ErrorMessage"]
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
 
-    <div class="row g-4">
+    <div class="row g-3">
         @if (Model.Genres != null && Model.Genres.Any())
         {
             @foreach (var genre in Model.Genres)
             {
                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                    <div class="card h-100">
+                    <div class="card h-100 border-0 shadow-sm">
                         <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
                                 <div>
-                                    <h5 class="card-title mb-1">
+                                    <h5 class="card-title mb-1 fw-semibold">
                                         @if (!string.IsNullOrEmpty(genre.IconClass))
                                         {
-                                            <i class="@genre.IconClass me-2" style="color: @genre.ColorTheme;"></i>
+                                            <i class="@genre.IconClass me-2"></i>
                                         }
                                         @genre.Name
                                     </h5>
@@ -64,11 +63,9 @@
                                             <span>No description.</span>
                                         }
                                     </p>
-                                    @* For "X books" and "vs last month" you'd need to fetch more data (e.g., count books in this genre, sales data). Leaving as placeholder. *@
-                                    @* <p class="text-muted small mb-0">XX books</p> *@
                                 </div>
                                 <div class="dropdown">
-                                    <button class="btn btn-link p-0" type="button" data-bs-toggle="dropdown">
+                                    <button class="btn btn-link p-0 text-black-50" type="button" data-bs-toggle="dropdown" aria-label="Genre actions">
                                         <i class="fas fa-ellipsis-v"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
@@ -84,18 +81,10 @@
                                     </ul>
                                 </div>
                             </div>
-                            @* Placeholder for sales metrics - needs backend logic to fetch book counts/sales per genre *@
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center mt-2">
                                 <div class="small text-muted">
                                     Added: @genre.CreatedAt.ToShortDateString()
                                 </div>
-                                @* <div class="small">
-                                    <span class="text-success me-2">
-                                        <i class="fas fa-arrow-up"></i>
-                                        12%
-                                    </span>
-                                    <span class="text-muted">vs last month</span>
-                                </div> *@
                             </div>
                         </div>
                     </div>

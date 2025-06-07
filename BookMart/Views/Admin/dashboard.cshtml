@@ -7,136 +7,111 @@
 }
 
 <div class="container-fluid">
-    @* Stats Row *@
-    <div class="row g-4 mb-4">
-        <div class="col-12 col-sm-6 col-xl-3">
-            <div class="stat-card">
-                <div class="d-flex align-items-center">
-                    <div class="stat-icon bg-primary bg-opacity-10 text-primary me-3">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <div>
-                        <div class="small text-muted mb-1">Total Orders</div>
-                        <h4 class="mb-0">@Model.TotalOrders.ToString("N0")</h4>
-                    </div>
+    <!-- Stats Row -->
+    <div class="row g-3 mb-3">
+        <div class="col-6 col-md-3">
+            <div class="card d-flex flex-row align-items-center">
+                <div class="sidebar-user-avatar me-3"><i class="fas fa-shopping-cart"></i></div>
+                <div>
+                    <div class="text-muted small mb-1">Total Orders</div>
+                    <div class="fw-bold fs-5">@Model.TotalOrders.ToString("N0")</div>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-xl-3">
-            <div class="stat-card">
-                <div class="d-flex align-items-center">
-                    <div class="stat-icon bg-success bg-opacity-10 text-success me-3">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div>
-                        <div class="small text-muted mb-1">Books in Stock</div>
-                        <h4 class="mb-0">@Model.TotalBooksInStock.ToString("N0")</h4>
-                    </div>
+        <div class="col-6 col-md-3">
+            <div class="card d-flex flex-row align-items-center">
+                <div class="sidebar-user-avatar me-3"><i class="fas fa-book"></i></div>
+                <div>
+                    <div class="text-muted small mb-1">Books in Stock</div>
+                    <div class="fw-bold fs-5">@Model.TotalBooksInStock.ToString("N0")</div>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-xl-3">
-            <div class="stat-card">
-                <div class="d-flex align-items-center">
-                    <div class="stat-icon bg-warning bg-opacity-10 text-warning me-3">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div>
-                        <div class="small text-muted mb-1">Active Users</div>
-                        <h4 class="mb-0">@Model.ActiveUsers.ToString("N0")</h4>
-                    </div>
+        <div class="col-6 col-md-3">
+            <div class="card d-flex flex-row align-items-center">
+                <div class="sidebar-user-avatar me-3"><i class="fas fa-users"></i></div>
+                <div>
+                    <div class="text-muted small mb-1">Active Users</div>
+                    <div class="fw-bold fs-5">@Model.ActiveUsers.ToString("N0")</div>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-xl-3">
-            <div class="stat-card">
-                <div class="d-flex align-items-center">
-                    <div class="stat-icon bg-info bg-opacity-10 text-info me-3">
-                        <i class="fas fa-rupee-sign"></i>
-                    </div>
-                    <div>
-                        <div class="small text-muted mb-1">Total Revenue</div>
-                        <h4 class="mb-0">₹@Model.TotalRevenue.ToString("N2")</h4>
-                    </div>
+        <div class="col-6 col-md-3">
+            <div class="card d-flex flex-row align-items-center">
+                <div class="sidebar-user-avatar me-3"><i class="fas fa-rupee-sign"></i></div>
+                <div>
+                    <div class="text-muted small mb-1">Total Revenue</div>
+                    <div class="fw-bold fs-5">₹@Model.TotalRevenue.ToString("N2")</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row g-4">
-        @* Recent Orders *@
-        <div class="col-12 col-xl-8 mb-4">
+    <div class="row g-3">
+        <!-- Recent Orders -->
+        <div class="col-12 col-xl-8">
             <div class="card h-100">
-                <div class="card-header bg-white py-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Recent Orders</h5>
-                        <a href="@Url.Action("Orders", "Admin")" class="btn btn-sm btn-primary">
-                            View All
-                        </a>
-                    </div>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Recent Orders</span>
+                    <a href="@Url.Action("Orders", "Admin")" class="btn btn-outline btn-sm">View All</a>
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover align-middle">
-                            <thead>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Items</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model.RecentOrders)
+                            {
                                 <tr>
-                                    <th>Order ID</th>
-                                    <th>Customer</th>
-                                    <th>Items</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                    <th>Date</th>
+                                    <td>#@order.OrderID</td>
+                                    <td>@($"{order.ShippingFirstName} {order.ShippingLastName}")</td>
+                                    <td>@order.OrderItems?.Count items</td>
+                                    <td>₹@order.TotalAmount.ToString("N2")</td>
+                                    <td>
+                                        @{
+                                            var statusClass = order.OrderStatus?.ToLower() switch
+                                            {
+                                                "pending" => "badge-warning",
+                                                "processing" => "badge-info",
+                                                "shipped" => "badge-info",
+                                                "delivered" => "badge-success",
+                                                "cancelled" => "badge-danger",
+                                                _ => "badge"
+                                            };
+                                        }
+                                        <span class="badge @statusClass">@order.OrderStatus</span>
+                                    </td>
+                                    <td>@order.OrderDate.ToString("MMM dd, yyyy")</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var order in Model.RecentOrders)
-                                {
-                                    <tr>
-                                        <td>#@order.OrderID</td>
-                                        <td>@($"{order.ShippingFirstName} {order.ShippingLastName}")</td>
-                                        <td>@order.OrderItems?.Count items</td>
-                                        <td>₹@order.TotalAmount.ToString("N2")</td>
-                                        <td>
-                                            @{
-                                                var statusClass = order.OrderStatus?.ToLower() switch
-                                                {
-                                                    "pending" => "warning",
-                                                    "processing" => "info",
-                                                    "shipped" => "primary",
-                                                    "delivered" => "success",
-                                                    "cancelled" => "danger",
-                                                    _ => "secondary"
-                                                };
-                                            }
-                                            <span class="badge bg-@statusClass">@order.OrderStatus</span>
-                                        </td>
-                                        <td>@order.OrderDate.ToString("MMM dd, yyyy")</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-
-        @* Top Selling Books *@
-        <div class="col-12 col-xl-4 mb-4">
+        <!-- Top Selling Books -->
+        <div class="col-12 col-xl-4">
             <div class="card h-100">
-                <div class="card-header bg-white py-3">
-                    <h5 class="mb-0">Top Selling Books</h5>
-                </div>
-                <div class="card-body">
+                <div class="card-header">Top Selling Books</div>
+                <div class="card-body p-0">
                     @foreach (var book in Model.TopSellingBooks)
                     {
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="@book.CoverImageURL" alt="@book.Title" class="rounded shadow-sm" style="width: 48px; height: 72px; object-fit: cover;">
+                        <div class="d-flex align-items-center mb-3 px-2">
+                            <img src="@book.CoverImageURL" alt="@book.Title" class="rounded shadow-sm" style="width: 40px; height: 60px; object-fit: cover;">
                             <div class="ms-3 flex-grow-1">
-                                <h6 class="mb-0">@book.Title</h6>
+                                <div class="fw-semibold">@book.Title</div>
                                 <small class="text-muted">by @book.Author</small>
                             </div>
                             <div class="text-end">
-                                <div class="small text-success">@book.TotalSold sold</div>
+                                <span class="badge badge-info">@book.TotalSold sold</span><br />
                                 <small class="text-muted">₹@book.Revenue.ToString("N0")</small>
                             </div>
                         </div>

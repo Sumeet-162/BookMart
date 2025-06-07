@@ -3,65 +3,45 @@
 *@
 @{
 }
-<!-- Sidebar -->
+<!-- Modern Sidebar Navigation for BookMart Admin -->
 <nav class="sidebar" id="sidebar">
-    <div class="d-flex flex-column h-100">
-        <div class="sidebar-header p-3 mb-3 text-center">
-            <h3 class="fw-bold text-primary mb-0 logo-text">BookMart</h3>
-        </div>
-        
-        <div class="nav-links flex-grow-1 px-2">
-            <a href="@Url.Action("Dashboard", "Admin")" class="nav-link">
-                <i class="fas fa-home"></i>
-                <span class="ms-2">Dashboard</span>
-            </a>
-            <a href="@Url.Action("Orders", "Admin")" class="nav-link">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="ms-2">Orders</span>
-            </a>
-            <a href="@Url.Action("Stock", "Admin")" class="nav-link">
-                <i class="fas fa-boxes"></i>
-                <span class="ms-2">Inventory</span>
-            </a>
-            <a href="@Url.Action("Genres", "Admin")" class="nav-link">
-                <i class="fas fa-tags"></i>
-                <span class="ms-2">Categories</span>
-            </a>
-            <a href="@Url.Action("Books", "Admin")" class="nav-link">
-                <i class="fas fa-book"></i>
-                <span class="ms-2">Books</span>
-            </a>
-        </div>
-
-        <div class="sidebar-footer p-3 mt-auto border-top">
-            <div class="d-flex align-items-center">
-                <i class="fas fa-user-circle fs-4"></i>
-                <div class="ms-2">
-                    <div class="fw-bold">Admin</div>
-                    <small class="text-muted">Administrator</small>
-                </div>
+    <div class="sidebar-header">
+        <span class="logo">BookMart</span>
+    </div>
+    <ul class="sidebar-nav">
+        <li><a href="@Url.Action("Dashboard", "Admin")" class="sidebar-link @(ViewContext.RouteData.Values["Action"].ToString() == "Dashboard" ? "active" : "")"><i class="fas fa-chart-line"></i> <span>Dashboard</span></a></li>
+        <li><a href="@Url.Action("Orders", "Admin")" class="sidebar-link @(ViewContext.RouteData.Values["Action"].ToString() == "Orders" ? "active" : "")"><i class="fas fa-shopping-bag"></i> <span>Orders</span></a></li>
+        <li><a href="@Url.Action("Stock", "Admin")" class="sidebar-link @(ViewContext.RouteData.Values["Action"].ToString() == "Stock" ? "active" : "")"><i class="fas fa-boxes-stacked"></i> <span>Inventory</span></a></li>
+        <li><a href="@Url.Action("Genres", "Admin")" class="sidebar-link @(ViewContext.RouteData.Values["Action"].ToString() == "Genres" ? "active" : "")"><i class="fas fa-tags"></i> <span>Categories</span></a></li>
+        <li><a href="@Url.Action("Books", "Admin")" class="sidebar-link @(ViewContext.RouteData.Values["Action"].ToString() == "Books" ? "active" : "")"><i class="fas fa-book"></i> <span>Books</span></a></li>
+    </ul>
+    <div class="sidebar-footer mt-auto">
+        <div class="sidebar-user">
+            <span class="sidebar-user-avatar"><i class="fas fa-user"></i></span>
+            <div>
+                <div class="fw-semibold">Admin</div>
+                <small class="text-muted">Administrator</small>
             </div>
         </div>
+        <form method="post" action="@Url.Action("Logout", "Account")">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="sidebar-logout"><i class="fas fa-sign-out-alt me-2"></i> Logout</button>
+        </form>
     </div>
 </nav>
 
 <!-- Navbar -->
 <nav class="admin-navbar navbar navbar-expand-lg">
     <div class="container-fluid px-4">
-        <button class="sidebar-toggle btn btn-icon" id="sidebarToggle">
+        <button class="sidebar-toggle btn btn-icon" id="sidebarToggle" aria-label="Toggle Sidebar">
             <i class="fas fa-bars"></i>
         </button>
 
         <div class="navbar-brand d-flex align-items-center ms-3">
-            <h5 class="mb-0">@ViewData["Title"]</h5>
+            <h5 class="mb-0 fw-semibold">@ViewData["Title"]</h5>
         </div>
 
-        <div class="ms-auto">
-            <a href="@Url.Action("login", "Account")" class="btn btn-outline-danger btn-sm d-flex align-items-center">
-                <i class="fas fa-sign-out-alt me-2"></i>
-                <span>Logout</span>
-            </a>
-        </div>
+        
     </div>
 </nav>
 

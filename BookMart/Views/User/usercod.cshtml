@@ -38,38 +38,58 @@
                         <i class="fas fa-info-circle instruction-icon"></i>
                         <h5>Important Instructions</h5>
                         <ul class="mb-0">
-                            <li>Keep ₹@Model.TotalAmount.ToString("F2", CultureInfo.InvariantCulture) ready for payment during delivery</li>
+                            <li>Keep ₹@((Model.TotalAmount + 50).ToString("N2")) ready for payment during delivery (including ₹50 COD fee)</li>
                             <li>Verify the package before making the payment</li>
                             <li>Payment should be made to the delivery person only</li>
                             <li>Ask for payment receipt after successful payment</li>
                         </ul>
                     </div>
 
-                    <!-- Delivery Timeline (Conceptual, dynamic status would come from backend) -->
-                    <div class="delivery-info mt-4">
-                        <div class="delivery-step">
-                            <h6>Order Confirmed</h6>
-                            <p class="text-muted mb-0">Your order is being processed</p>
-                            <small class="text-muted">@DateTime.Now.ToString("MMM dd,yyyy hh:mm tt")</small>
+                    <!-- Delivery Timeline -->
+                    <div class="delivery-timeline mt-4">
+                        <div class="timeline-item active">
+                            <div class="timeline-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h6>Order Confirmed</h6>
+                                <p class="text-muted mb-0">Your order is being processed</p>
+                                <small class="text-muted">@DateTime.Now.ToString("MMM dd,yyyy hh:mm tt")</small>
+                            </div>
                         </div>
-                        <div class="delivery-step">
-                            <h6>Processing</h6>
-                            <p class="text-muted mb-0">We're preparing your order</p>
-                            <small class="text-muted">Expected: @DateTime.Now.AddDays(1).ToString("MMM dd,yyyy")</small>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h6>Processing</h6>
+                                <p class="text-muted mb-0">We're preparing your order</p>
+                                <small class="text-muted">Expected: @DateTime.Now.AddDays(1).ToString("MMM dd,yyyy")</small>
+                            </div>
                         </div>
-                        <div class="delivery-step">
-                            <h6>Shipping</h6>
-                            <p class="text-muted mb-0">Your order will be shipped</p>
-                            <small class="text-muted">Expected: @DateTime.Now.AddDays(2).ToString("MMM dd,yyyy")</small>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h6>Shipping</h6>
+                                <p class="text-muted mb-0">Your order will be shipped</p>
+                                <small class="text-muted">Expected: @DateTime.Now.AddDays(2).ToString("MMM dd,yyyy")</small>
+                            </div>
                         </div>
-                        <div class="delivery-step">
-                            <h6>Delivery</h6>
-                            <p class="text-muted mb-0">Estimated delivery date</p>
-                            <small class="text-muted">Expected: @DateTime.Now.AddDays(3).ToString("MMM dd,yyyy")</small>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h6>Delivery</h6>
+                                <p class="text-muted mb-0">Estimated delivery date</p>
+                                <small class="text-muted">Expected: @DateTime.Now.AddDays(3).ToString("MMM dd,yyyy")</small>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Action Buttons - Submit form to ProcessPayment -->
+                    <!-- Action Buttons -->
                     <form asp-controller="User" asp-action="ProcessPayment" method="post" id="codPaymentForm">
                         @Html.AntiForgeryToken()
                         @* Hidden fields to pass ALL CheckoutViewModel properties back to ProcessPayment *@
@@ -87,9 +107,9 @@
                         <input type="hidden" asp-for="ShippingPhone" />
                         <input type="hidden" asp-for="ShippingEmail" />
                         <input type="hidden" asp-for="SaveAddressForFuture" />
-                        <input type="hidden" name="paymentMethod" value="COD" /> @* Explicitly set payment method *@
+                        <input type="hidden" name="paymentMethod" value="COD" />
 
-                        @* Hidden fields for CartItems (for OrderItem creation on server) *@
+                        @* Hidden fields for CartItems *@
                         @for (int i = 0; i < Model.CartItems.Count; i++)
                         {
                             <input type="hidden" name="CartItems[@i].BookID" value="@Model.CartItems[i].BookID" />
@@ -98,10 +118,10 @@
                         }
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-dark btn-lg px-4 py-2">
                                 <i class="fas fa-receipt me-2"></i>Confirm COD Order
                             </button>
-                            <a href="@Url.Action("UserHome", "User")" class="btn btn-outline-primary">
+                            <a href="@Url.Action("UserHome", "User")" class="btn btn-outline-dark btn-lg px-4 py-2">
                                 <i class="fas fa-home me-2"></i>Continue shopping
                             </a>
                         </div>
@@ -116,11 +136,11 @@
                 <div class="card-header bg-white py-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <h4 class="mb-0">Order Summary</h4>
-                        <span class="badge bg-primary">Order Preview</span> @* No actual OrderID yet *@
+                        <span class="badge bg-dark">Order Preview</span>
                     </div>
                 </div>
                 <div class="card-body">
-                    <!-- Delivery Address (from CheckoutViewModel) -->
+                    <!-- Delivery Address -->
                     <div class="mb-4">
                         <h5 class="mb-3">Delivery Address</h5>
                         <p class="mb-1">@Model.ShippingFirstName @Model.ShippingLastName</p>
@@ -146,7 +166,7 @@
                                         <h6 class="mb-0">@item.Book?.Title</h6>
                                         <small class="text-muted">Qty: @item.Quantity</small>
                                     </div>
-                                    <span class="ms-auto">₹@((item.Quantity * item.Price)).ToString("N0", CultureInfo.InvariantCulture)</span>
+                                    <span class="ms-auto">₹@((item.Quantity * item.Price).ToString("N0"))</span>
                                 </div>
                             }
                         }
@@ -159,29 +179,29 @@
                     <!-- Cost Breakdown -->
                     <div class="border-top pt-3">
                         @{
-                            decimal codFee = 49M; // Define COD fee for display only
-                            decimal displayTotalWithCod = Model.TotalAmount + codFee; // TotalAmount is assumed non-nullable
+                            decimal codFee = 49M;
+                            decimal displayTotalWithCod = Model.TotalAmount + codFee;
                         }
                         <div class="d-flex justify-content-between mb-2">
                             <span>Subtotal</span>
-                            <span>₹@Model.SubTotal.ToString("N0", CultureInfo.InvariantCulture)</span>
+                            <span>₹@Model.SubTotal.ToString("N0")</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Shipping</span>
-                            <span class="text-success">₹@Model.ShippingCost.ToString("N0", CultureInfo.InvariantCulture)</span>
+                            <span class="text-success">₹@Model.ShippingCost.ToString("N0")</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Tax</span>
-                            <span>₹@Model.TaxAmount.ToString("N2", CultureInfo.InvariantCulture)</span>
+                            <span>₹@Model.TaxAmount.ToString("N2")</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>COD Fee</span>
-                            <span class="text-danger">₹@codFee.ToString("N0", CultureInfo.InvariantCulture)</span>
+                            <span class="text-danger">₹@codFee.ToString("N0")</span>
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between">
                             <strong>Total</strong>
-                            <strong class="h4">₹@displayTotalWithCod.ToString("N2", CultureInfo.InvariantCulture)</strong>
+                            <strong class="h4">₹@displayTotalWithCod.ToString("N2")</strong>
                         </div>
                     </div>
                 </div>
@@ -190,92 +210,115 @@
     </div>
 </div>
 
+<style>
+    .instruction-card {
+        background-color: #f8f9fa;
+        border-left: 4px solid #212529;
+        padding: 1.5rem;
+        border-radius: 5px;
+        margin-bottom: 2rem;
+    }
+
+    .instruction-icon {
+        color: #212529;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .delivery-timeline {
+        position: relative;
+        padding: 1rem 0;
+    }
+
+    .timeline-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+
+    .timeline-item:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        left: 1.25rem;
+        top: 2.5rem;
+        bottom: -2rem;
+        width: 2px;
+        background-color: #e9ecef;
+    }
+
+    .timeline-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background-color: #e9ecef;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        flex-shrink: 0;
+    }
+
+    .timeline-item.active .timeline-icon {
+        background-color: #212529;
+        color: white;
+    }
+
+    .timeline-content {
+        flex-grow: 1;
+    }
+
+    .timeline-content h6 {
+        margin-bottom: 0.25rem;
+        color: #212529;
+    }
+
+    .btn {
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .btn-dark {
+        background-color: #212529;
+        border-color: #212529;
+    }
+
+    .btn-outline-dark {
+        color: #212529;
+        border-color: #212529;
+    }
+
+    .btn-outline-dark:hover {
+        background-color: #212529;
+        color: white;
+    }
+
+    .verification-badge {
+        display: inline-flex;
+        align-items: center;
+        background-color: #e9ecef;
+        color: #212529;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: bold;
+    }
+
+    .verification-badge i {
+        margin-right: 0.5rem;
+    }
+</style>
+
 @section Scripts {
-    <style>
-        .instruction-card {
-            background-color: #f8f9fa;
-            border-left: 4px solid #007bff;
-            padding: 1.5rem;
-            border-radius: 5px;
-        }
-
-        .instruction-icon {
-            font-size: 2rem;
-            color: #007bff;
-            margin-right: 1rem;
-            float: left;
-        }
-
-        .instruction-card h5 {
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-        }
-
-        .instruction-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-            .instruction-card ul li {
-                margin-bottom: 0.25rem;
-            }
-
-        .delivery-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            padding: 1rem 0;
-        }
-
-        .delivery-step {
-            border-left: 2px solid #ddd;
-            padding-left: 1rem;
-            position: relative;
-        }
-
-            .delivery-step::before {
-                content: "\f058"; /* Font Awesome checkmark icon */
-                font-family: "Font Awesome 5 Free";
-                font-weight: 900;
-                position: absolute;
-                left: -11px;
-                top: 0;
-                background-color: white;
-                color: #28a745;
-                border: 2px solid #28a745;
-                border-radius: 50%;
-                padding: 2px;
-            }
-
-        .verification-badge {
-            display: inline-flex;
-            align-items: center;
-            background-color: #e6ffe6;
-            color: #28a745;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: bold;
-        }
-
-            .verification-badge i {
-                margin-right: 0.5rem;
-            }
-
-        .secure-badge {
-            font-size: 0.85rem;
-            color: #28a745;
-            background-color: #e6ffe6;
-            padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            display: inline-flex;
-            align-items: center;
-        }
-
-            .secure-badge i {
-                margin-right: 0.5rem;
-            }
-    </style>
     <script>
-        // No specific JS for Net Banking beyond form submission for this conceptual example.
+        // Add any page-specific JavaScript here
     </script>
 }

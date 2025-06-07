@@ -4,18 +4,20 @@
     Layout = "adminLayout";
 }
 
-<div class="card">
-    <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h4 class="card-title mb-0">Edit Book</h4>
-            <a asp-action="Books" class="btn btn-outline-secondary">
-                <i class="fas fa-arrow-left me-2"></i>Back to List
-            </a>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <span>Edit Book</span>
+                <a asp-action="Books" class="btn btn-outline">
+                    <i class="fas fa-arrow-left me-2"></i>Back to List
+                </a>
+            </div>
         </div>
 
         @if (Model == null)
         {
-            <div class="alert alert-danger">
+            <div class="alert alert-danger m-3">
                 Error: Book data not found. Please return to the <a asp-action="Books">book list</a>.
             </div>
             return;
@@ -23,14 +25,14 @@
 
         @if (TempData["SuccessMessage"] != null)
         {
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
                 @TempData["SuccessMessage"]
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
         @if (TempData["ErrorMessage"] != null)
         {
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
                 @TempData["ErrorMessage"]
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -41,21 +43,21 @@
             <input type="hidden" asp-for="BookID" />
             <input type="hidden" asp-for="CreatedAt" />
 
-            <div class="row">
+            <div class="row g-3 p-3">
                 <div class="col-md-4">
-                    <div class="card mb-3">
+                    <div class="card">
+                        <div class="card-header">Book Cover</div>
                         <div class="card-body">
-                            <h5 class="card-title">Book Cover</h5>
                             <div class="current-image mb-3">
                                 @if (!string.IsNullOrEmpty(Model.CoverImageURL))
                                 {
                                     <img src="@Model.CoverImageURL" alt="Current book cover"
-                                         class="img-fluid rounded" style="max-width: 150px; max-height: 200px;">
+                                         class="img-fluid rounded shadow-sm" style="max-width: 120px; max-height: 160px;">
                                 }
                                 else
                                 {
                                     <img src="/images/default-book.jpg" alt="Default book cover"
-                                         class="img-fluid rounded" style="max-width: 150px; max-height: 200px;">
+                                         class="img-fluid rounded shadow-sm" style="max-width: 120px; max-height: 160px;">
                                 }
                             </div>
 
@@ -70,16 +72,15 @@
 
                 <div class="col-md-8">
                     <div class="card mb-3">
+                        <div class="card-header">Basic Information</div>
                         <div class="card-body">
-                            <h5 class="card-title">Basic Information</h5>
-
                             <div class="mb-3">
                                 <label asp-for="Title" class="form-label">Title</label>
                                 <input asp-for="Title" class="form-control" required />
                                 <span asp-validation-for="Title" class="text-danger"></span>
                             </div>
 
-                            <div class="row">
+                            <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label asp-for="Author" class="form-label">Author</label>
@@ -98,7 +99,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label asp-for="Price" class="form-label">Price (₹)</label>
@@ -124,10 +125,9 @@
                     </div>
 
                     <div class="card mb-3">
+                        <div class="card-header">Additional Details</div>
                         <div class="card-body">
-                            <h5 class="card-title">Additional Details</h5>
-
-                            <div class="row">
+                            <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label asp-for="ISBN" class="form-label">ISBN</label>
@@ -144,7 +144,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label asp-for="PublishedDate" class="form-label">Publication Year</label>
@@ -162,7 +162,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label asp-for="PageCount" class="form-label">Page Count</label>
@@ -179,7 +179,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label asp-for="DiscountedPrice" class="form-label">Discounted Price (₹)</label>
@@ -200,8 +200,8 @@
                     </div>
 
                     <div class="d-flex justify-content-end gap-2">
-                        <a asp-action="Books" class="btn btn-outline-secondary">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <a asp-action="Books" class="btn btn-outline">Cancel</a>
+                        <button type="submit" class="btn btn-outline">Save Changes</button>
                     </div>
                 </div>
             </div>
@@ -209,23 +209,22 @@
     </div>
 </div>
 
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+<script>
+    // Image preview functionality
+    document.getElementById('imageUrl').addEventListener('input', function() {
+        const preview = document.querySelector('.current-image img');
+        const url = this.value.trim();
 
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-    <script>
-        // Image preview functionality
-        document.getElementById('imageUrl').addEventListener('input', function() {
-            const preview = document.querySelector('.current-image img');
-            const url = this.value.trim();
-
-            if (url && (url.startsWith('http://') || url.startsWith('https://'))) {
-                preview.src = url;
-                preview.onerror = function() {
-                    preview.src = '/images/default-book.jpg';
-                };
-            } else {
+        if (url && (url.startsWith('http://') || url.startsWith('https://'))) {
+            preview.src = url;
+            preview.onerror = function() {
                 preview.src = '/images/default-book.jpg';
-            }
-        });
-    </script>
+            };
+        } else {
+            preview.src = '/images/default-book.jpg';
+        }
+    });
+</script>

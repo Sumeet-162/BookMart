@@ -1,201 +1,121 @@
 ﻿@model BookMart.Models.Genre
 @{
     ViewData["Title"] = "Update Genre";
-    Layout = "adminLayout"; // Ensure it uses your admin layout
+    Layout = "adminLayout";
 }
 
-<link href="~/css/site.css" rel="stylesheet" />
-
-<div class="simple-form">
-    <div class="mb-4">
-        <h2><i class="fas fa-tags me-2"></i>Update Genre</h2>
-        <p class="text-muted">Modify an existing genre category</p>
-    </div>
-
-    @if (TempData["SuccessMessage"] != null)
-    {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            @TempData["SuccessMessage"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
-    @if (TempData["ErrorMessage"] != null)
-    {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            @TempData["ErrorMessage"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
-    @* Display validation errors for the entire model *@
-    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-
-
-    <form asp-controller="Admin" asp-action="EditGenre" method="post">
-        @Html.AntiForgeryToken()
-        <input type="hidden" asp-for="GenreID" /> @* Hidden field for the Genre ID *@
-        @* Hidden field for CreatedAt to preserve its value *@
-        <input type="hidden" asp-for="CreatedAt" />
-
-        <div class="form-group mb-4">
-            <label asp-for="Name" class="form-label">Genre Name</label>
-            <input type="text" asp-for="Name" class="form-control" required />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-
-        <div class="form-group mb-4">
-            <label asp-for="Description" class="form-label">Description</label>
-            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
-
-        <div class="form-group mb-4">
-            <label class="form-label">Icon</label>
-            <div class="icon-grid" id="iconGrid">
-                @{
-                    var icons = new List<string>
-                {
-                "fas fa-book", "fas fa-graduation-cap", "fas fa-theater-masks", "fas fa-microscope",
-                "fas fa-heart", "fas fa-ghost", "fas fa-hat-wizard", "fas fa-robot",
-                "fas fa-book-open", "fas fa-rocket", "fas fa-dragon", "fas fa-space-shuttle",
-                "fas fa-skull", "fas fa-compass", "fas fa-scroll", "fas fa-flask"
-                // Add more FontAwesome icons as needed
-                };
-                }
-                @foreach (var icon in icons)
-                {
-                    <div class="icon-option @(Model.IconClass == icon ? "selected" : "")" data-icon="@icon">
-                        <i class="@icon"></i>
-                    </div>
-                }
-                <input type="hidden" asp-for="IconClass" id="selectedIconClass" />
-                <span asp-validation-for="IconClass" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="form-group mb-4">
-            <label class="form-label">Color Theme</label>
-            <div class="color-grid" id="colorGrid">
-                @{
-                    var colors = new List<string>
-                {
-                "#0d6efd", // Bootstrap primary
-                "#198754", // Bootstrap success
-                "#dc3545", // Bootstrap danger
-                "#ffc107", // Bootstrap warning
-                "#0dcaf0", // Bootstrap info
-                "#6610f2", // Bootstrap indigo
-                "#6c757d", // Bootstrap secondary
-                "#fd7e14"  // Bootstrap orange
-                // Add more colors if desired
-                };
-                }
-                @foreach (var color in colors)
-                {
-                    <div class="color-option @(Model.ColorTheme == color ? "selected" : "")" style="background-color: @color;" data-color="@color"></div>
-                }
-                <input type="hidden" asp-for="ColorTheme" id="selectedColorTheme" />
-                <span asp-validation-for="ColorTheme" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-between align-items-center">
-            <a asp-controller="Admin" asp-action="Genres" class="btn btn-outline-secondary">
-                Cancel
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span>Update Genre</span>
+            <a asp-action="Genres" class="btn btn-outline">
+                <i class="fas fa-arrow-left me-2"></i>Back to List
             </a>
-            <button type="submit" class="btn btn-primary">
-                <i class="fas fa-save me-2"></i>Save Changes
-            </button>
         </div>
-    </form>
+        <div class="card-body">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
+                    @TempData["SuccessMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+                    @TempData["ErrorMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <form asp-controller="Admin" asp-action="EditGenre" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="GenreID" />
+                <input type="hidden" asp-for="CreatedAt" />
+                <div class="row g-3 p-3">
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <div class="card-header">Genre Icon</div>
+                            <div class="card-body">
+                                <div class="icon-grid d-flex flex-wrap gap-2" id="iconGrid">
+                                    @{
+                                        var icons = new List<string>
+                                    {
+                                    "fas fa-book", "fas fa-graduation-cap", "fas fa-theater-masks", "fas fa-microscope",
+                                    "fas fa-heart", "fas fa-ghost", "fas fa-hat-wizard", "fas fa-robot",
+                                    "fas fa-book-open", "fas fa-rocket", "fas fa-dragon", "fas fa-space-shuttle",
+                                    "fas fa-skull", "fas fa-compass", "fas fa-scroll", "fas fa-flask"
+                                    };
+                                    }
+                                    @foreach (var icon in icons)
+                                    {
+                                        <div class="icon-option border rounded p-2 d-flex align-items-center justify-content-center @(Model.IconClass == icon ? "selected bg-black text-white" : "")" data-icon="@icon" style="width: 38px; height: 38px; cursor: pointer;">
+                                            <i class="@icon"></i>
+                                        </div>
+                                    }
+                                    <input type="hidden" asp-for="IconClass" id="selectedIconClass" />
+                                    <span asp-validation-for="IconClass" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card mb-3">
+                            <div class="card-header">Basic Information</div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label asp-for="Name" class="form-label">Genre Name</label>
+                                    <input type="text" asp-for="Name" class="form-control" required />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="Description" class="form-label">Description</label>
+                                    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end gap-2 mt-4">
+                            <a asp-action="Genres" class="btn btn-outline">Cancel</a>
+                            <button type="submit" class="btn btn-outline">
+                                <i class="fas fa-save me-2"></i>Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
-
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-    <script>
-        // Handle icon selection
-        document.querySelectorAll('.icon-option').forEach(option => {
-            option.addEventListener('click', function() {
-                // Remove 'selected' from previously selected
-                const currentlySelectedIcon = document.querySelector('.icon-option.selected');
-                if (currentlySelectedIcon) {
-                    currentlySelectedIcon.classList.remove('selected');
-                }
-                // Add 'selected' to clicked option
-                this.classList.add('selected');
-                // Update hidden input for IconClass
-                document.getElementById('selectedIconClass').value = this.dataset.icon;
-            });
-        });
-
-        // Handle color selection
-        document.querySelectorAll('.color-option').forEach(option => {
-            option.addEventListener('click', function() {
-                // Remove 'selected' from previously selected
-                const currentlySelectedColor = document.querySelector('.color-option.selected');
-                if (currentlySelectedColor) {
-                    currentlySelectedColor.classList.remove('selected');
-                }
-                // Add 'selected' to clicked option
-                this.classList.add('selected');
-                // Update hidden input for ColorTheme
-                // Get the background-color style directly
-                document.getElementById('selectedColorTheme').value = this.style.backgroundColor;
-            });
-        });
-
-        // Initialize hidden inputs based on current model data when page loads
-        // This is crucial if the model data is null for these fields
-        document.addEventListener('DOMContentLoaded', function() {
-            const initialIcon = "@Model.IconClass";
-            const initialColor = "@Model.ColorTheme";
-
-            if (initialIcon) {
-                const iconOption = document.querySelector(`.icon-option[data-icon='${initialIcon}']`);
-                if (iconOption) {
-                    iconOption.classList.add('selected');
-                    document.getElementById('selectedIconClass').value = initialIcon;
-                }
-            } else {
-                // If no initial icon, select the first one by default for the hidden input
-                const firstIconOption = document.querySelector('.icon-option');
-                if (firstIconOption) {
-                    firstIconOption.classList.add('selected');
-                    document.getElementById('selectedIconClass').value = firstIconOption.dataset.icon;
-                }
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+<script>
+    // Handle icon selection
+    document.querySelectorAll('.icon-option').forEach(option => {
+        option.addEventListener('click', function() {
+            const currentlySelectedIcon = document.querySelector('.icon-option.selected');
+            if (currentlySelectedIcon) {
+                currentlySelectedIcon.classList.remove('selected', 'bg-black', 'text-white');
             }
-
-            if (initialColor) {
-                // Normalize color to RGB format for comparison, if necessary
-                const rgbColor = convertHexToRgb(initialColor);
-                const colorOption = Array.from(document.querySelectorAll('.color-option')).find(opt => {
-                    return convertHexToRgb(opt.dataset.color) === rgbColor;
-                });
-
-                if (colorOption) {
-                    colorOption.classList.add('selected');
-                    document.getElementById('selectedColorTheme').value = colorOption.dataset.color;
-                }
-            } else {
-                 // If no initial color, select the first one by default for the hidden input
-                const firstColorOption = document.querySelector('.color-option');
-                if (firstColorOption) {
-                    firstColorOption.classList.add('selected');
-                    document.getElementById('selectedColorTheme').value = firstColorOption.dataset.color;
-                }
-            }
+            this.classList.add('selected', 'bg-black', 'text-white');
+            document.getElementById('selectedIconClass').value = this.dataset.icon;
         });
-
-        // Helper function to convert hex to RGB (for color comparison, if needed)
-        function convertHexToRgb(hex) {
-            if (!hex || hex.startsWith('rgb')) return hex; // Already RGB or null
-
-            var c = hex.substring(1).split('');
-            if (c.length === 3) {
-                c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const initialIcon = "@Model.IconClass";
+        if (initialIcon) {
+            const iconOption = document.querySelector(`.icon-option[data-icon='${initialIcon}']`);
+            if (iconOption) {
+                iconOption.classList.add('selected', 'bg-black', 'text-white');
+                document.getElementById('selectedIconClass').value = initialIcon;
             }
-            c = '0x' + c.join('');
-            return 'rgb(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(', ') + ')';
+        } else {
+            const firstIconOption = document.querySelector('.icon-option');
+            if (firstIconOption) {
+                firstIconOption.classList.add('selected', 'bg-black', 'text-white');
+                document.getElementById('selectedIconClass').value = firstIconOption.dataset.icon;
+            }
         }
-    </script>
+    });
+</script>

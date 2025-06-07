@@ -7,82 +7,58 @@
 
 <div class="container-fluid">
     <!-- Order Stats -->
-    <div class="row g-4 mb-4">
-        <div class="col-sm-6 col-xl-2">
-            <div class="stat-card">
-                <div class="d-flex align-items-center">
-                    <div class="stat-icon bg-primary bg-opacity-10 text-primary me-3">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <div>
-                        <div class="small text-muted mb-1">Total Orders</div>
-                        <h4 class="mb-0">@Model.Stats.TotalOrders.ToString("N0")</h4>
-                    </div>
+    <div class="row g-3 mb-3">
+        <div class="col-6 col-md-4 col-xl-2">
+            <div class="card d-flex flex-row align-items-center">
+                <div class="sidebar-user-avatar me-3"><i class="fas fa-shopping-cart"></i></div>
+                <div>
+                    <div class="text-muted small mb-1">Total Orders</div>
+                    <div class="fw-bold fs-5">@Model.Stats.TotalOrders.ToString("N0")</div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-xl-2">
-            <div class="stat-card">
-                <div class="d-flex align-items-center">
-                    <div class="stat-icon bg-warning bg-opacity-10 text-warning me-3">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div>
-                        <div class="small text-muted mb-1">Pending</div>
-                        <h4 class="mb-0">@Model.Stats.PendingOrders.ToString("N0")</h4>
-                    </div>
+        <div class="col-6 col-md-4 col-xl-2">
+            <div class="card d-flex flex-row align-items-center">
+                <div class="sidebar-user-avatar me-3"><i class="fas fa-clock"></i></div>
+                <div>
+                    <div class="text-muted small mb-1">Pending</div>
+                    <div class="fw-bold fs-5">@Model.Stats.PendingOrders.ToString("N0")</div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-xl-2">
-            <div class="stat-card">
-                <div class="d-flex align-items-center">
-                    <div class="stat-icon bg-info bg-opacity-10 text-info me-3">
-                        <i class="fas fa-cog"></i>
-                    </div>
-                    <div>
-                        <div class="small text-muted mb-1">Processing</div>
-                        <h4 class="mb-0">@Model.Stats.ProcessingOrders.ToString("N0")</h4>
-                    </div>
+        <div class="col-6 col-md-4 col-xl-2">
+            <div class="card d-flex flex-row align-items-center">
+                <div class="sidebar-user-avatar me-3"><i class="fas fa-cog"></i></div>
+                <div>
+                    <div class="text-muted small mb-1">Processing</div>
+                    <div class="fw-bold fs-5">@Model.Stats.ProcessingOrders.ToString("N0")</div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-xl-2">
-            <div class="stat-card">
-                <div class="d-flex align-items-center">
-                    <div class="stat-icon bg-primary bg-opacity-10 text-primary me-3">
-                        <i class="fas fa-shipping-fast"></i>
-                    </div>
-                    <div>
-                        <div class="small text-muted mb-1">Shipped</div>
-                        <h4 class="mb-0">@Model.Stats.ShippedOrders.ToString("N0")</h4>
-                    </div>
+        <div class="col-6 col-md-4 col-xl-2">
+            <div class="card d-flex flex-row align-items-center">
+                <div class="sidebar-user-avatar me-3"><i class="fas fa-shipping-fast"></i></div>
+                <div>
+                    <div class="text-muted small mb-1">Shipped</div>
+                    <div class="fw-bold fs-5">@Model.Stats.ShippedOrders.ToString("N0")</div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-xl-2">
-            <div class="stat-card">
-                <div class="d-flex align-items-center">
-                    <div class="stat-icon bg-success bg-opacity-10 text-success me-3">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <div>
-                        <div class="small text-muted mb-1">Delivered</div>
-                        <h4 class="mb-0">@Model.Stats.DeliveredOrders.ToString("N0")</h4>
-                    </div>
+        <div class="col-6 col-md-4 col-xl-2">
+            <div class="card d-flex flex-row align-items-center">
+                <div class="sidebar-user-avatar me-3"><i class="fas fa-check-circle"></i></div>
+                <div>
+                    <div class="text-muted small mb-1">Delivered</div>
+                    <div class="fw-bold fs-5">@Model.Stats.DeliveredOrders.ToString("N0")</div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-xl-2">
-            <div class="stat-card">
-                <div class="d-flex align-items-center">
-                    <div class="stat-icon bg-danger bg-opacity-10 text-danger me-3">
-                        <i class="fas fa-times-circle"></i>
-                    </div>
-                    <div>
-                        <div class="small text-muted mb-1">Cancelled</div>
-                        <h4 class="mb-0">@Model.Stats.CancelledOrders.ToString("N0")</h4>
-                    </div>
+        <div class="col-6 col-md-4 col-xl-2">
+            <div class="card d-flex flex-row align-items-center">
+                <div class="sidebar-user-avatar me-3"><i class="fas fa-times-circle"></i></div>
+                <div>
+                    <div class="text-muted small mb-1">Cancelled</div>
+                    <div class="fw-bold fs-5">@Model.Stats.CancelledOrders.ToString("N0")</div>
                 </div>
             </div>
         </div>
@@ -90,13 +66,13 @@
 
     <!-- Orders Table Section -->
     <div class="card">
-        <div class="card-header bg-white py-3">
+        <div class="card-header">
             <div class="row g-3 align-items-center">
                 <div class="col-12 col-sm-6 col-lg-4">
                     <form id="searchForm" method="get" class="d-flex">
                         <input type="text" name="searchQuery" class="form-control" placeholder="Search orders..."
                                value="@Model.Filter.SearchQuery">
-                        <button type="submit" class="btn btn-primary ms-2">
+                        <button type="submit" class="btn btn-outline ms-2">
                             <i class="fas fa-search"></i>
                         </button>
                     </form>
@@ -125,81 +101,79 @@
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-hover align-middle">
-                    <thead>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Items</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model.Orders)
+                    {
                         <tr>
-                            <th>Order ID</th>
-                            <th>Customer</th>
-                            <th>Items</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th>Date</th>
-                            <th>Actions</th>
+                            <td>#@order.OrderID</td>
+                            <td>
+                                <div>@($"{order.ShippingFirstName} {order.ShippingLastName}")</div>
+                                <small class="text-muted">@order.ShippingEmail</small>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    @{
+                                        var displayedItems = order.OrderItems?.Take(2).ToList();
+                                        int remainingItems = (order.OrderItems?.Count ?? 0) - 2;
+                                    }
+                                    @if (displayedItems != null)
+                                    {
+                                        foreach (var item in displayedItems)
+                                        {
+                                            <img src="@item.Book?.CoverImageURL" alt="@item.Book?.Title" 
+                                                 class="rounded shadow-sm me-1" 
+                                                 style="width: 32px; height: 48px; object-fit: cover;">
+                                        }
+                                    }
+                                    @if (remainingItems > 0)
+                                    {
+                                        <span class="badge badge">+@remainingItems</span>
+                                    }
+                                </div>
+                            </td>
+                            <td>₹@order.TotalAmount.ToString("N2")</td>
+                            <td>
+                                <select class="form-select form-select-sm status-select" 
+                                        data-order-id="@order.OrderID"
+                                        asp-items="@(new SelectList(new[]
+                                        {
+                                            new { Value = "Pending", Text = "Pending" },
+                                            new { Value = "Processing", Text = "Processing" },
+                                            new { Value = "Shipped", Text = "Shipped" },
+                                            new { Value = "Delivered", Text = "Delivered" },
+                                            new { Value = "Cancelled", Text = "Cancelled" }
+                                        }, "Value", "Text", order.OrderStatus))"
+                                        style="width: auto;">
+                                </select>
+                            </td>
+                            <td>@order.OrderDate.ToString("MMM dd, yyyy")</td>
+                            <td>
+                                <button type="button" class="btn btn-outline btn-sm view-details-btn"
+                                        data-bs-toggle="modal" data-bs-target="#orderDetailsModal"
+                                        data-order-id="@order.OrderID"
+                                        data-order-details="@Html.Raw(Json.Serialize(order))">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var order in Model.Orders)
-                        {
-                            <tr>
-                                <td>#@order.OrderID</td>
-                                <td>
-                                    <div>@($"{order.ShippingFirstName} {order.ShippingLastName}")</div>
-                                    <small class="text-muted">@order.ShippingEmail</small>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        @{
-                                            var displayedItems = order.OrderItems?.Take(2).ToList();
-                                            int remainingItems = (order.OrderItems?.Count ?? 0) - 2;
-                                        }
-                                        @if (displayedItems != null)
-                                        {
-                                            foreach (var item in displayedItems)
-                                            {
-                                                <img src="@item.Book?.CoverImageURL" alt="@item.Book?.Title" 
-                                                     class="rounded shadow-sm me-1" 
-                                                     style="width: 32px; height: 48px; object-fit: cover;">
-                                            }
-                                        }
-                                        @if (remainingItems > 0)
-                                        {
-                                            <span class="badge bg-secondary ms-1">+@remainingItems</span>
-                                        }
-                                    </div>
-                                </td>
-                                <td>₹@order.TotalAmount.ToString("N2")</td>
-                                <td>
-                                    <select class="form-select form-select-sm status-select" 
-                                            data-order-id="@order.OrderID"
-                                            asp-items="@(new SelectList(new[]
-                                            {
-                                                new { Value = "Pending", Text = "Pending" },
-                                                new { Value = "Processing", Text = "Processing" },
-                                                new { Value = "Shipped", Text = "Shipped" },
-                                                new { Value = "Delivered", Text = "Delivered" },
-                                                new { Value = "Cancelled", Text = "Cancelled" }
-                                            }, "Value", "Text", order.OrderStatus))"
-                                            style="width: auto;">
-                                    </select>
-                                </td>
-                                <td>@order.OrderDate.ToString("MMM dd, yyyy")</td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-outline-primary view-details-btn"
-                                            data-bs-toggle="modal" data-bs-target="#orderDetailsModal"
-                                            data-order-id="@order.OrderID"
-                                            data-order-details="@Html.Raw(Json.Serialize(order))">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                    }
+                </tbody>
+            </table>
         </div>
-        <div class="card-footer bg-white">
+        <div class="card-footer">
             <nav>
                 <ul class="pagination justify-content-end mb-0">
                     @for (int i = 1; i <= Model.TotalPages; i++)
