@@ -44,9 +44,9 @@ public class AccountController(ApplicationDbContext context) : Controller
                     new Claim(ClaimTypes.Name, user.Username),
                     new Claim(ClaimTypes.Email, user.Email),
                     new Claim(ClaimTypes.GivenName, user.FirstName),
-                    new Claim(ClaimTypes.Surname, user.LastName)
-                    // Add other claims like roles if you have them, e.g.:
-                    // new Claim(ClaimTypes.Role, user.IsAdmin ? "Admin" : "User")
+                    new Claim(ClaimTypes.Surname, user.LastName),
+                    new Claim("IsAdmin", user.IsAdmin ? "1" : "0"), // Add IsAdmin claim
+                    new Claim(ClaimTypes.Role, user.IsAdmin ? "Admin" : "User") // Add Role claim for standard role checks
                 };
 
                 var claimsIdentity = new ClaimsIdentity(

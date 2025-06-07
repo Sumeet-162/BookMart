@@ -1,7 +1,25 @@
-﻿@*
+﻿@using BookMart.Data
+@inject ApplicationDbContext _context
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    int? userId = null;
+    bool isAdmin = false;
+    if (User.Identity.IsAuthenticated)
+    {
+        var userIdStr = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+        if (int.TryParse(userIdStr, out var id))
+        {
+            userId = id;
+            var user = _context.Users.FirstOrDefault(u => u.UserID == id);
+            if (user != null)
+            {
+                isAdmin = user.IsAdmin;
+            }
+        }
+    }
 }
 
 <!DOCTYPE html>
@@ -99,12 +117,16 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-user-circle"></i> Profile
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="userProfile.html"><i class="fas fa-user-circle me-2"></i>Profile</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="index.html"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="/User/UserProfile">Profile</a></li>
+                            <li><a class="dropdown-item" href="/Account/Logout">Logout</a></li>
+                            @if (isAdmin)
+                            {
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="/Admin/Dashboard">Switch to Admin</a></li>
+                            }
                         </ul>
                     </li>
                 </ul>

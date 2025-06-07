@@ -1,7 +1,25 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@using BookMart.Data
+@inject ApplicationDbContext _context
+
 @{
+    int? userId = null;
+    bool isAdmin = false;
+    if (User.Identity.IsAuthenticated)
+    {
+        var userIdStr = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+        if (int.TryParse(userIdStr, out var id))
+        {
+            userId = id;
+            var user = _context.Users.FirstOrDefault(u => u.UserID == id);
+            if (user != null)
+            {
+                isAdmin = user.IsAdmin;
+            }
+        }
+    }
 }
 
 <!DOCTYPE html>
@@ -124,6 +142,24 @@
                 margin-bottom: 0.5rem;
             }
         }
+        /* Custom black scrollbar for all browsers */
+        html::-webkit-scrollbar, body::-webkit-scrollbar {
+            width: 12px;
+            background: #111;
+        }
+        html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+            background: #222;
+            border-radius: 8px;
+            border: 2px solid #111;
+        }
+        html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover {
+            background: #000;
+        }
+        /* Firefox */
+        html, body {
+            scrollbar-width: thin;
+            scrollbar-color: #222 #111;
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -221,6 +257,15 @@
                                     </button>
                                 </form>
                             </li>
+                            @if (isAdmin)
+                            {
+                                <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2" href="/Admin/Dashboard">
+                                        <i class="fas fa-sign-out-alt"></i> Switch to Admin
+                                    </a>
+                                </li>
+                            }
                         </ul>
                     </li>
                 </ul>

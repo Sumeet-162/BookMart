@@ -11,8 +11,8 @@
     <!-- Order Stats -->
     <div class="row g-3 mb-3">
         <div class="col-6 col-md-4 col-xl-2">
-            <div class="card d-flex flex-row align-items-center">
-                <div class="sidebar-user-avatar me-3"><i class="fas fa-shopping-cart"></i></div>
+            <div class="card d-flex flex-row align-items-center justify-content-center p-3 shadow-sm border-0 h-100">
+                <div class="sidebar-user-avatar me-3 d-flex align-items-center justify-content-center" style="font-size: 2rem;"><i class="fas fa-shopping-cart"></i></div>
                 <div>
                     <div class="text-muted small mb-1">Total Orders</div>
                     <div class="fw-bold fs-5">@Model.Stats.TotalOrders.ToString("N0")</div>
@@ -20,8 +20,8 @@
             </div>
         </div>
         <div class="col-6 col-md-4 col-xl-2">
-            <div class="card d-flex flex-row align-items-center">
-                <div class="sidebar-user-avatar me-3"><i class="fas fa-clock"></i></div>
+            <div class="card d-flex flex-row align-items-center justify-content-center p-3 shadow-sm border-0 h-100">
+                <div class="sidebar-user-avatar me-3 d-flex align-items-center justify-content-center" style="font-size: 2rem;"><i class="fas fa-clock"></i></div>
                 <div>
                     <div class="text-muted small mb-1">Pending</div>
                     <div class="fw-bold fs-5">@Model.Stats.PendingOrders.ToString("N0")</div>
@@ -29,8 +29,8 @@
             </div>
         </div>
         <div class="col-6 col-md-4 col-xl-2">
-            <div class="card d-flex flex-row align-items-center">
-                <div class="sidebar-user-avatar me-3"><i class="fas fa-cog"></i></div>
+            <div class="card d-flex flex-row align-items-center justify-content-center p-3 shadow-sm border-0 h-100">
+                <div class="sidebar-user-avatar me-3 d-flex align-items-center justify-content-center" style="font-size: 2rem;"><i class="fas fa-cog"></i></div>
                 <div>
                     <div class="text-muted small mb-1">Processing</div>
                     <div class="fw-bold fs-5">@Model.Stats.ProcessingOrders.ToString("N0")</div>
@@ -38,8 +38,8 @@
             </div>
         </div>
         <div class="col-6 col-md-4 col-xl-2">
-            <div class="card d-flex flex-row align-items-center">
-                <div class="sidebar-user-avatar me-3"><i class="fas fa-shipping-fast"></i></div>
+            <div class="card d-flex flex-row align-items-center justify-content-center p-3 shadow-sm border-0 h-100">
+                <div class="sidebar-user-avatar me-3 d-flex align-items-center justify-content-center" style="font-size: 2rem;"><i class="fas fa-shipping-fast"></i></div>
                 <div>
                     <div class="text-muted small mb-1">Shipped</div>
                     <div class="fw-bold fs-5">@Model.Stats.ShippedOrders.ToString("N0")</div>
@@ -47,8 +47,8 @@
             </div>
         </div>
         <div class="col-6 col-md-4 col-xl-2">
-            <div class="card d-flex flex-row align-items-center">
-                <div class="sidebar-user-avatar me-3"><i class="fas fa-check-circle"></i></div>
+            <div class="card d-flex flex-row align-items-center justify-content-center p-3 shadow-sm border-0 h-100">
+                <div class="sidebar-user-avatar me-3 d-flex align-items-center justify-content-center" style="font-size: 2rem;"><i class="fas fa-check-circle"></i></div>
                 <div>
                     <div class="text-muted small mb-1">Delivered</div>
                     <div class="fw-bold fs-5">@Model.Stats.DeliveredOrders.ToString("N0")</div>
@@ -56,8 +56,8 @@
             </div>
         </div>
         <div class="col-6 col-md-4 col-xl-2">
-            <div class="card d-flex flex-row align-items-center">
-                <div class="sidebar-user-avatar me-3"><i class="fas fa-times-circle"></i></div>
+            <div class="card d-flex flex-row align-items-center justify-content-center p-3 shadow-sm border-0 h-100">
+                <div class="sidebar-user-avatar me-3 d-flex align-items-center justify-content-center" style="font-size: 2rem;"><i class="fas fa-times-circle"></i></div>
                 <div>
                     <div class="text-muted small mb-1">Cancelled</div>
                     <div class="fw-bold fs-5">@Model.Stats.CancelledOrders.ToString("N0")</div>
@@ -69,39 +69,57 @@
     <!-- Orders Table Section -->
     <div class="card">
         <div class="card-header">
-            <div class="row g-3 align-items-center">
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <form id="searchForm" method="get" class="d-flex">
+            <form id="searchForm" method="get">
+                <div class="row g-3 align-items-center">
+                    <div class="col-12 col-sm-6 col-lg-4">
                         <input type="text" name="searchQuery" class="form-control" placeholder="Search orders..."
                                value="@Model.Filter.SearchQuery">
-                        <button type="submit" class="btn btn-outline ms-2">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-8">
-                    <div class="d-flex flex-wrap gap-2 justify-content-sm-end">
-                        <select id="statusFilter" name="statusFilter" class="form-select w-auto" 
-                                asp-items="@(new SelectList(new[]
-                                {
-                                    new { Value = "", Text = "All Status" },
-                                    new { Value = "Pending", Text = "Pending" },
-                                    new { Value = "Processing", Text = "Processing" },
-                                    new { Value = "Shipped", Text = "Shipped" },
-                                    new { Value = "Delivered", Text = "Delivered" },
-                                    new { Value = "Cancelled", Text = "Cancelled" }
-                                }, "Value", "Text", Model.Filter.StatusFilter))"
-                                onchange="document.getElementById('searchForm').submit()">
-                        </select>
-                        <input type="date" name="startDate" class="form-control w-auto" 
-                               value="@(Model.Filter.StartDate?.ToString("yyyy-MM-dd"))"
-                               onchange="document.getElementById('searchForm').submit()">
-                        <input type="date" name="endDate" class="form-control w-auto" 
-                               value="@(Model.Filter.EndDate?.ToString("yyyy-MM-dd"))"
-                               onchange="document.getElementById('searchForm').submit()">
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-8">
+                        <div class="d-flex flex-wrap gap-2 justify-content-sm-end">
+                            <select id="statusFilter" name="statusFilter" class="form-select w-auto">
+                                @if (string.IsNullOrEmpty(Model.Filter.StatusFilter)) {
+                                    <option value="" selected>All Status</option>
+                                } else {
+                                    <option value="">All Status</option>
+                                }
+                                @if (Model.Filter.StatusFilter == "Pending") {
+                                    <option value="Pending" selected>Pending</option>
+                                } else {
+                                    <option value="Pending">Pending</option>
+                                }
+                                @if (Model.Filter.StatusFilter == "Processing") {
+                                    <option value="Processing" selected>Processing</option>
+                                } else {
+                                    <option value="Processing">Processing</option>
+                                }
+                                @if (Model.Filter.StatusFilter == "Shipped") {
+                                    <option value="Shipped" selected>Shipped</option>
+                                } else {
+                                    <option value="Shipped">Shipped</option>
+                                }
+                                @if (Model.Filter.StatusFilter == "Delivered") {
+                                    <option value="Delivered" selected>Delivered</option>
+                                } else {
+                                    <option value="Delivered">Delivered</option>
+                                }
+                                @if (Model.Filter.StatusFilter == "Cancelled") {
+                                    <option value="Cancelled" selected>Cancelled</option>
+                                } else {
+                                    <option value="Cancelled">Cancelled</option>
+                                }
+                            </select>
+                            <input type="date" name="startDate" class="form-control w-auto"
+                                   value="@(Model.Filter.StartDate?.ToString("yyyy-MM-dd"))">
+                            <input type="date" name="endDate" class="form-control w-auto"
+                                   value="@(Model.Filter.EndDate?.ToString("yyyy-MM-dd"))">
+                            <button type="submit" class="btn btn-outline ms-2">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
         <div class="table-responsive">
             <table class="table table-hover align-middle mb-0">
@@ -167,7 +185,7 @@
                                 <button type="button" class="btn btn-outline btn-sm view-details-btn"
                                         data-bs-toggle="modal" data-bs-target="#orderDetailsModal"
                                         data-order-id="@order.OrderID">
-                                    <i class="fas fa-eye"></i>
+                                    <i class="fas fa-file-alt"></i>
                                 </button>
                             </td>
                         </tr>

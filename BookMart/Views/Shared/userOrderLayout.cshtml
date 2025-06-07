@@ -1,4 +1,25 @@
-﻿<!DOCTYPE html>
+﻿@using BookMart.Data
+@inject ApplicationDbContext _context
+
+@{
+    int? userId = null;
+    bool isAdmin = false;
+    if (User.Identity.IsAuthenticated)
+    {
+        var userIdStr = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+        if (int.TryParse(userIdStr, out var id))
+        {
+            userId = id;
+            var user = _context.Users.FirstOrDefault(u => u.UserID == id);
+            if (user != null)
+            {
+                isAdmin = user.IsAdmin;
+            }
+        }
+    }
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -136,23 +157,16 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-user-circle"></i> Profile
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <a href="@Url.Action("UserProfile", "User")" class="dropdown-item">
-                                    <i class="fas fa-user-circle me-2"></i>Profile
-                                </a>
-                            </li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                                    @Html.AntiForgeryToken()
-                                    <button type="submit" class="dropdown-item">
-                                        <i class="fas fa-sign-out-alt me-2"></i>Logout
-                                    </button>
-                                </form>
-                            </li>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="/User/UserProfile">Profile</a></li>
+                            <li><a class="dropdown-item" href="/Account/Logout">Logout</a></li>
+                            @if (isAdmin)
+                            {
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="/Admin/Dashboard">Switch to Admin</a></li>
+                            }
                         </ul>
                     </li>
                 </ul>

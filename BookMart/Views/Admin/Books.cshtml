@@ -7,16 +7,16 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            <div class="d-flex justify-content-between align-items-center">
-                <span>Book List</span>
-                <div class="d-flex gap-2">
-                    <form asp-controller="Admin" asp-action="Books" method="get" class="d-flex">
+            <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+                <span class="flex-shrink-0">Book List</span>
+                <div class="d-flex flex-column flex-md-row align-items-center gap-2 w-100 justify-content-center">
+                    <form asp-controller="Admin" asp-action="Books" method="get" class="d-flex w-100 justify-content-center" style="max-width: 400px;">
                         <input type="text" class="form-control" name="searchQuery" value="@Model.SearchQuery" placeholder="Search books...">
-                        <button type="submit" class="btn btn-outline ms-2">
+                        <button type="submit" class="btn btn-dark ms-2">
                             <i class="fas fa-search"></i>
                         </button>
                     </form>
-                    <a asp-controller="Admin" asp-action="AddBook" class="btn btn-outline">
+                    <a asp-controller="Admin" asp-action="AddBook" class="btn btn-outline-dark border-2 mt-2 mt-md-0 mx-auto" style="min-width: 160px; border-width: 2px;">
                         <i class="fas fa-plus me-2"></i>Add Book
                     </a>
                 </div>
@@ -73,9 +73,9 @@
                                         <a asp-controller="Admin" asp-action="EditBook" asp-route-id="@book.BookID" class="btn btn-outline btn-sm">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <form asp-controller="Admin" asp-action="DeleteBook" asp-route-id="@book.BookID" method="post" onsubmit="return confirm('Are you sure you want to delete this book?');" class="d-inline">
+                                        <form asp-controller="Admin" asp-action="DeleteBook" asp-route-id="@book.BookID" method="post" class="d-inline">
                                             @Html.AntiForgeryToken()
-                                            <button type="submit" class="btn btn-outline btn-sm">
+                                            <button type="button" class="btn btn-outline btn-sm delete-book-btn" data-book-title="@book.Title">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
@@ -97,19 +97,31 @@
         </div>
 
         <div class="card-footer">
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
                 <div class="text-muted small">
-                    Showing @(Model.Books.Any() ? 1 : 0)-@Model.Books.Count of @(Model.Books.Count) books
+                    @if (Model.TotalBooks > 0)
+                    {
+                        var start = (Model.CurrentPage - 1) * 15 + 1;
+                        var end = Math.Min(Model.CurrentPage * 15, Model.TotalBooks);
+                        <span>Showing @start-@end of @Model.TotalBooks books</span>
+                    }
+                    else
+                    {
+                        <span>No books found.</span>
+                    }
                 </div>
-                <ul class="pagination mb-0">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
+                <ul class="pagination pagination-black mb-0">
+                    <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                        <a class="page-link" href="@Url.Action("Books", "Admin", new { page = Model.CurrentPage - 1, searchQuery = Model.SearchQuery })" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
                     </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("Books", "Admin", new { page = i, searchQuery = Model.SearchQuery })">@i</a>
+                        </li>
+                    }
+                    <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+                        <a class="page-link" href="@Url.Action("Books", "Admin", new { page = Model.CurrentPage + 1, searchQuery = Model.SearchQuery })"><i class="fas fa-chevron-right"></i></a>
                     </li>
                 </ul>
             </div>
@@ -117,7 +129,68 @@
     </div>
 </div>
 
+<!-- Add modal markup at the end of the file -->
+<div class="modal fade" id="deleteBookModal" tabindex="-1" aria-labelledby="deleteBookModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteBookModalLabel">Delete Book</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <span id="deleteBookMessage"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBookBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  let bookFormToDelete = null;
+  document.querySelectorAll('.delete-book-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const bookTitle = this.getAttribute('data-book-title');
+      document.getElementById('deleteBookMessage').textContent = `Are you sure you want to delete the book '${bookTitle}'? This action cannot be undone.`;
+      bookFormToDelete = this.closest('form');
+      var modal = new bootstrap.Modal(document.getElementById('deleteBookModal'));
+      modal.show();
+    });
+  });
+  document.getElementById('confirmDeleteBookBtn').addEventListener('click', function() {
+    if (bookFormToDelete) {
+      bookFormToDelete.submit();
+    }
+  });
+</script>
 
     <script>
         // You can add page-specific scripts here if needed
     </script>
+<style>
+.pagination-black .page-link {
+    color: #111 !important;
+    background-color: #fff !important;
+    border: 1px solid #111 !important;
+    transition: background 0.2s, color 0.2s;
+}
+.pagination-black .page-link:hover,
+.pagination-black .page-link:focus {
+    color: #fff !important;
+    background-color: #111 !important;
+    border-color: #111 !important;
+}
+.pagination-black .page-item.active .page-link {
+    color: #fff !important;
+    background-color: #111 !important;
+    border-color: #111 !important;
+}
+.pagination-black .page-item.disabled .page-link {
+    color: #aaa !important;
+    background-color: #fff !important;
+    border-color: #eee !important;
+    pointer-events: none;
+}
+</style>

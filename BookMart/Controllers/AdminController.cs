@@ -221,13 +221,12 @@ namespace BookMart.Controllers
             return View();
         }
 
-
-
         // GET: Admin/Stock
-        public async Task<IActionResult> Stock()
+        public async Task<IActionResult> Stock(int page = 1)
         {
-            var booksWithStock = await _context.Books
-                .Include(b => b.Genre) // Include Genre to display GenreName
+            int pageSize = 15;
+            var booksQuery = _context.Books
+                .Include(b => b.Genre)
                 .OrderBy(b => b.Title)
                 .Select(b => new BookStockViewModel
                 {
@@ -238,11 +237,19 @@ namespace BookMart.Controllers
                     StockQuantity = b.StockQuantity,
                     MinStockLevel = b.MinStockLevel,
                     Price = b.Price,
-                    CoverImageURL = b.CoverImageURL ?? "/images/placeholder.png" // Provide a default image
-                })
+                    CoverImageURL = b.CoverImageURL ?? "/images/placeholder.png"
+                });
+
+            int totalBooks = await booksQuery.CountAsync();
+            int totalPages = (int)Math.Ceiling(totalBooks / (double)pageSize);
+            page = Math.Max(1, Math.Min(page, totalPages == 0 ? 1 : totalPages));
+
+            var pagedBooks = await booksQuery
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
 
-            foreach (var book in booksWithStock)
+            foreach (var book in pagedBooks)
             {
                 if (book.StockQuantity <= 0)
                 {
@@ -262,7 +269,14 @@ namespace BookMart.Controllers
             }
 
             ViewData["Title"] = "Stock Management";
-            return View(booksWithStock);
+            var viewModel = new StockPagedViewModel
+            {
+                Books = pagedBooks,
+                CurrentPage = page,
+                TotalPages = totalPages,
+                TotalBooks = totalBooks
+            };
+            return View(viewModel);
         }
 
         // GET: Admin/UpdateStock/5
@@ -418,24 +432,38 @@ namespace BookMart.Controllers
         //--- Book Management Actions ---
 
         // GET: /Admin/Books
-        public async Task<IActionResult> Books(string? searchQuery)
+        public async Task<IActionResult> Books(string? searchQuery, int page = 1)
         {
             ViewData["Title"] = "Manage Books";
+            int pageSize = 15;
             IQueryable<Book> books = _context.Books.Include(b => b.Genre);
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
                 books = books.Where(b =>
-                    b.Title.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
-                    b.Author.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
-                    (b.ISBN != null && b.ISBN.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)) ||
-                    (b.Genre != null && b.Genre.Name.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)));
+                    EF.Functions.Like(b.Title, $"%{searchQuery}%") ||
+                    EF.Functions.Like(b.Author, $"%{searchQuery}%") ||
+                    (b.ISBN != null && EF.Functions.Like(b.ISBN, $"%{searchQuery}%")) ||
+                    (b.Genre != null && EF.Functions.Like(b.Genre.Name, $"%{searchQuery}%"))
+                );
             }
+
+            int totalBooks = await books.CountAsync();
+            int totalPages = (int)Math.Ceiling(totalBooks / (double)pageSize);
+            page = Math.Max(1, Math.Min(page, totalPages == 0 ? 1 : totalPages));
+
+            var pagedBooks = await books.OrderBy(b => b.Title)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
 
             var viewModel = new BookViewModel
             {
-                Books = await books.OrderBy(b => b.Title).ToListAsync(),
-                SearchQuery = searchQuery
+                Books = pagedBooks,
+                SearchQuery = searchQuery,
+                TotalBooks = totalBooks,
+                CurrentPage = page,
+                TotalPages = totalPages
             };
 
             return View(viewModel);

@@ -1,3 +1,24 @@
+@using BookMart.Data
+@inject ApplicationDbContext _context
+
+@{
+    int? userId = null;
+    bool isAdmin = false;
+    if (User.Identity.IsAuthenticated)
+    {
+        var userIdStr = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+        if (int.TryParse(userIdStr, out var id))
+        {
+            userId = id;
+            var user = _context.Users.FirstOrDefault(u => u.UserID == id);
+            if (user != null)
+            {
+                isAdmin = user.IsAdmin;
+            }
+        }
+    }
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,6 +169,25 @@
                 padding: 1rem 0;
             }
         }
+
+        /* Custom black scrollbar for all browsers */
+        html::-webkit-scrollbar, body::-webkit-scrollbar {
+            width: 12px;
+            background: #111;
+        }
+        html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+            background: #222;
+            border-radius: 8px;
+            border: 2px solid #111;
+        }
+        html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover {
+            background: #000;
+        }
+        /* Firefox */
+        html, body {
+            scrollbar-width: thin;
+            scrollbar-color: #222 #111;
+        }
     </style>
 </head>
 <body>
@@ -169,6 +209,27 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav">
+                        @* DEBUG: List all claims for the current user *@
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="claimsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Claims Debug
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="claimsDropdown">
+                                    @foreach (var claim in User.Claims)
+                                    {
+                                        <li><span class="dropdown-item">@claim.Type: @claim.Value</span></li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (isAdmin)
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-primary ms-2" href="/Admin/Dashboard" style="border-radius:8px;">Admin</a>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Login" ? "active" : "")" asp-controller="Account" asp-action="Login">Login</a>
                         </li>

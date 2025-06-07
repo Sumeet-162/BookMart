@@ -3,7 +3,7 @@
 *@
 @{
 }
-@model IEnumerable<BookMart.Models.ViewModels.BookStockViewModel>
+@model BookMart.Models.ViewModels.StockPagedViewModel
 
 @{
     ViewData["Title"] = "Stock Management";
@@ -39,7 +39,7 @@
                         </div>
                         <div>
                             <div class="small text-muted mb-1">Total Book Types</div>
-                            <div class="fw-bold fs-5">@Model.Count()</div>
+                            <div class="fw-bold fs-5">@Model.TotalBooks</div>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div>
                             <div class="small text-muted mb-1">Low Stock</div>
-                            <div class="fw-bold fs-5">@Model.Count(b => b.StockQuantity > 0 && b.StockQuantity < b.MinStockLevel)</div>
+                            <div class="fw-bold fs-5">@Model.Books.Count(b => b.StockQuantity > 0 && b.StockQuantity < b.MinStockLevel)</div>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                         </div>
                         <div>
                             <div class="small text-muted mb-1">Out of Stock</div>
-                            <div class="fw-bold fs-5">@Model.Count(b => b.StockQuantity <= 0)</div>
+                            <div class="fw-bold fs-5">@Model.Books.Count(b => b.StockQuantity <= 0)</div>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                         </div>
                         <div>
                             <div class="small text-muted mb-1">In Stock</div>
-                            <div class="fw-bold fs-5">@Model.Count(b => b.StockQuantity >= b.MinStockLevel)</div>
+                            <div class="fw-bold fs-5">@Model.Books.Count(b => b.StockQuantity >= b.MinStockLevel)</div>
                         </div>
                     </div>
                 </div>
@@ -103,9 +103,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (Model.Any())
+                            @if (Model.Books.Any())
                             {
-                                @foreach (var item in Model)
+                                @foreach (var item in Model.Books)
                                 {
                                     <tr>
                                         <td>
@@ -156,6 +156,26 @@
     </div>
 </main>
 
+<!-- Pagination Controls -->
+@if (Model.TotalPages > 1)
+{
+    <nav class="d-flex justify-content-center mt-4" aria-label="Stock pagination">
+        <ul class="pagination pagination-black">
+            <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                <a class="page-link" asp-action="Stock" asp-route-page="@(Model.CurrentPage - 1)">Previous</a>
+            </li>
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                    <a class="page-link" asp-action="Stock" asp-route-page="@i">@i</a>
+                </li>
+            }
+            <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+                <a class="page-link" asp-action="Stock" asp-route-page="@(Model.CurrentPage + 1)">Next</a>
+            </li>
+        </ul>
+    </nav>
+}
 
     <script>
         // Any specific JS for this page, if needed.
@@ -197,5 +217,29 @@
         justify-content: center;
         border-radius: 50%;
         font-size: 1.25rem;
+    }
+
+    .pagination-black .page-link {
+        color: #111 !important;
+        background-color: #fff !important;
+        border: 1px solid #111 !important;
+        transition: background 0.2s, color 0.2s;
+    }
+    .pagination-black .page-link:hover,
+    .pagination-black .page-link:focus {
+        color: #fff !important;
+        background-color: #111 !important;
+        border-color: #111 !important;
+    }
+    .pagination-black .page-item.active .page-link {
+        color: #fff !important;
+        background-color: #111 !important;
+        border-color: #111 !important;
+    }
+    .pagination-black .page-item.disabled .page-link {
+        color: #aaa !important;
+        background-color: #fff !important;
+        border-color: #eee !important;
+        pointer-events: none;
     }
 </style>
