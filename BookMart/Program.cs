@@ -64,6 +64,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Account}/{action=login}/{id?}"); // Your existing default route
+    pattern: "{controller=User}/{action=UserHome}/{id?}"); // Default route is now user home
 
 app.Run();

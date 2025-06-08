@@ -7,6 +7,7 @@ namespace BookMart.Models
     {
         [Required(ErrorMessage = "Username is required.")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Username must be between 3 and 50 characters.")]
+        [RegularExpression("^[a-zA-Z0-9_]+$", ErrorMessage = "Username can only contain letters, numbers, and underscores.")]
         [Display(Name = "Username")]
         public string Username { get; set; } = string.Empty; // Initialize to prevent null warnings
 
@@ -30,17 +31,18 @@ namespace BookMart.Models
         // --- NEW: Make FirstName, LastName, Phone mandatory ---
         [Required(ErrorMessage = "First Name is required.")]
         [StringLength(50, ErrorMessage = "First Name cannot exceed 50 characters.")]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "First Name can only contain letters.")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Last Name is required.")]
         [StringLength(50, ErrorMessage = "Last Name cannot exceed 50 characters.")]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Last Name can only contain letters.")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Phone Number is required.")]
-        [Phone(ErrorMessage = "Invalid Phone Number format.")] // Optional: Adds phone number format validation
-        [StringLength(15, ErrorMessage = "Phone Number cannot exceed 15 characters.")]
+        [RegularExpression("^[0-9]{10}$", ErrorMessage = "Phone Number must be exactly 10 digits.")]
         [Display(Name = "Phone Number")]
         public string Phone { get; set; } = string.Empty;
     }

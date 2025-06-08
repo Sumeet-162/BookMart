@@ -296,7 +296,7 @@ a:hover {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 30px;
     padding: 5px;
-    margin-top: 0;
+    margin-top: 10px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
 }

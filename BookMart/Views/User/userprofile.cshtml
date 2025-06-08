@@ -11,6 +11,28 @@
 
 <link href="~/css/user.css" rel="stylesheet" />
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["InfoMessage"] != null && !User.Identity.IsAuthenticated)
+{
+    <div class="alert alert-info alert-dismissible fade show m-3" role="alert">
+        @TempData["InfoMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
 <div class="container mt-5 pt-5">
     <div class="row g-4">
         <!-- Sidebar -->
@@ -266,7 +288,6 @@
     </div>
 </div>
 
-
 @section Scripts {
     @* jQuery and Bootstrap JS are expected to be loaded by userCommonLayout.cshtml.
        If they are NOT, uncomment the lines below and ensure they are present here. *@
@@ -415,6 +436,15 @@
                 });
             });
 
+            // Auto-dismiss alerts after 3 seconds
+            setTimeout(function() {
+                document.querySelectorAll('.alert').forEach(function(alert) {
+                    if (alert.classList.contains('show')) {
+                        var bsAlert = new bootstrap.Alert(alert);
+                        bsAlert.close();
+                    }
+                });
+            }, 3000);
 
             // Handle tab selection if user navigates via URL hash (e.g., #settings)
             const hash = window.location.hash;
@@ -428,54 +458,69 @@
         });
     </script>
     <style>
-        /* Styles from your original userprofile.cshtml, ensures a clean look */
+        .card, .info-card {
+            border-radius: 1.25rem;
+            box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+            transition: box-shadow 0.3s cubic-bezier(.4,0,.2,1), transform 0.2s cubic-bezier(.4,0,.2,1);
+            background: #fff;
+            border: 1px solid #e5e5e5;
+        }
+        .card:hover, .info-card:hover {
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.16);
+            transform: translateY(-2px) scale(1.02);
+        }
+        .btn, .btn-primary, .btn-outline-primary {
+            border-radius: 1.5rem !important;
+            font-weight: 500;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+        }
+        .btn-primary {
+            background: #111;
+            color: #fff;
+            border: none;
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background: #222;
+            color: #fff;
+        }
+        .btn-outline-primary {
+            color: #111;
+            border: 2px solid #111;
+            background: #fff;
+        }
+        .btn-outline-primary:hover, .btn-outline-primary:focus {
+            background: #111;
+            color: #fff;
+        }
+        .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+            background-color: #111;
+            color: #fff;
+        }
+        .nav-pills .nav-link {
+            color: #111;
+            background: #f8f9fa;
+            border-radius: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            transition: background 0.2s, color 0.2s;
+        }
         .avatar-circle {
-            width: 80px;
-            height: 80px;
-            background-color: #007bff; /* Using Bootstrap primary blue */
+            width: 64px;
+            height: 64px;
+            background: #f2f2f2;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #111;
             margin: 0 auto;
         }
-
-        .avatar-initials {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 600;
+        .dropdown-menu {
+            border-radius: 1rem;
+            box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
         }
-
-        .text-dark {
-            color: #343a40 !important; /* Standard Bootstrap dark text */
-        }
-
-        .text-secondary {
-            color: #6c757d !important; /* Standard Bootstrap secondary text */
-        }
-
-        .info-card {
-            background-color: #f8f9fa; /* Light background for info cards */
-            border: 1px solid #e2e6ea; /* Light border */
-        }
-
-        /* Nav-pills styling for sidebar */
-        .nav-pills .nav-link {
-            color: #495057;
-            margin-bottom: 0.5rem;
-            border-radius: 0.5rem;
-            padding: 0.75rem 1rem;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-
-            .nav-pills .nav-link.active {
-                background-color: #007bff; /* Active tab color */
-                color: white;
-            }
-
-            .nav-pills .nav-link:hover {
-                background-color: #e9ecef; /* Hover background */
-                color: #0056b3; /* Darker blue on hover */
-            }
     </style>
-                        }
+}

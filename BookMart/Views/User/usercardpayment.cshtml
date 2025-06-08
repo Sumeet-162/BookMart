@@ -168,16 +168,20 @@
                     <div class="order-items mb-4">
                         @if (Model.CartItems != null && Model.CartItems.Any())
                         {
-                            @foreach (var item in Model.CartItems)
+                            var idx = 1;
+                            foreach (var item in Model.CartItems)
                             {
+                                var formattedPrice = (item.Quantity * item.Price).ToString("F2", CultureInfo.InvariantCulture);
                                 <div class="d-flex align-items-center mb-3">
+                                    <span class="me-2 text-muted">@idx.</span>
                                     <img src="@item.Book?.CoverImageURL" alt="@item.Book?.Title" class="rounded" style="width: 50px; height: 70px; object-fit: cover;">
                                     <div class="ms-3">
                                         <h6 class="mb-0">@item.Book?.Title</h6>
                                         <small class="text-muted">Qty: @item.Quantity</small>
                                     </div>
-                                    <span class="ms-auto">₹@(item.Quantity * item.Price).ToString("F0", CultureInfo.InvariantCulture)</span>
+                                    <span class="ms-auto">₹@formattedPrice</span>
                                 </div>
+                                idx++;
                             }
                         }
                         else
@@ -190,11 +194,11 @@
                     <div class="border-top pt-3">
                         <div class="d-flex justify-content-between mb-2">
                             <span>Subtotal</span>
-                            <span>₹@Model.SubTotal.ToString("F0", CultureInfo.InvariantCulture)</span>
+                            <span>₹@Model.SubTotal.ToString("F2", CultureInfo.InvariantCulture)</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Shipping</span>
-                            <span class="text-success">₹@Model.ShippingCost.ToString("F0", CultureInfo.InvariantCulture)</span>
+                            <span class="text-success">₹@Model.ShippingCost.ToString("F2", CultureInfo.InvariantCulture)</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Tax</span>

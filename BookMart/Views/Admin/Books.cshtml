@@ -166,9 +166,20 @@
   });
 </script>
 
-    <script>
-        // You can add page-specific scripts here if needed
-    </script>
+<script>
+    // Auto-dismiss alerts after 3 seconds
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            document.querySelectorAll('.alert').forEach(function(alert) {
+                if (alert.classList.contains('show')) {
+                    var bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                }
+            });
+        }, 3000);
+    });
+</script>
+
 <style>
 .pagination-black .page-link {
     color: #111 !important;

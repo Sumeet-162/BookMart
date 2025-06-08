@@ -12,11 +12,11 @@
     <link href="~/css/user.css" rel="stylesheet" />
     <style>
         :root {
-            --primary-color: #4f46e5;
-            --primary-light: #818cf8;
-            --primary-dark: #3730a3;
-            --secondary-color: #6b7280;
-            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --primary-color: #111;
+            --primary-light: #444;
+            --primary-dark: #000;
+            --secondary-color: #666;
+            --bg-gradient: linear-gradient(135deg, #fff 0%, #f5f5f7 100%);
         }
 
         .libre-baskerville-regular {
@@ -91,7 +91,7 @@
         }
 
         .brand-section {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            background: linear-gradient(135deg, #111 0%, #444 100%);
             color: white;
             padding: 2rem;
             display: flex;
@@ -99,6 +99,8 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            align-items: center;
+            text-align: center;
         }
 
         .brand-section::before {
@@ -108,8 +110,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="80">📚</text></svg>') center/40% repeat;
-            opacity: 0.1;
+            background: url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80') center/cover no-repeat;
+            opacity: 0.18;
+            z-index: 0;
         }
 
         .brand-content {
@@ -121,11 +124,13 @@
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
+            letter-spacing: 1px;
         }
 
         .brand-text {
             font-size: 1.1rem;
-            opacity: 0.9;
+            opacity: 0.92;
+            font-style: italic;
         }
 
         .form-section {
@@ -138,7 +143,7 @@
         }
 
         .auth-title {
-            color: #111827;
+            color: #111;
             font-size: 1.75rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
@@ -150,43 +155,52 @@
         }
 
         .compact-form .form-label {
+            color: #222;
             font-weight: 500;
             font-size: 0.875rem;
             margin-bottom: 0.25rem;
-            color: #374151;
         }
 
         .compact-form .form-control {
             padding: 0.5rem 0.75rem;
             font-size: 0.875rem;
-            border: 1px solid #e5e7eb;
+            border: 1px solid #e5e5e5;
             border-radius: 8px;
             transition: all 0.2s ease;
+            background: #fff;
+            color: #111;
         }
 
         .compact-form .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            border-color: #111;
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
+        }
+
+        .compact-form .form-control.is-invalid {
+            border-color: #dc2626;
+            box-shadow: 0 0 0 2px rgba(220,38,38,0.08);
         }
 
         .compact-form .field-validation-error {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             color: #dc2626;
             margin-top: 0.25rem;
             display: block;
         }
 
         .btn-primary {
-            background-color: var(--primary-color);
+            background-color: #111;
+            color: #fff;
             border: none;
             padding: 0.625rem 1rem;
             font-weight: 500;
             border-radius: 8px;
-            transition: all 0.2s ease;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
         }
 
         .btn-primary:hover {
-            background-color: var(--primary-dark);
+            background-color: #222;
+            color: #fff;
             transform: translateY(-1px);
         }
 
@@ -195,12 +209,13 @@
         }
 
         .form-footer a {
-            color: var(--primary-color);
+            color: #111;
             text-decoration: none;
             font-weight: 500;
         }
 
         .form-footer a:hover {
+            color: #222;
             text-decoration: underline;
         }
 

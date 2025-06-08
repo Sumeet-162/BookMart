@@ -290,6 +290,42 @@
             text-align: center;
             line-height: 12px;
         }
+
+        .card, .order-card {
+            border-radius: 1.25rem;
+            box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+            transition: box-shadow 0.3s cubic-bezier(.4,0,.2,1), transform 0.2s cubic-bezier(.4,0,.2,1);
+            background: #fff;
+            border: 1px solid #e5e5e5;
+        }
+        .card:hover, .order-card:hover {
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.16);
+            transform: translateY(-2px) scale(1.02);
+        }
+        .btn, .btn-primary, .btn-outline-primary {
+            border-radius: 1.5rem !important;
+            font-weight: 500;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+        }
+        .btn-primary {
+            background: #111;
+            color: #fff;
+            border: none;
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background: #222;
+            color: #fff;
+        }
+        .btn-outline-primary {
+            color: #111;
+            border: 2px solid #111;
+            background: #fff;
+        }
+        .btn-outline-primary:hover, .btn-outline-primary:focus {
+            background: #111;
+            color: #fff;
+        }
     </style>
 
     <script>

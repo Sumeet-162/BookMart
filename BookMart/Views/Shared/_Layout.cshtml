@@ -209,33 +209,39 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav">
-                        @* DEBUG: List all claims for the current user *@
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="claimsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Claims Debug
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="claimsDropdown">
-                                    @foreach (var claim in User.Claims)
-                                    {
-                                        <li><span class="dropdown-item">@claim.Type: @claim.Value</span></li>
-                                    }
-                                </ul>
-                            </li>
-                        }
                         @if (isAdmin)
                         {
                             <li class="nav-item">
                                 <a class="btn btn-primary ms-2" href="/Admin/Dashboard" style="border-radius:8px;">Admin</a>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Login" ? "active" : "")" asp-controller="Account" asp-action="Login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Register" ? "active" : "")" asp-controller="Account" asp-action="Register">Register</a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user-circle me-1"></i> Profile
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                    <li><a class="dropdown-item" asp-controller="User" asp-action="UserProfile">My Profile</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="dropdown-item">Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

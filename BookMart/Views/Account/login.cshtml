@@ -58,6 +58,16 @@
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+            $('form').on('submit', function() {
+                window.showLoader();
+                setTimeout(function() {
+                    window.hideLoader();
+                }, 2000);
+            });
+        });
+    </script>
 }
 
