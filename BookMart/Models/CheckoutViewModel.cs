@@ -58,5 +58,8 @@ namespace BookMart.Models
         public string ShippingEmail { get; set; } = string.Empty;
 
         public bool SaveAddressForFuture { get; set; }
+
+        public string? CouponCode { get; set; }
+        public decimal CouponDiscount { get; set; }
     }
 }

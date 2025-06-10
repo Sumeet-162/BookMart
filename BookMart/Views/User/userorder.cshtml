@@ -59,9 +59,17 @@
                     <div class="order-card card border-0 shadow-sm mb-4">
                         <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center" 
                              data-bs-toggle="collapse" data-bs-target="#orderDetails_@order.OrderID">
-                            <div>
+                            <div class="d-flex align-items-center gap-3">
                                 <h6 class="mb-1">Order #@order.OrderID.ToString()</h6>
-                                <span class="text-muted">@order.OrderDate.ToString("MMM dd, yyyy")</span>
+                                @if (order.OrderStatus != "Cancelled" && order.OrderStatus != "Delivered" && order.OrderStatus != "Shipped")
+                                {
+                                    <button class="btn btn-primary btn-sm me-2" onclick="event.stopPropagation(); trackOrder(@order.OrderID)">
+                                        <i class="fas fa-truck me-1"></i>Track Order
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" onclick="event.stopPropagation(); showCancelModal(@order.OrderID)">
+                                        <i class="fas fa-times me-1"></i>Cancel Order
+                                    </button>
+                                }
                             </div>
                             <div class="text-end">
                                 @{
@@ -180,6 +188,46 @@
                     </a>
                 </div>
             }
+        </div>
+    </div>
+</div>
+
+<!-- Cancel Confirmation Modal -->
+<div class="modal fade" id="cancelOrderModal" tabindex="-1" aria-labelledby="cancelOrderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="cancelOrderModalLabel"><i class="fas fa-exclamation-triangle me-2"></i>Cancel Order</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="fas fa-times-circle fa-3x text-danger mb-3"></i>
+                <h5>Are you sure you want to cancel this order?</h5>
+                <p class="mb-0">If you proceed, the order amount will be refunded to your original payment method.</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">No, Keep Order</button>
+                <button type="button" class="btn btn-danger" id="confirmCancelBtn">Yes, Cancel Order</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Refund Message Modal -->
+<div class="modal fade" id="refundMessageModal" tabindex="-1" aria-labelledby="refundMessageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="refundMessageModalLabel"><i class="fas fa-undo-alt me-2"></i>Order Cancelled</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="fas fa-rupee-sign fa-3x text-success mb-3"></i>
+                <h5>Your order has been cancelled.</h5>
+                <p class="mb-0">The order amount will be refunded to your original payment method within 3-5 business days.</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">OK</button>
+            </div>
         </div>
     </div>
 </div>
@@ -362,5 +410,44 @@
                 window.location.href = newUrl;
             });
         });
+
+        function trackOrder(orderId) {
+            // No-op or implement tracking if needed
+        }
+
+        let cancelOrderId = null;
+        function showCancelModal(orderId) {
+            cancelOrderId = orderId;
+            const modal = new bootstrap.Modal(document.getElementById('cancelOrderModal'));
+            modal.show();
+        }
+        document.getElementById('confirmCancelBtn').onclick = function() {
+            if (!cancelOrderId) return;
+            const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+            fetch('/User/CancelOrder', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': token
+                },
+                body: JSON.stringify({ orderId: cancelOrderId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const refundModal = new bootstrap.Modal(document.getElementById('refundMessageModal'));
+                    refundModal.show();
+                } else {
+                    alert(data.message || 'Failed to cancel order');
+                }
+            })
+            .catch(error => {
+                console.error('Error cancelling order:', error);
+                alert('An error occurred while cancelling the order');
+            });
+            // Hide the cancel modal
+            const cancelModal = bootstrap.Modal.getInstance(document.getElementById('cancelOrderModal'));
+            cancelModal.hide();
+        };
     </script>
 }

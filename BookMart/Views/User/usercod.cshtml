@@ -108,6 +108,8 @@
                         <input type="hidden" asp-for="ShippingEmail" />
                         <input type="hidden" asp-for="SaveAddressForFuture" />
                         <input type="hidden" name="paymentMethod" value="COD" />
+                        <input type="hidden" asp-for="CouponCode" />
+                        <input type="hidden" asp-for="CouponDiscount" />
 
                         @* Hidden fields for CartItems *@
                         @for (int i = 0; i < Model.CartItems.Count; i++)
@@ -180,28 +182,35 @@
                     <div class="border-top pt-3">
                         @{
                             decimal codFee = 49M;
-                            decimal displayTotalWithCod = Model.TotalAmount + codFee;
+                            decimal displayTotalWithCod = Math.Ceiling(Model.SubTotal) + Math.Ceiling(Model.ShippingCost) + Math.Ceiling(Model.TaxAmount) + codFee - Math.Ceiling(Model.CouponDiscount);
                         }
                         <div class="d-flex justify-content-between mb-2">
                             <span>Subtotal</span>
-                            <span>₹@Model.SubTotal.ToString("N0")</span>
+                            <span>₹@Math.Ceiling(Model.SubTotal).ToString("N0")</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Shipping</span>
-                            <span class="text-success">₹@Model.ShippingCost.ToString("N0")</span>
+                            <span class="text-success">₹@Math.Ceiling(Model.ShippingCost).ToString("N0")</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>Tax</span>
-                            <span>₹@Model.TaxAmount.ToString("N2")</span>
+                            <span>₹@Math.Ceiling(Model.TaxAmount).ToString("N0")</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>COD Fee</span>
                             <span class="text-danger">₹@codFee.ToString("N0")</span>
                         </div>
+                        @if (!string.IsNullOrWhiteSpace(Model.CouponCode) && Model.CouponDiscount > 0)
+                        {
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Coupon Discount (COGNIZANT -10%)</span>
+                                <span class="text-success">-₹@Math.Ceiling(Model.CouponDiscount).ToString("N0")</span>
+                            </div>
+                        }
                         <hr>
                         <div class="d-flex justify-content-between">
                             <strong>Total</strong>
-                            <strong class="h4">₹@displayTotalWithCod.ToString("N2")</strong>
+                            <strong class="h4">₹@displayTotalWithCod.ToString("N0")</strong>
                         </div>
                     </div>
                 </div>

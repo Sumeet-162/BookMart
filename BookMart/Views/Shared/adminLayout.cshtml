@@ -14,83 +14,6 @@
     <link href="~/css/admin.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="~/css/site.css">
-    <style>
-        /* Custom black scrollbar for all browsers */
-        html::-webkit-scrollbar, body::-webkit-scrollbar {
-            width: 12px;
-            background: #111;
-        }
-        html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
-            background: #222;
-            border-radius: 8px;
-            border: 2px solid #111;
-        }
-        html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover {
-            background: #000;
-        }
-        /* Firefox */
-        html, body {
-            scrollbar-width: thin;
-            scrollbar-color: #222 #111;
-        }
-        .main-content {
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 1200px;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-        .boxes {
-            --size: 32px;
-            --duration: 800ms;
-            height: calc(var(--size) * 2);
-            width: calc(var(--size) * 3);
-            position: relative;
-            transform-style: preserve-3d;
-            transform-origin: 50% 50%;
-            margin-top: calc(var(--size) * 1.5 * -1);
-            transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px);
-        }
-        .boxes .box {
-            width: var(--size);
-            height: var(--size);
-            top: 0;
-            left: 0;
-            position: absolute;
-            transform-style: preserve-3d;
-        }
-        .boxes .box:nth-child(1) { transform: translate(100%, 0); animation: box1 var(--duration) linear infinite; }
-        .boxes .box:nth-child(2) { transform: translate(0, 100%); animation: box2 var(--duration) linear infinite; }
-        .boxes .box:nth-child(3) { transform: translate(100%, 100%); animation: box3 var(--duration) linear infinite; }
-        .boxes .box:nth-child(4) { transform: translate(200%, 0); animation: box4 var(--duration) linear infinite; }
-        .boxes .box > div {
-            --background: #fff;
-            --top: auto;
-            --right: auto;
-            --bottom: auto;
-            --left: auto;
-            --translateZ: calc(var(--size) / 2);
-            --rotateY: 0deg;
-            --rotateX: 0deg;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: var(--background);
-            top: var(--top);
-            right: var(--right);
-            bottom: var(--bottom);
-            left: var(--left);
-            transform: rotateY(var(--rotateY)) rotateX(var(--rotateX)) translateZ(var(--translateZ));
-        }
-        .boxes .box > div:nth-child(1) { --top: 0; --left: 0; }
-        .boxes .box > div:nth-child(2) { --background: #111; --right: 0; --rotateY: 90deg; }
-        .boxes .box > div:nth-child(3) { --background: #444; --rotateX: -90deg; }
-        .boxes .box > div:nth-child(4) { --background: #fff; --top: 0; --left: 0; --translateZ: calc(var(--size) * 3 * -1); }
-        @@keyframes box1 { 0%, 50% { transform: translate(100%, 0); } 100% { transform: translate(200%, 0); } }
-        @@keyframes box2 { 0% { transform: translate(0, 100%); } 50% { transform: translate(0, 0); } 100% { transform: translate(100%, 0); } }
-        @@keyframes box3 { 0%, 50% { transform: translate(100%, 100%); } 100% { transform: translate(0, 100%); } }
-        @@keyframes box4 { 0% { transform: translate(200%, 0); } 50% { transform: translate(200%, 100%); } 100% { transform: translate(100%, 100%); } }
-    </style>
 </head>
 <body>
     <div class="admin-container">
@@ -123,7 +46,6 @@
             <div class="box"><div></div><div></div><div></div><div></div></div>
             <div class="box"><div></div><div></div><div></div><div></div></div>
         </div>
-        <div style="color:#fff;text-align:center;margin-top:2.5rem;font-size:1.2rem;letter-spacing:1px;">Loading...</div>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

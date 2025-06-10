@@ -37,6 +37,8 @@
                     @* Form to submit shipping address and proceed to payment *@
                     <form asp-controller="User" asp-action="ProcessCheckout" method="post" id="checkoutForm">
                         @Html.AntiForgeryToken() @* Anti-forgery token for security *@
+                        <input type="hidden" name="CouponCode" id="hiddenCouponCode" value="" />
+                        <input type="hidden" name="CouponDiscount" id="hiddenCouponDiscount" value="0" />
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label asp-for="ShippingFirstName" class="form-label"></label>
@@ -145,25 +147,39 @@
                         }
                     </div>
 
+                    <!-- Coupon Code (only in order summary) -->
+                    <div class="mb-3">
+                        <label for="couponCode" class="form-label">Have a coupon?</label>
+                        <div class="input-group">
+                            <input type="text" id="couponCode" class="form-control" placeholder="Enter coupon code (e.g., COGNIZANT)">
+                            <button type="button" class="btn btn-outline-primary" onclick="applyCoupon()">Apply</button>
+                        </div>
+                        <div id="couponMessage" class="text-success small mt-1"></div>
+                    </div>
+
                     <hr>
 
                     <!-- Cost Breakdown (Dynamic) -->
                     <div class="d-flex justify-content-between mb-2">
                         <span>Subtotal</span>
-                        <span>₹@Model.SubTotal.ToString("N0")</span>
+                        <span id="subtotal">₹@Math.Ceiling(Model.SubTotal).ToString("N0")</span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span>Shipping</span>
-                        <span class="text-success">₹@Model.ShippingCost.ToString("N0")</span>
+                        <span class="text-success">₹@Math.Ceiling(Model.ShippingCost).ToString("N0")</span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span>Tax</span>
-                        <span>₹@Model.TaxAmount.ToString("N2")</span>
+                        <span id="taxAmount">₹@Math.Ceiling(Model.TaxAmount).ToString("N0")</span>
+                    </div>
+                    <div id="discountRow" class="d-flex justify-content-between mb-2" style="display:none;">
+                        <span>Coupon Discount (COGNIZANT -10%)</span>
+                        <span id="discountAmount" class="text-success">-₹0</span>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between">
                         <strong>Total</strong>
-                        <strong class="h4">₹@Model.TotalAmount.ToString("N2")</strong>
+                        <strong class="h4" id="totalAmount">₹@Math.Ceiling(Model.TotalAmount).ToString("N0")</strong>
                     </div>
                 </div>
             </div>
@@ -174,6 +190,34 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" /> @* Include client-side validation scripts *@
     <script>
-        // Any specific JavaScript for this page can go here.
+        let subtotal = @Math.Ceiling(Model.SubTotal);
+        let shipping = @Math.Ceiling(Model.ShippingCost);
+        let tax = @Math.Ceiling(Model.TaxAmount);
+        let originalTotal = subtotal + shipping + tax;
+        function applyCoupon() {
+            const code = document.getElementById('couponCode').value.trim().toUpperCase();
+            const discountRow = document.getElementById('discountRow');
+            const discountAmount = document.getElementById('discountAmount');
+            const totalAmount = document.getElementById('totalAmount');
+            const couponMessage = document.getElementById('couponMessage');
+            const hiddenCouponCode = document.getElementById('hiddenCouponCode');
+            const hiddenCouponDiscount = document.getElementById('hiddenCouponDiscount');
+            if (code === 'COGNIZANT') {
+                const discount = Math.round(subtotal * 0.10);
+                discountRow.style.display = '';
+                discountAmount.textContent = '-₹' + discount;
+                totalAmount.textContent = '₹' + (originalTotal - discount);
+                couponMessage.textContent = 'COGNIZANT coupon applied! 10% off your order.';
+                hiddenCouponCode.value = code;
+                hiddenCouponDiscount.value = discount;
+            } else {
+                discountRow.style.display = 'none';
+                discountAmount.textContent = '-₹0';
+                totalAmount.textContent = '₹' + originalTotal;
+                couponMessage.textContent = code ? 'Invalid coupon code.' : '';
+                hiddenCouponCode.value = '';
+                hiddenCouponDiscount.value = 0;
+            }
+        }
     </script>
 }

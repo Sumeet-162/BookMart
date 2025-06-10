@@ -232,7 +232,6 @@ namespace BookMart.Controllers
             var cart = await _context.Carts // Changed from _context.Carts to _context.Carts
                                      .Include(c => c.CartItems!)
                                          .ThenInclude(ci => ci.Book)
-                                             .ThenInclude(b => b.Genre)
                                      .FirstOrDefaultAsync(c => c.UserID == userId);
 
             if (cart == null || cart.CartItems == null)
@@ -460,7 +459,7 @@ namespace BookMart.Controllers
             int userId = await GetOrCreateUserId();
 
             // Re-fetch cart items to ensure current data and prevent client-side tampering
-            var cart = await _context.Carts // Changed from _context.Carts to _context.Carts
+            var cart = await _context.Carts
                                      .Include(c => c.CartItems!)
                                          .ThenInclude(ci => ci.Book)
                                      .FirstOrDefaultAsync(c => c.UserID == userId);
@@ -475,8 +474,17 @@ namespace BookMart.Controllers
             model.SubTotal = cart.CartItems.Sum(item => item.Quantity * item.Price);
             model.ShippingCost = 0M; // Assuming free shipping
             model.TaxAmount = model.SubTotal * 0.05M;
-            model.TotalAmount = model.SubTotal + model.ShippingCost + model.TaxAmount;
-            model.CartItems = cart.CartItems.ToList(); // Ensure cart items are part of the model to pass
+            model.CartItems = cart.CartItems.ToList();
+
+            // Coupon logic
+            string? couponCode = null;
+            decimal couponDiscount = 0;
+            if (!string.IsNullOrWhiteSpace(model.CouponCode) && model.CouponCode.ToUpper() == "COGNIZANT")
+            {
+                couponCode = model.CouponCode.ToUpper();
+                couponDiscount = Math.Round(model.SubTotal * 0.10M, 0, MidpointRounding.AwayFromZero);
+            }
+            model.TotalAmount = model.SubTotal + model.ShippingCost + model.TaxAmount - couponDiscount;
 
             // Validate the incoming model (address fields)
             if (!ModelState.IsValid)
@@ -845,6 +853,16 @@ namespace BookMart.Controllers
                 totalAmount = subtotal + shippingCost + taxAmount; // Re-calculate total
             }
 
+            // Coupon logic
+            string? couponCode = null;
+            decimal couponDiscount = 0;
+            if (!string.IsNullOrWhiteSpace(model.CouponCode) && model.CouponCode.ToUpper() == "COGNIZANT")
+            {
+                couponCode = model.CouponCode.ToUpper();
+                couponDiscount = Math.Round(subtotal * 0.10M, 0, MidpointRounding.AwayFromZero);
+            }
+            totalAmount = subtotal + shippingCost + taxAmount - couponDiscount;
+
             // Create the new Order entity now
             var order = new Order
             {
@@ -857,8 +875,6 @@ namespace BookMart.Controllers
                 PaymentMethod = paymentMethod, // Selected payment method
                 PaymentStatus = (paymentMethod == "COD") ? "Pending" : "Paid", // COD is pending, others assume paid
                 OrderStatus = "Pending", // Initial order status for all new orders
-
-                // Map shipping address details from the received CheckoutViewModel
                 ShippingFirstName = model.ShippingFirstName,
                 ShippingLastName = model.ShippingLastName,
                 ShippingAddressLine1 = model.ShippingAddressLine1,
@@ -868,6 +884,8 @@ namespace BookMart.Controllers
                 ShippingPinCode = model.ShippingPinCode,
                 ShippingPhone = model.ShippingPhone,
                 ShippingEmail = model.ShippingEmail,
+                CouponCode = couponCode,
+                CouponDiscount = couponDiscount
             };
 
             // Add OrderItem entities from the current cart to the new Order
@@ -998,6 +1016,59 @@ namespace BookMart.Controllers
                 return Json(new { success = false, message = "Failed to load more featured books" });
             }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CancelOrder([FromBody] CancelOrderModel model)
+        {
+            try
+            {
+                int userId = await GetOrCreateUserId();
+                
+                var order = await _context.Orders
+                    .Include(o => o.OrderItems)
+                    .FirstOrDefaultAsync(o => o.OrderID == model.OrderId && o.UserID == userId);
+
+                if (order == null)
+                {
+                    return Json(new { success = false, message = "Order not found" });
+                }
+
+                if (order.OrderStatus == "Cancelled")
+                {
+                    return Json(new { success = false, message = "Order is already cancelled" });
+                }
+
+                if (order.OrderStatus == "Delivered")
+                {
+                    return Json(new { success = false, message = "Cannot cancel a delivered order" });
+                }
+
+                // Restore book stock quantities
+                foreach (var item in order.OrderItems)
+                {
+                    var book = await _context.Books.FindAsync(item.BookID);
+                    if (book != null)
+                    {
+                        book.StockQuantity += item.Quantity;
+                        _context.Books.Update(book);
+                    }
+                }
+
+                // Update order status
+                order.OrderStatus = "Cancelled";
+                _context.Orders.Update(order);
+
+                await _context.SaveChangesAsync();
+
+                return Json(new { success = true, message = "Order cancelled successfully" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error cancelling order");
+                return Json(new { success = false, message = "An error occurred while cancelling the order" });
+            }
+        }
     }
 
     public class CartUpdateModel
@@ -1011,5 +1082,9 @@ namespace BookMart.Controllers
         public int BookId { get; set; }
     }
 
+    public class CancelOrderModel
+    {
+        public int OrderId { get; set; }
+    }
 }
 

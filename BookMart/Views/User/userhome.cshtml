@@ -8,6 +8,143 @@
 
 <link href="~/css/user.css" rel="stylesheet" />
 
+<style>
+    .book-card {
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        border: none;
+        border-radius: 1rem;
+        overflow: hidden;
+        background: #fff;
+    }
+
+    .book-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+
+    .book-card .card-img-top {
+        height: 300px;
+        object-fit: contain;
+        background: #f8f9fa;
+        padding: 1rem;
+    }
+
+    .book-card .card-body {
+        padding: 1rem;
+    }
+
+    .book-card .card-title {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .book-card .card-text {
+        font-size: 0.875rem;
+        color: #6c757d;
+    }
+
+    .book-card .btn {
+        border-radius: 0.5rem;
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .book-card .btn-primary {
+        background-color: #000;
+        border-color: #000;
+    }
+
+    .book-card .btn-outline-primary {
+        color: #000;
+        border-color: #000;
+    }
+
+    .book-card .btn-primary:hover,
+    .book-card .btn-outline-primary:hover {
+        background-color: #333;
+        border-color: #333;
+        color: #fff;
+    }
+
+    .toast {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1050;
+    }
+
+    /* Login Modal Styles */
+    .login-modal .modal-content {
+        border: none;
+        border-radius: 1rem;
+        overflow: hidden;
+    }
+
+    .login-modal .modal-header {
+        background: #000;
+        color: #fff;
+        border: none;
+        padding: 1.5rem;
+    }
+
+    .login-modal .modal-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    .login-modal .modal-body {
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .login-modal .modal-body p {
+        font-size: 1.1rem;
+        color: #666;
+        margin-bottom: 1.5rem;
+    }
+
+    .login-modal .modal-footer {
+        border: none;
+        padding: 1.5rem;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .login-modal .btn {
+        padding: 0.75rem 2rem;
+        font-weight: 500;
+        border-radius: 0.5rem;
+        min-width: 120px;
+    }
+
+    .login-modal .btn-primary {
+        background: #000;
+        border-color: #000;
+    }
+
+    .login-modal .btn-outline-primary {
+        color: #000;
+        border-color: #000;
+    }
+
+    .login-modal .btn-primary:hover {
+        background: #333;
+        border-color: #333;
+    }
+
+    .login-modal .btn-outline-primary:hover {
+        background: #f8f9fa;
+        color: #000;
+    }
+
+    .login-modal .modal-icon {
+        font-size: 3rem;
+        color: #000;
+        margin-bottom: 1rem;
+    }
+</style>
+
 <!-- Toast Container for notifications -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
     <div id="bookAddedToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
@@ -265,6 +402,49 @@
     </section>
 }
 
+<!-- Login Modal -->
+<div class="modal fade login-modal" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">
+                    <i class="fas fa-lock me-2"></i>Login Required
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h4 class="mb-3">Add to Cart</h4>
+                <p>Please login or create an account to add items to your cart and enjoy a personalized shopping experience.</p>
+                <div class="benefits mb-4">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-check-circle text-success me-2"></i>
+                        <span>Track your orders</span>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-check-circle text-success me-2"></i>
+                        <span>Save your favorite books</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-check-circle text-success me-2"></i>
+                        <span>Get exclusive offers</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Login", "Account")" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt me-2"></i>Login
+                </a>
+                <a href="@Url.Action("Register", "Account")" class="btn btn-outline-primary">
+                    <i class="fas fa-user-plus me-2"></i>Register
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     <script>
         function addToCart(event, bookId, title) {
@@ -272,6 +452,16 @@
                 event.stopPropagation();
                 event.preventDefault();
             }
+
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <text>
+                const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                loginModal.show();
+                return;
+                </text>
+            }
+
             const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
             $.ajax({
                 url: '@Url.Action("AddToCart", "User")',

@@ -43,8 +43,8 @@
                         <div class="avatar-circle mb-3">
                             @{
                                 // Safely get initials, handling potential nulls or empty strings
-                                char firstInitial = Model.FirstName?.FirstOrDefault() ?? 'U';
-                                char lastInitial = Model.LastName?.FirstOrDefault() ?? 'N';
+                                char firstInitial = !string.IsNullOrEmpty(Model.FirstName) ? Model.FirstName[0] : 'U';
+                                char lastInitial = !string.IsNullOrEmpty(Model.LastName) ? Model.LastName[0] : 'N';
                             }
                             <span class="avatar-initials">@firstInitial@lastInitial</span>
                         </div>

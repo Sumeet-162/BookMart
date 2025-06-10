@@ -138,13 +138,52 @@
 
                 <!-- Add to Cart Button -->
                 <div class="d-grid mb-4">
-                    <form asp-controller="User" asp-action="AddToCart" method="post">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" name="bookId" value="@Model.BookID" />
-                        <button type="submit" class="btn btn-primary btn-lg w-100">
-                            <i class="fas fa-shopping-cart me-2"></i>Add to Cart
-                        </button>
-                    </form>
+                    <button type="button" class="btn btn-primary btn-lg w-100" onclick="addToCart(event, @Model.BookID, '@Model.Title')">
+                        <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                    </button>
+                </div>
+
+                <!-- Login Modal (copied from userhome.cshtml for consistency) -->
+                <div class="modal fade login-modal" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="loginModalLabel">
+                                    <i class="fas fa-lock me-2"></i>Login Required
+                                </h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="modal-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <h4 class="mb-3">Add to Cart</h4>
+                                <p>Please login or create an account to add items to your cart and enjoy a personalized shopping experience.</p>
+                                <div class="benefits mb-4">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        <span>Track your orders</span>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        <span>Save your favorite books</span>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        <span>Get exclusive offers</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="@Url.Action("Login", "Account")" class="btn btn-primary">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Login
+                                </a>
+                                <a href="@Url.Action("Register", "Account")" class="btn btn-outline-primary">
+                                    <i class="fas fa-user-plus me-2"></i>Register
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Book Details Tabs -->
@@ -241,9 +280,19 @@
 
 @section Scripts {
     <script>
-        function addToCart(bookId, title) {
+        function addToCart(event, bookId, title) {
+            if (event) {
+                event.preventDefault();
+            }
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <text>
+                const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                loginModal.show();
+                return;
+                </text>
+            }
             const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
-            
             $.ajax({
                 url: '@Url.Action("AddToCart", "User")',
                 type: 'POST',

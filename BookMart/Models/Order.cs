@@ -77,6 +77,12 @@ namespace BookMart.Models
         [StringLength(20)]
         public string? OrderStatus { get; set; } = "Pending"; // 'Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled'
 
+        [StringLength(50)]
+        public string? CouponCode { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal CouponDiscount { get; set; }
+
         // Navigation property
         public ICollection<OrderItem>? OrderItems { get; set; }
     }
