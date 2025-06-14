@@ -1,10 +1,16 @@
 // Program.cs
+using BookMart.Services;
+
+
 using BookMart.Data;
 using Microsoft.EntityFrameworkCore;
 using System; // Required for TimeSpan
 using Microsoft.AspNetCore.Authentication.Cookies; // Required for CookieAuthenticationDefaults
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHostedService<WebsitePinger>();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews()
